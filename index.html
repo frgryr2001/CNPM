@@ -70,7 +70,7 @@
 
                     <!-- NAVBAR HEADER 2 -->
                     <nav class="navbar header__nav-below navbar-light">
-                        <div class="container-fluid row">
+                        <div class="container-fluid justify-content-start row">
                             <ul class="header__nav-list col-xl-8 col-lg-8 d-sm-none d-md-none d-lg-none d-xl-flex">
                                 <li class="header__nav-item"><a href="#" class="header__nav-item-link">Signature</a></li>
                                 <li class="header__nav-item"><a href="#" class="header__nav-item-link">Dark Roasts</a></li>
@@ -94,9 +94,9 @@
                     </nav>
                 </header>
                 <div class="web-body">
-                    <div class="container">
-                        <div class="web__banner row">
-                            <div class="col-6 p-4">
+                    <div class="container web__banner">
+                        <div class="row ">
+                            <div class="col-6 left-web__banner">
                                 <!-- Carousel wrapper -->
                                 <div id="carouselDarkVariant" class="carousel slide carousel-fade carousel-dark" data-mdb-ride="carousel">
                                     <!-- Indicators -->
@@ -116,7 +116,7 @@
                                     <div class="carousel-inner">
                                         <!-- Single item -->
                                         <div class="carousel-item active">
-                                            <img src="./assets/img/slide1.jpg" class="d-block w-100  mySlides" alt="..." />
+                                            <img src="./assets/img/slide1.jpg" class="d-block w-100 mySlides" alt="..." />
                                             <!-- <div class="carousel-caption d-none d-md-block">
                                                 <h5>First slide label</h5>
                                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -155,38 +155,152 @@
                                 </div>
                                 <!-- Carousel wrapper -->
                             </div>
-                            <div class="col-6 p-4">
-                              <ul class="right__banner-list m-0 pl-0">
-                                <div class="row">
-                                <li class="right__banner-item col-6">
-                                    <a href="#" class="right__banner-item-link">
-                                        <img src="./assets/img/banner6.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="right__banner-item col-6">
-                                    <a href="#" class="right__banner-item-link">
-                                        <img src="./assets/img/banner6.jpg" alt="">
-                                    </a>
-                                </li>
-                              </div>
-                              <div class="row">
-                                <li class="right__banner-item col-6">
-                                    <a href="#" class="right__banner-item-link">
-                                        <img src="./assets/img/banner6.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="right__banner-item col-6">
-                                    <a href="#" class="right__banner-item-link">
-                                        <img src="./assets/img/banner6.jpg" alt="">
-                                    </a>
-                                </li>
-                              </div>
-                              </ul>
+                            <div class="col-6 right-web__banner">
+                                <ul class="right__banner-list m-0 pl-0">
+                                    <div class="row">
+                                        <li class="right__banner-item col-6">
+                                            <a href="#" class="right__banner-item-link">
+                                                <img class="w-100" src="./assets/img/banner6.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="right__banner-item col-6">
+                                            <a href="#" class="right__banner-item-link">
+                                                <img class="w-100" src="./assets/img/banner7.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                    </div>
+                                    <div class="row">
+                                        <li class="right__banner-item mt-3 col-6">
+                                            <a href="#" class="right__banner-item-link">
+                                                <img class="w-100" src="./assets/img/banner8.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="right__banner-item mt-3 col-6">
+                                            <a href="#" class="right__banner-item-link">
+                                                <img class="w-100" src="./assets/img/banner9.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container home__product">
+                        <h2 class="home__product-header row">Featured</h2>
+                        <div class="row">
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 card">
+                                <img src="./assets/img/card_1.png" alt="" />
+                                <div class="card__desc">
+                                    <a href="#" class="card__desc-link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel!</a>
+                                    <div class="card__wrapper">
+                                        <h3 class="card__wrapper-price">$200</h3>
+                                        <a href="#" class=""><button class="card__details btn">Details</button></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <footer class="footer"></footer>
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="col-3 footer__list">
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Home</a></li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> New product</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Specials</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> All product</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Reviews</a> </li>
+                            </ul>
+                            <ul class="col-3 footer__list">
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Contacts</a></li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> FAQS</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> My Acount</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Site Map</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Privacy Not</a> </li>
+                            </ul>
+                            <ul class="col-3 footer__list">
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Zen Cart</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> New product</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Specials</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> All product</a> </li>
+                            <li class="footer__item"><a href="#" class="footer__item-link"> Reviews</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+                <p class="copy__right">Copyright © 2021 Coffee Store. Powered by Zen Cart Privacy Notice</p>
             </div>
         </div>
         <script src="main.js"></script>

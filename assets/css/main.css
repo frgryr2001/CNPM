@@ -26,6 +26,8 @@ body {
 }
 body .web {
   background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/shine.png) no-repeat center 0;
+  background-size: cover;
+  background-position: center;
 }
 body .web .header {
   height: var(--header-height);
@@ -82,8 +84,10 @@ body .web .header .header-with-logo .header__cart {
 }
 body .web .header .header__nav-below {
   background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/bg_nav.png) no-repeat 0 0;
+  background-size: cover;
+  background-position: center;
   height: 70px;
-  width: 80%;
+  width: 100%;
   margin: auto;
   border-radius: 7px;
   z-index: 1;
@@ -119,6 +123,106 @@ body .web .header .header__nav-below .search__form .search__form-input:focus {
 }
 body .web .web__banner {
   background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/banners_block.png) no-repeat 0 0;
+  background-size: cover;
+  background-position: center;
+}
+body .web .web__banner .left-web__banner {
+  padding: 20px;
+}
+body .web .web__banner .right-web__banner {
+  padding: 20px;
+}
+body .web .web__banner .right-web__banner .right__banner-list {
+  list-style: none;
+  padding: 0;
+}
+body .web .home__product {
+  margin-top: 30px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+body .web .home__product .home__product-header {
+  padding: 20px;
+  color: var(--brown-color);
+  font-weight: 500;
+}
+body .web .home__product .card {
+  padding: 10px 10px;
+  transition: transform linear 0.1s;
+  will-change: transform;
+  border-radius: 2px;
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+body .web .home__product .card:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+body .web .home__product .card .card__desc {
+  background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/pr_name.png) no-repeat 0 0;
+  padding-top: 32px;
+}
+body .web .home__product .card .card__desc .card__desc-link {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--brown-color);
+  padding: 0 2px;
+  line-height: 1.8rem;
+  height: 3.6rem;
+  margin: 10px 10px 6px;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+body .web .home__product .card .card__desc .card__wrapper {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .web .home__product .card .card__desc .card__wrapper .card__wrapper-price {
+  font-size: 2.6rem;
+  color: var(--text-header-color);
+}
+body .web .home__product .card .card__desc .card__wrapper a {
+  text-decoration: none;
+}
+body .web .home__product .card .card__desc .card__wrapper a .card__details {
+  background-color: var(--brown-color);
+  color: var(--white-color);
+  font-size: 0.85rem;
+  line-height: 2.2;
+  font-weight: 600;
+}
+body .web .home__product .card .card__desc .card__wrapper a .card__details:hover {
+  color: var(--text-header-color);
+}
+body .web .footer {
+  background: url("https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/footer_block.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: 30px;
+}
+body .web .footer .footer__list {
+  list-style: none;
+  padding: 12px 0 11px 20px;
+}
+body .web .footer .footer__list .footer__item {
+  padding: 5px;
+}
+body .web .footer .footer__list .footer__item .footer__item-link {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-nav-header-color);
+}
+body .web .footer .footer__list .footer__item .footer__item-link:hover {
+  color: var(--white-color);
+}
+body .web .copy__right {
+  padding: 10px 0;
+  font-size: 1.5rem;
+  color: var(--text-nav-header-color);
 }
 
 /*# sourceMappingURL=main.css.map */
