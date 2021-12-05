@@ -1,0 +1,84 @@
+:root {
+  --text-nav-header-color: #82695A;
+  --text-header-color: #CF9D5B;
+  --text-normal-color: #ABB14C;
+  --brown-color: #5d3c31;
+  --white-color: #fff;
+  --navbar-header-height: 34px;
+  --header-height: 339px;
+  --category-header-height: 80px;
+  --header-with-logo-height: calc(var(--header-height) - var(--category-header-height) - var(--navbar-header-height)) ;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/body-bg.jpg);
+}
+body .web {
+  background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/shine.png) no-repeat center 0;
+}
+body .web .header {
+  height: var(--header-height);
+}
+body .web .header .header__navbar {
+  display: flex;
+  justify-content: center;
+  padding-top: 65px;
+}
+body .web .header .header__navbar .nav-icon {
+  color: var(--text-nav-header-color);
+}
+body .web .header .header__navbar .header__nav__list {
+  height: var(--navbar-header-height);
+  margin: 0;
+  list-style: none;
+}
+body .web .header .header__navbar .header__nav__list .header__nav__item {
+  display: inline-block;
+  font-size: 1.6rem;
+  padding: 0 9px;
+}
+body .web .header .header__navbar .header__nav__list .header__nav__item .nav__time__link {
+  color: var(--text-nav-header-color);
+}
+body .web .header .header__navbar .header__nav__list .header__nav__item .nav__time__link:hover {
+  text-decoration: none;
+  color: var(--white-color);
+}
+body .web .header .header-with-logo {
+  width: 100%;
+}
+body .web .header .header-with-logo .header__login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .web .header .header-with-logo .header__login .header__login-link {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-nav-header-color);
+}
+body .web .header .header-with-logo .header__login .header__login-link:hover {
+  text-decoration: none;
+  color: var(--white-color);
+}
+body .web .header .header-with-logo .header__logo .header__logo-link-img {
+  width: 396px;
+}
+body .web .header .header-with-logo .header__cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=main.css.map */

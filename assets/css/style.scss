@@ -1,0 +1,81 @@
+@import 'variable';
+
+*{
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-image: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/body-bg.jpg);
+    .web {
+        background: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/shine.png)  no-repeat center 0;
+        .header{
+            height: var(--header-height);
+            .header__navbar{
+                display: flex;
+                justify-content: center;
+                padding-top: 65px;
+                .nav-icon{
+                    color: var(--text-nav-header-color)
+                }
+                .header__nav__list{
+                    height: var(--navbar-header-height);
+                    margin: 0;
+                    list-style: none;
+                    .header__nav__item{
+                        display: inline-block;
+                        font-size: 1.6rem;
+                        padding: 0 9px;
+                        .nav__time__link{
+                            color: var(--text-nav-header-color);
+                            &:hover{
+                                text-decoration: none;
+                                color: var(--white-color);
+                            }
+                        }
+                    }
+                }
+            }
+            .header-with-logo {
+                width: 100%;
+                .header__login{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .header__login-link {
+                        font-size: 1.6rem;
+                        font-weight:500;
+                        color: var(--text-nav-header-color);
+                        &:hover{
+                            text-decoration: none;
+                            color: var(--white-color);
+                        }
+                    }
+                    
+                }
+                .header__logo{
+                    .header__logo-link-img{
+                        width: 396px;
+                    }
+
+                    
+                }
+                .header__cart {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            .header__nav-below{
+                background-image: url(https://livedemo00.template-help.com/zencart_40176/includes/templates/theme657/images/bg_nav.png); important
+            }
+        }
+    }
+}
