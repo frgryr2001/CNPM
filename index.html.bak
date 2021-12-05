@@ -52,7 +52,7 @@
                                         <a href="#" class="nav__time__link nav-link">Reviews</a>
                                     </li>
                                     <li class="header__nav__item nav-item">
-                                        <a href="./formvalidate/login.html" class="nav__time__link nav-link">login</a>
+                                        <a href="./formvalidate/validator.html" class="nav__time__link nav-link">login</a>
                                     </li>
                                 </ul>
                             </div>
