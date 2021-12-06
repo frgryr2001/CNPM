@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Web</title>
+        <link rel="stylesheet" href="../assets/css/dasboard.css" type="text/css" />
+    </head>
+
+    <body>
+        <div class="container_">
+            <div class="navigation_">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="analytics"></ion-icon></span>
+                            <span class="title">Cafe QTTN</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                            <span class="title">Employer</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="cafe"></ion-icon></span>
+                            <span class="title">Goods</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                            <span class="title">Help</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                            <span class="title">Settings</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                            <span class="title">Password</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                            <span class="title">Sign out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                    <!-- search -->
+                    <div class="search">
+                        <label for="">
+                            <input type="text" placeholder="Search here" />
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+
+                    <!-- userImg -->
+                    <div class="user">
+                        <img src="../assets/img/user/img1.jpg" alt="" />
+                    </div>
+                </div>
+
+                <!-- <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">1.504</div>
+                            <div class="cardName">Daily Views</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">80</div>
+                            <div class="cardName">Sales</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">284</div>
+                            <div class="cardName">Comments</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">$7.842</div>
+                            <div class="cardName">Earnings</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="cash-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Data list -->
+                <div class="details">
+                    <div class="employer__list">
+                        <div class="cardHeader">
+                            <h2>List of Employer</h2>
+                            <a href="#" class="btn">View all</a>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>phone number</td>
+                                    <td>position</td>
+                                    <td>Status</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>0123456</td>
+                                    <td>waiter</td>
+                                    <td><span class="status delivered">Delivered</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>8374460034</td>
+                                    <td>cashier</td>
+                                    <td><span class="status pending">Pendding</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Nguyễn Văn C</td>
+                                    <td>4195068</td>
+                                    <td>waiter</td>
+                                    <td><span class="status return">Return</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Nguyễn Văn D</td>
+                                    <td>29498575</td>
+                                    <td>waiter</td>
+                                    <td><span class="status inprogress">In Progress</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="add__employer">
+                        <div class="cardHeader">
+                            <h2>Add employer</h2>
+                        </div>
+
+                        <form action="">
+                            <div class="form__control">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" />
+                            </div>
+                            <div class="form__control">
+                                <label for="sdt">Phone number:</label>
+                                <input type="text" id="sdt" />
+                            </div>
+                            <div class="form__control">
+                                <label for="position">Position: </label>
+                                <select name="position" id="position">
+                                    <option value="cashier">Cashier</option>
+                                    <option value="waiter">Waiter</option>
+                                    <option value="management">Management</option>
+                                </select>
+                            </div>
+                            <div class="form__control">
+                                <button class="add__item">ADD</button>
+                            </div>
+                        </form>
+                        <!-- <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img2.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>David <br><span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img3.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Yi <br><span>Usa</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img4.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Ben <br><span>Lao</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img5.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4> Mambo <br><span>Iran</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img6.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Jennie <br><span>Korean</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img7.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Lisa <br><span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img8.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Kante <br><span>Franch</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img9.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Degea <br><span>Spanish</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="../assets/img/user/img10.jpg" alt=""></div>
+                            </td>
+
+                            <td>
+                                <h4>Messi <br><span>Arthentina</span></h4>
+                            </td>
+                        </tr> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script>
+            // menutoggle
+            let toggle = document.querySelector(".toggle");
+            let navigation = document.querySelector(".navigation_");
+            let main = document.querySelector(".main");
+
+            toggle.onclick = function () {
+                navigation.classList.toggle("active");
+                main.classList.toggle("active");
+            };
+
+            //
+            let list = document.querySelectorAll(".navigation_ li");
+
+            function activeLink() {
+                list.forEach((item) => item.classList.remove("hovered"));
+                this.classList.add("hovered");
+            }
+            list.forEach((item) => item.addEventListener("mouseover", activeLink));
+        </script>
+    </body>
+</html>
