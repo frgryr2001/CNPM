@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./validator.css" />
         <link rel="stylesheet" href="./base_validator.css" />
         <title>Document</title>
-        
+
         <link rel="stylesheet" href="./validator.css" />
     </head>
     <body>
@@ -23,7 +23,7 @@
             <form action="" method="POST" class="form" id="form-1">
                 <h3 class="heading text-uppercase">Sign up</h3>
                 <div class="header__logo col-lg-12 col-md-12 text-center">
-                    <a href="#" class="header__logo-link ">
+                    <a href="#" class="header__logo-link">
                         <img src="/assets/img/logo.png" class="header__logo-link-img" alt="" />
                     </a>
                 </div>
@@ -31,47 +31,24 @@
 
                 <div class="form-group">
                     <label for="fullname" class="form-label">Tên đầy đủ</label>
-                    <input
-                        rules="required" 
-                        id="fullname"
-                        name="fullname"
-                        type="text"
-                        placeholder="VD: Sơn Đặng"
-                        class="form-control"
-                    />
+                    <input rules="required" id="fullname" name="fullname" type="text" placeholder="VD: Sơn Đặng" class="form-control" />
                     <span class="form-message"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
-                    <input
-                        rules="required|email" 
-                        id="email"
-                        name="email"
-                        type="text"
-                        placeholder="VD: email@domain.com"
-                        class="form-control"
-                    />
+                    <input rules="required|email" id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control" />
                     <span class="form-message"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input
-                        rules="required|min:6" 
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="Nhập mật khẩu"
-                        class="form-control"
-                    />
+                    <input rules="required|min:6" id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control" />
                     <span class="form-message"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="password_confirmation" class="form-label"
-                        >Nhập lại mật khẩu</label
-                    >
+                    <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
                     <input
                         id="password_confirmation"
                         name="password_confirmation"
@@ -81,52 +58,19 @@
                     />
                     <span class="form-message"></span>
                 </div>
-               
+
                 <button class="form-submit">Đăng ký</button>
             </form>
         </div>
 
         <script src="./validator2.js"></script>
 
-        
-        
-        
         <script>
-            validator('#form-1',{
-                onSubmit: function(data){
-                    console.log(data)
-                }
-            })
-
-
-
-        
-        // VALIDATOR cách 1
-        //     validator({
-        //         form: "#form-1",
-        //         errorSelector: ".form-message",
-        //         formGroupSelector: ".form-group",
-        //         rules: [
-        //             validator.isRequired("#fullname"),
-        //             validator.isRequired("#email"),
-        //             validator.isEmail("#email"),
-        //             validator.isRequired("#password"),
-        //             validator.minLength("#password", 3),
-        //             validator.isRequired("#password_confirmation"),
-        //             validator.confirmed(
-        //                 "#password_confirmation",
-        //                 () => document.querySelector("#form-1 #password").value,
-        //                 "Mật khẩu nhập lại không chính xác"
-        //             ),
-        //             validator.isRequired("#province"),
-        //             validator.isRequired("input[name='gender']"),
-        //             validator.isRequired("input[name='checkbox']"),
-
-        //         ],
-        //         onSubmit: function (data) {
-        //             console.log(data);
-        //         },
-        //     });
-        </script> 
+            validator("#form-1", {
+                onSubmit: function (data) {
+                    console.log(data);
+                },
+            });
+        </script>
     </body>
 </html>
