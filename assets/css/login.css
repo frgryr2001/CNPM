@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    /* background: linear-gradient(45deg, #d31241, #23c53e); */
+    /* background: rgb(255, 255, 255) !important; */
+    /* background: url('https://cellphones.com.vn/smember/_nuxt/img/BlockCPS.50bb45a.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+    background-size: cover; */
+
+    background: linear-gradient(30deg, #d31027, #f04659);
+
+}
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+.login {
+    position: relative;
+    padding: 0 45px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-title {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 35px;
+    padding-bottom: 30px;
+
+}
+
+.login-form-group{
+    position: relative;
+    width: 300px;
+    height: 46px;
+    margin-bottom: 35px;
+}
+
+.login-form-group__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid #222;
+    background: transparent;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 18px;
+    outline: none;
+    font-weight: 500;
+    color: #222;
+}
+
+.login-form-group span { 
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    font-size: 17px;
+    font-weight: 400;
+    padding: 10px;
+    transition: 0.3s;
+    text-align:justify;
+    color: rgb(63, 63, 63);
+}
+
+.login-form-group span:after {
+    content: "";
+    display: inline-block;
+
+}
+
+.login-form-group__input:focus ~ span,
+.login-form-group__input:not(:placeholder-shown) ~ span,
+.login-form-group__input:focus:valid ~ span 
+{
+    transform: translateY(-15px);
+    background-color: #fff;
+    color: #222;
+    padding: 0;
+    margin-left: 13px;
+    font-size: 15px;
+    
+}
+
+.login-form-group__input-submit{
+    border-color: #d31027;
+    background-image: linear-gradient(45deg, #d31027, #f04659);
+    color: #fff;
+
+}
+
+.login-form-group__input-submit:hover,
+.login-form-group__input-submit:focus{
+    color: #d31027;
+    background-color: #fff;
+    background: linear-gradient(45deg, #ebeaea, #ffffff);
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.login-form-group-register {
+    text-align: center;
+}

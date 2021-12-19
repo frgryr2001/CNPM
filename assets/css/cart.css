@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+/*  */
+#shopping-cart{
+    width: 100%;
+    height: 100%;
+}
+.shopping-cart{
+    width: 650px;
+    margin: 0 auto;
+}
+.shopping-cart__header{
+    display: flex;
+    
+    align-items: center;
+    margin: 1rem 0;
+}
+.shopping-cart__title{
+    margin-top: 1rem;
+    color: #0a263c;
+    font-size: 1.8rem;
+}
+.shopping-cart__header a{
+    display: flex;
+    flex-grow: 1;
+    color: #d70018;
+}
+
+.shopping-cart-list{
+    
+}
+.shopping-cart__list__product{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(200, 198, 198);
+}
+.shopping-cart__list__product-block{
+    display: flex;
+    
+}
+.shopping-cart__list__product-block__right{
+    width: 100%;
+    
+}
+.shopping-cart__list__product-block img{
+    width: 150px;
+    padding: 5px;  
+}
+.product__name{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3c3d41;
+    
+}
+.product__price{
+    font-size: 14px;
+    color: #e11b1e;
+}
+.shopping-cart__list__product__bottom{
+    margin-top: 2rem;
+    padding-left: 65px;
+    width: 600px;
+
+}
+.shopping-cart__list__product__bottom a{
+    display: flex;
+    justify-content: center;
+    color: #d70018;
+    font-size: 15px;
+    border: none;
+    background: none;
+
+}
+.shopping-cart__list__product__input {
+    width: 60px;
+    height: 30px;
+    border: 1px solid rgb(184, 184, 184);
+}
+
+.shopping-cart__list__product_btn-qty{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.shopping-cart__list__product_btn-qty li{
+    font-size: 16px;
+    border-radius: 0!important;
+    width: 35px;
+    height: 35px;
+    line-height: 30px;
+    border: 1px solid #eee;
+    text-align: center;
+    color: #3c3d41;
+    margin: 0;
+    cursor: pointer;
+}
+.shopping-cart__list__product_btn-qty li:hover{
+    background: #ddd;
+    transition: 0.3s;
+}
+.shopping-cart__list__product-delete{
+    padding-left: 0.8rem;
+}
+.shopping-cart__list__product-delete:hover {
+    color: #e11b1e;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.shopping-cart__list__product-delete:active{
+    color: #e11b1e;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.delete-product:hover {
+    text-decoration: underline;
+}
+
+.coupon {
+    padding: 1rem;
+}
+.coupon--span{
+    
+}
+.coupon-input {
+    height: 36px;
+    width: 58%;
+}
+
+.coupon-btn{
+    height: 37.5px;
+
+}
+.coupon-price{
+    display: flex;
+    padding: 0.5rem 1rem;
+}
+
+.coupon-price-left{
+    flex-grow: 1;
+}
+
+.coupon-price-right{
+
+}
+
+.total-price{   
+    display: flex;
+    font-size: 20px;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgb(194, 194, 194);
+}
+.total-price-left{
+    flex-grow: 1;
+}
+.total-price-right{
+    font-size: 16px;
+    color: #e11b1e;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
+/* Giỏ hàng trống */
+.shopping-cart__empty{
+    display: none;
+    margin: 3rem 0;
+    text-align:center;
+}
+
+.shopping-cart__empty-title{
+    padding: 1rem;
+    font-size: 22px;
+    font-weight: 300;
+    
+}
+
+.shopping-cart__empty__btn-return{
+    color: #d70018 !important;
+    border:1px solid #ddd !important;
+}
+
+
+.shopping-cart__form {
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+
+.btn-payment {
+    width: 98%;
+    height: 48px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 8px;
+    border: 2px solid #e11b1e;
+    background-color: #e11b1e;
+    background: -moz-linear-gradient(#f52f32, #e11b1e);
+    font-size: 18px;
+    font-weight: 800;
+    color: #ddd;
+}
+
+.btn-payment:hover {
+   background-color: #eee;
+   color: #e11b1e;
+   transition: 0.3s ;
+}
+
+.btn-payment:active {
+    background-color: #eee;
+    color: #e11b1e;
+
+ }
+
+ @media screen and (max-width: 800px){
+    .shopping-cart{
+        width: 500px;
+        padding: 0 0.7rem;
+    }
+    
+    .shopping-cart__header{
+        padding: 0 1rem;
+    }
+
+    .coupon-input {
+        height: 36px;
+        width: 42%;
+    }
+} 
+
+
+@media screen and (max-width: 500px){
+    .shopping-cart{
+        width: 450px;
+        padding: 0 0.7rem;
+    }
+    
+    .shopping-cart__header{
+        padding: 0 1rem;
+    }
+
+    .coupon-input {
+        height: 36px;
+        width: 36%;
+    }
+} 
