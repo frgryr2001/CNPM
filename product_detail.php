@@ -16,6 +16,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="./assets/css/product.css" type="text/css">
+  
   <!-- link icons and fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,24 +27,7 @@
 </head>
 <body>
   <!-- nav -->
-    <nav class="navbar navbar-expand-sm bg-dark">
-
-      <div class="container-fluid">
-        <!-- Links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
-          </li>
-        </ul>
-      </div>
-    
-    </nav>
+   
   <!-- end Nav -->
   <!-- name product -->
   <!-- <div class="detail-product__box-name">
@@ -115,7 +99,7 @@
                   <!-- Select colors product -->
                   <div class="box-colors__product">
                     <p class="box-title">Chọn màu để xem giá</p>
-                    <div class="box-content d-flex ">
+                    <div class="box-content d-flex">
                         <button class="btn btn-outline-dark btn-rounded d-flex mr-2 js_click">
                             <img src="./images/mac.jpg" alt="" style="width: 25px; height: 25px" class="align-self-center">
                             <p class= "d-flex flex-column ml-1">
@@ -130,13 +114,7 @@
                             <span>25.000.000</span>
                           </p>
                         </button>
-                        <button class="btn btn-outline-dark btn-rounded d-flex mr-2 js_click">
-                          <img src="./images/mac.jpg" alt="" style="width: 25px; height: 25px" class="align-self-center">
-                          <p class= "d-flex flex-column ml-1">
-                            <Strong>Trang</Strong>
-                            <span>25.000.000</span>
-                          </p>
-                        </button>
+                        
                     </div>
 
                     <div class="card mt-3">
@@ -376,5 +354,5 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script type="text/javascript" src="./assets/js/product.js"></script>
+<script type="text/javascript" src="./assets/js/product1.js"></script>
 </html>

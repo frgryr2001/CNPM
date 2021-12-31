@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSC Store</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
     </style>
 
     <link rel="shortcut icon" href="favi.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/base.css">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/icon.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/icon.css">
 </head>
 
 <body>
@@ -731,7 +731,8 @@
                 <div class="c-6">
                     <div class="flash__hot__sale">
                         <!-- hot sale image -->
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="272.222" height="38.337" viewBox="0 0 272.222 38.337">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="272.222" height="38.337" viewBox="0 0 272.222 38.337">
                             <defs>
                                 <filter id="Path_1419" x="27.652" y="8.388" width="111.756" height="22.383"
                                     filterUnits="userSpaceOnUse">
@@ -3035,7 +3036,9 @@
                     <div class="featured__phone__product__desc">
                         <div class="featured__phone__product__desc__title">
                             <a href="" class="featured__phone__product">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ad quis inventore, nesciunt obcaecati in doloremque rerum quaerat porro pariatur necessitatibus accusantium labore distinctio velit magnam. Rem architecto sequi fugit.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ad quis inventore,
+                                nesciunt obcaecati in doloremque rerum quaerat porro pariatur necessitatibus accusantium
+                                labore distinctio velit magnam. Rem architecto sequi fugit.
                             </a>
                         </div>
                         <div class="featured__phone__product__desc__price">
@@ -3053,7 +3056,9 @@
                             </div>
                         </div>
                         <div class="featured__phone__product__promotion__info">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis cum vitae maiores. Harum, corporis ad enim labore facere officiis, quos dolorum minus illo voluptas veniam, eum quae. Quisquam, id. Labore.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis cum vitae maiores.
+                                Harum, corporis ad enim labore facere officiis, quos dolorum minus illo voluptas veniam,
+                                eum quae. Quisquam, id. Labore.</p>
                         </div>
                         <div class="featured__phone__product__desc__rare featured__phone__rare">
                             <div class="featured__phone__product__desc__rare__star">
@@ -3264,7 +3269,9 @@
                         <!-- name -->
                         <div class="featured__phone__product__desc__title">
                             <a href="" class="featured__phone__product">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere id, explicabo cum repellendus tempore quas? Amet quasi deleniti culpa voluptatem voluptatibus enim a repudiandae possimus ab. Quas natus et ea.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere id, explicabo cum
+                                repellendus tempore quas? Amet quasi deleniti culpa voluptatem voluptatibus enim a
+                                repudiandae possimus ab. Quas natus et ea.
                             </a>
                         </div>
                         <!-- price -->
@@ -3284,7 +3291,9 @@
                         </div>
                         <!-- infor -->
                         <div class="featured__phone__product__promotion__info">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto ea sed, ipsa accusamus itaque. Amet, quia. Autem voluptas, aut numquam dolores deleniti suscipit reiciendis sed sequi? Mollitia, repellat molestiae.</p>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto ea sed,
+                                ipsa accusamus itaque. Amet, quia. Autem voluptas, aut numquam dolores deleniti suscipit
+                                reiciendis sed sequi? Mollitia, repellat molestiae.</p>
                         </div>
                         <!-- star -->
                         <div class="featured__phone__product__desc__rare featured__phone__rare">
@@ -3412,7 +3421,7 @@
         <?php 
             require "./inc/footer.php"
         ?>
-    <script src="assets/script.js"></script>
+        <script src="assets/js/script.js"></script>
 </body>
 
 </html>

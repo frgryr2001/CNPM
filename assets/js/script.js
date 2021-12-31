@@ -93,7 +93,7 @@ searchModal.addEventListener('click', function() {
     let second, minute, hour, day;
 
     const currentDate = new Date();
-    const endDate = new Date(2021, 10, 30, 12, 00, 00);
+    const endDate = new Date(2021, 11, 9, 12, 00, 00);
     timeDifference = (endDate - currentDate) / 1000
     const countDown = setInterval(function() {
         if (timeDifference <= 0) {
