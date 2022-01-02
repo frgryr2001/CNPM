@@ -2,11 +2,9 @@
     require_once('./conf/conf.php');
     session_start();
     if(isset($_SESSION['user'])){
-        header('Location: ./admin_dashboard/index.php');
+        header('Location: ./admin/index.php');
         exit();
     }
-    
-
 ?>
 
 <head>
@@ -50,12 +48,13 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         $error = 'Password must have at least 6 characters';
     }
     else{
-        $result = login($user, $pass);
+        // login success
+        $result = login($user, $pass); 
         if ($result['code'] == 0){
             $data = $result['data'];
             $_SESSION['name'] = $data['name'];
             $_SESSION['user'] = $data['username'];
-            header('Location: ./admin_dashboard/index.php');
+            header('Location: ./admin/index.php');
             exit();
         }else {
             $error = $result['error'];

@@ -1,7 +1,7 @@
 <?php
     require_once('db.php');
     function login($user,$pass){
-        $sql = "select * from admin where username = ?";
+        $sql = "select * from account where username = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm -> bind_param('s',$user);
@@ -27,7 +27,7 @@
     }
     function getAllUser(){
         $conn = open_database();
-        $sql = 'SELECT * FROM user';
+        $sql = 'SELECT * FROM account';
         $stm = $conn->prepare($sql);
         
         if (!$stm->execute()){
@@ -64,7 +64,7 @@
         }
     }
     function is_email_exists($email){
-        $sql = "select * from user where email = ?";
+        $sql = "select * from account where email = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm -> bind_param('s',$email);
