@@ -1280,8 +1280,6 @@
 }
 
 .btn {
-   
-    
     border: none;
     display: flex;
     align-items: center;
@@ -3145,8 +3143,44 @@
 }
 a{
     text-decoration: none !important;   
+    
 }
+a:hover{color:#fff}
 p{
     display: block!important;
     margin: 0 !important;
+    
 }
+ul.login-popup {
+    position: absolute;
+    left: -2rem;
+    background-color: white;
+    padding: 0.5rem 0;
+    width: 13rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    border: 1px solid #c40016;
+    display: none;
+}
+
+.header__navbar__item:hover .login-popup {
+    display: block;
+}
+
+.login-popup a{
+    display: block;
+    width: 100%;
+    padding: .25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.login-popup a:hover{
+    background-color: rgb(226, 216, 216);
+}
+
