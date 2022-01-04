@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="./assets/css/cart.css">
+    
     <!-- boottrap4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,6 +13,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- cart.js -->
     <script src="./assets/js/cart.js"></script>
+    <!-- link css  -->
+    <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="shortcut icon" href="favi.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/icon.css">
     <!-- link icons and fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +26,7 @@
     <!-- font-family: 'Nunito', sans-serif; -->
 </head>
 <body>
-
+    <?php include('./inc/header.php')?>
     <section id="shopping-cart">
         <div class="shopping-cart">
             <!-- header -->
@@ -137,17 +143,6 @@
                             <label for="inputNote">Lưu ý thêm</label>
                             <input type="text" class="form-control" id="inputNote" name="note" placeholder="" >
                         </div>
-                        <h3>Chọn hình thức thanh toán</h3>
-                        <div class="form-group " class="payments was-validated">           
-                            <div class="payments__online custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="online" value="online" name="pay" checked required>
-                                <label class="custom-control-label" for="online">Chuyển khoản ngân hàng</label>
-                            </div>                
-                            <div class="payments_cod custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="cod" value="cod" name="pay" required>
-                                <label class="custom-control-label"  for="cod">Thanh toán khi nhận hàng</label>
-                            </div>                     
-                        </div>
                         <button type="submit" class="btn-payment">Đặt hàng</button>
                     </form>
                 </div>
@@ -160,6 +155,16 @@
                 </svg>
                 <p class="shopping-cart__empty-title" >Không có sản phẩm nào trong giỏ hàng, vui lòng tải lại trang</p>
                 <button class="btn btn-light shopping-cart__empty__btn-return">Quay về trang chủ</button>
+            </div>
+            <div class="shopping-cart__empty d-block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="currentColor" class="bi bi-emoji-frown"
+                    viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+                </svg>
+                <p class="shopping-cart__empty-title">Không có sản phẩm nào trong giỏ hàng, vui lòng tải lại trang</p>
+                <a href="/" class="btn btn-light shopping-cart__empty__btn-return">Quay về trang chủ</a>
             </div>
             
         </div>       

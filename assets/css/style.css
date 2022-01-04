@@ -77,7 +77,7 @@
 
 /* header logo image */
 
-.header__logo__img {
+.header__logo__img a{
     margin-right: 10px;
 }
 
@@ -1280,9 +1280,8 @@
 }
 
 .btn {
-    width: 160px;
-    height: 50px;
-    background-color: #D70018;
+   
+    
     border: none;
     display: flex;
     align-items: center;
@@ -3143,4 +3142,11 @@
         margin-bottom: 2px;
         font-size: 0.8rem;
     }
+}
+a{
+    text-decoration: none !important;   
+}
+p{
+    display: block!important;
+    margin: 0 !important;
 }

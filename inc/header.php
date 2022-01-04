@@ -52,7 +52,7 @@
             <div class="row">
                 <!-- Logo Image -->
                 <div class="header__logo__img">
-                    <a href=""><img src="assets/img/logo.png" alt=""></a>
+                    <a href="" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a>
                 </div>
 
                 <!-- Submenu modal -->
@@ -98,11 +98,10 @@
                         </li>
                         <li class="header__navbar__item">
                             <div class="header__navbar__item__wrapper">
-                                <a href="" class="header__navbar__item__link">
+                                <a href="./cart.php" class="header__navbar__item__link">
                                     <i class="cart-icon nav-icon"></i>
                                     <div class="header__navbar__item__link__desc__wrapper">
                                         <p>Giỏ hàng</p>
-
                                     </div>
                                 </a>
                             </div>

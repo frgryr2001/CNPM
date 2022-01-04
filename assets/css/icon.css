@@ -152,13 +152,13 @@
 }
 
 .star-haft-icon {
-    background: url(icons/star_half.svg) no-repeat;
+    background: url(../icons/star_half.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .star-border-icon {
-    background: url(icons/star_border.svg) no-repeat;
+    background: url(../icons/star_border.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }
@@ -169,25 +169,25 @@
 }
 
 .support-icon {
-    background: url(icons/support.svg) no-repeat;
+    background: url(../icons/support.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .ship-icon {
-    background: url(icons/ship.svg) no-repeat;
+    background: url(../icons/ship.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .cart-icon {
-    background: url(icons/cart.svg) no-repeat;
+    background: url(../icons/cart.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .user-icon {
-    background: url(icons/user.svg) no-repeat;
+    background: url(../icons/user.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }

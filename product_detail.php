@@ -16,7 +16,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="./assets/css/product.css" type="text/css">
-  
+  <link rel="shortcut icon" href="favi.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/icon.css">
   <!-- link icons and fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,28 +29,15 @@
 
 </head>
 <body>
-  <!-- nav -->
-   
-  <!-- end Nav -->
-  <!-- name product -->
-  <!-- <div class="detail-product__box-name">
-    <div class="cps-container">
-      <div class="box-name__box-product-name">
-        <h1>iPhone 12 Pro Max I Chính hãng VN/A</h1>
-      </div>
-      <div class="box-name__box-raiting">
-        <i class="fas fa-star checked"></i>
-        <i class="fas fa-star checked"></i>
-        <i class="fas fa-star checked"></i>
-        <i class="fas fa-star checked"></i>
-        <i class="fas fa-star checked"></i>
-        4 danh gia
-      </div>
-    </div>
-  </div> -->
+  <?php include('./inc/header.php')?>
+
+       
+  
   <!-- Product -->
     <div id="content-wrapper">
+    
       <div class="container-fluid">
+      
           <div class="row shadow-sm pb-3">
               <div class="col-lg-4 col-md-6 col-sm-6 justify-content-center">
                 <img id=featured src="./assets/img/product/laptop0.webp" width="100%">
@@ -98,24 +88,8 @@
                   </div>
                   <!-- Select colors product -->
                   <div class="box-colors__product">
-                    <p class="box-title">Chọn màu để xem giá</p>
-                    <div class="box-content d-flex">
-                        <button class="btn btn-outline-dark btn-rounded d-flex mr-2 js_click">
-                            <img src="./images/mac.jpg" alt="" style="width: 25px; height: 25px" class="align-self-center">
-                            <p class= "d-flex flex-column ml-1">
-                              <Strong>Trang</Strong>
-                              <span>25.000.000</span>
-                            </p>
-                        </button>
-                        <button class="btn btn-outline-dark btn-rounded d-flex mr-2 js_click">
-                          <img src="./images/mac.jpg" alt="" style="width: 25px; height: 25px" class="align-self-center">
-                          <p class= "d-flex flex-column ml-1">
-                            <Strong>Trang</Strong>
-                            <span>25.000.000</span>
-                          </p>
-                        </button>
-                        
-                    </div>
+                    
+                   
 
                     <div class="card mt-3">
                       <div class="card-header bg-danger">
