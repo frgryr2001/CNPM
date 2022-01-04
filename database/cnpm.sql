@@ -107,6 +107,7 @@ CREATE TABLE `product` (
   `newPrice` int(11) DEFAULT NULL,
   `oldprice` int(11) DEFAULT NULL,
   `rate` double DEFAULT NULL,
+  `image` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `hotsale` tinyint(1) DEFAULT NULL,
   `sellQuantity` int(11) DEFAULT NULL,
   `guarantee` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT NULL
