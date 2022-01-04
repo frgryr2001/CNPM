@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // session_start();
 // if (!isset($_SESSION['user'])) {
 //     header("Location: http://localhost/login.php");
@@ -7,7 +6,6 @@
 // }
 // require_once('../conf/conf.php');
 // $getAllUsers = json_decode(getAllUser())->data;
-=======
 session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: ./login.php");
@@ -17,7 +15,7 @@ require_once('../conf/conf.php');
 print_r(getAllUser());
 echo getAllUser();
 $getAllUsers = json_decode(getAllUser())->data;
->>>>>>> 291d692ee190c4321eab8963652a2fc7d35ae18b
+
 ?>
 
 <head>
