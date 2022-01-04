@@ -1,3 +1,6 @@
+<?php
+    require_once("./conf/conf.php")
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +14,25 @@
 </head>
 <?php
     $error = '';
-	$user ='';
+	$username ='';
+    $email ='';
+    $password = '';
     $name= '';
     $phone= '';
-    $email ='';
-    $pass = '';
-    $pass_confirm = '';
+    $address = '';
+    $salary = '';
     // $check = false;
     $success = '';
-    if (isset($_POST['username']) && isset($_POST['email']) &&  isset($_POST['pass']) && isset($_POST['pass-confirm']) && isset($_POST['phonenumber'])
-    && isset($_POST['ngaysinh']) && isset($_POST['fullname']))
+    if (isset($_POST['username']) && isset($_POST['email']) &&  isset($_POST['password']) && isset($_POST['phone']) && isset($_POST['name'])
+    && isset($_POST['address']))
     {
-		$user = $_POST['username'];
-		$ngaysinh = $_POST['ngaysinh'];
-		$phonenumber = $_POST['phonenumber'];
-        $fullname = $_POST['fullname'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $pass_confirm = $_POST['pass-confirm'];
-        $avatar = 'img/avatar.png';
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $address = $_POST['address'];
+        
 		
 		if (empty($user)) {
             $error = 'Please enter your username';
@@ -77,37 +80,38 @@
 ?>
 <body>
     <div class="registration-form">
-        <form>
+        <form method="post">
             <div class="form-icon">
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="username" placeholder="Username">
+                <input type="text" class="form-control item" id="username" name="username" placeholder="Username">
+            </div>
+            
+            <div class="form-group">
+                <input type="email" class="form-control item" id="email" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" id="password" placeholder="Password">
+                <input type="password" class="form-control item" id="password" name="password" placeholder="Password">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="email" placeholder="Email">
+                <input type="text" class="form-control item" id="name" name="name" placeholder="Name">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number">
+                <input type="number" class="form-control item" id="phone" name="phone" placeholder="Phone Number">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+                <input type="text" class="form-control item" id="address" name="address" placeholder="address">
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-block create-account">Create Account</button>
+                <input type="text" class="form-control item" id="salary" name="salary" placeholder="salary">
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-block create-account">Create Account</button>
             </div>
         </form>
-        <div class="social-media">
-            <h5>Sign up with social media</h5>
-            <div class="social-icons">
-                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
-                <a href="#"><i class="icon-social-google" title="Google"></i></a>
-                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
-            </div>
-        </div>
+       
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
