@@ -3153,11 +3153,11 @@ p{
 }
 ul.login-popup {
     position: absolute;
-    left: -2rem;
+    left: -1rem;
     background-color: white;
     padding: 0.5rem 0;
-    width: 13rem;
-    text-align: center;
+    width: 11rem;
+    text-align: start;
     border-radius: 0.2rem;
     border: 1px solid #c40016;
     display: none;
