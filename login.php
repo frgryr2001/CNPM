@@ -1,12 +1,49 @@
 <?php
     require_once('./conf/conf.php');
+
     session_start();
     if(isset($_SESSION['user'])){
-        header('Location: ./admin_dashboard/index.php');
+        header('Location: ./admin/index.php');
         exit();
-    }
-    
+    };
 
+    $error = '';
+    $user = '';
+    $pass = '';
+
+    if (isset($_POST['user']) && isset($_POST['pass'])) {
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+
+        if (empty($user)) {
+            $error = 'Please enter your username';
+        } else if (empty($pass)) {
+            $error = 'Please enter your password';
+        } else if (strlen($pass) < 5) {
+            $error = 'Password must have at least 6 characters';
+        } else{
+            $result = login($user, $pass); 
+            if ($result['code'] == 0){
+                // login success
+                $data = $result['data'];
+                $_SESSION['name'] = $data['name'];
+                $_SESSION['user'] = $data['username'];
+                if ($data['role'] == 0) {
+                    $_SESSION['role'] = "admin";
+                } else if($data['role'] == 1 ){
+                    $_SESSION['role'] = "saleAssistant";
+                }else if($data['role'] == 2){
+                    $_SESSION['role'] = "warehouseStaff";
+                }else {
+                    $_SESSION['role'] = "user";
+                }
+                header('Location: ./admin/index.php');
+                exit();
+            }else {
+                $error = $result['error'];
+            }
+        }
+    }
 ?>
 
 <head>
@@ -14,9 +51,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <!-- style.css -->
-    
-    <!-- boottrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -31,38 +65,6 @@
     <link rel="stylesheet" href="./assets/css/login1.css">
 </head>
 
-<?php
-$error = '';
-$user = '';
-$pass = '';
-
-if (isset($_POST['user']) && isset($_POST['pass'])) {
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
-
-    if (empty($user)) {
-        $error = 'Please enter your username';
-    }
-    else if (empty($pass)) {
-        $error = 'Please enter your password';
-    }
-    else if (strlen($pass) < 5) {
-        $error = 'Password must have at least 6 characters';
-    }
-    else{
-        $result = login($user, $pass);
-        if ($result['code'] == 0){
-            $data = $result['data'];
-            $_SESSION['name'] = $data['name'];
-            $_SESSION['user'] = $data['username'];
-            header('Location: ./admin_dashboard/index.php');
-            exit();
-        }else {
-            $error = $result['error'];
-        }
-    }
-}
-?>
 <div class="container">
     <div class="login">
         <h2 class="login-title">Đăng nhập</h2>
@@ -78,10 +80,10 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
 
             <div class="form-group text-left">
                 <?php
-                        if (!empty($error)) {
-                            echo "<div class='alert alert-danger'>$error</div>";
-                        }
-                    ?>
+                    if (!empty($error)) {
+                        echo "<div class='alert alert-danger'>$error</div>";
+                    }
+                ?>
                 <div class="login-form-group">
                     <input class="login-form-group__input login-form-group__input-submit" type="submit"
                         value="Đăng nhập">
@@ -89,8 +91,6 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
             </div>
 
             <div class="login-form-group login-form-group-register">
-                <!-- <p>Chưa có tài khoản? <a href="">Đăng kí ngay</a></p>
-                <a href="">Quên mật khẩu</a> -->
             </div>
         </form>
     </div>

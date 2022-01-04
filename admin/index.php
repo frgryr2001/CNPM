@@ -1,12 +1,13 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['user'])) {
-//     header('Location : ../login.php');
-//     exit();
-// }
-// require_once('../conf/conf.php');
-// $getAllUsers = json_decode(getAllUser())->data;
-
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: ./login.php");
+    exit();
+}
+require_once('../conf/conf.php');
+print_r(getAllUser());
+echo getAllUser();
+$getAllUsers = json_decode(getAllUser())->data;
 ?>
 
 <head>

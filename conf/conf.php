@@ -1,7 +1,8 @@
 <?php
     require_once('db.php');
+    
     function login($user,$pass){
-        $sql = "select * from admin where username = ?";
+        $sql = "select * from account where username = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm -> bind_param('s',$user);
@@ -14,20 +15,17 @@
         }
         $data = $result->fetch_assoc();
 
-        // $hashed_password = $data['password'];
         if(($pass != $data['password'])){
             return array('code' => 2,'error' => 'Invalid password');
         }
-        // else if ($data['activated']==0){
-        //     return array('code' => 3,'error' => 'This account is not activated');
-        // }
         else{
             return array('code' => 0,'error' => '','data' => $data);
         }
-    }
+    };
+
     function getAllUser(){
         $conn = open_database();
-        $sql = 'SELECT * FROM user';
+        $sql = 'SELECT * FROM account';
         $stm = $conn->prepare($sql);
         
         if (!$stm->execute()){
@@ -39,7 +37,8 @@
             $data[] = $row;
         }
         return json_encode(array('code' => 0, 'data' => $data));
-    }
+    };
+
     function loginUser($user,$pass){
         $sql = "select * from user where username = ?";
         $conn = open_database();
@@ -62,9 +61,10 @@
         }else{
             return array('code' => 0,'error' => '','data' => $data);
         }
-    }
+    };
+
     function is_email_exists($email){
-        $sql = "select * from user where email = ?";
+        $sql = "select * from account where email = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm -> bind_param('s',$email);
@@ -77,7 +77,8 @@
         }else{
             return false;
         }
-    }
+    };
+
     function register($user,$pass,$name,$email,$phone,$address){
         if(is_email_exists($email)){
             return array('code' => 1 , 'error' => 'Email exists');
@@ -86,7 +87,7 @@
             return array('code' => 2 , 'error' => 'username is exists');
         }
         $hash = password_hash($pass,PASSWORD_DEFAULT);
-        $sql =  'insert into tbl_user(username,password,name,email,phone,address)
+        $sql =  'insert into account(username,password,name,email,phone,address)
                  values(?,?,?,?,?,?,?,?)';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
@@ -95,9 +96,10 @@
             return array('code' => 3 , 'error' => 'Can not execute');
         }
         return array('code' => 0 , 'error' => 'Create account successful');
-    }
+    };
+
     function is_username_exists($user){
-		$sql = "select * from user where username = ?";
+		$sql = "select * from account where username = ?";
 		$conn = open_database();
 		$stm = $conn->prepare($sql);
 		$stm->bind_param('s',$user);
@@ -108,5 +110,5 @@
 		if($result->num_rows >0){
 			return true;
 		}
-	}
+	};
 ?>
