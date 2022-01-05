@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    require_once('./conf/conf.php');
+    
+?>
 <div class="header__height"></div>
 <div class="header__background">
     <!-- Điện thoại -->
@@ -73,17 +78,7 @@
         <!-- Navbar list -->
         <div class="header__navbar">
             <ul class="header__navbar__list">
-                <li class="header__navbar__item">
-                    <div class="header__navbar__item__wrapper">
-                        <a href="" class="header__navbar__item__link">
-                            <i class="support-icon nav-icon"></i>
-                            <div class="header__navbar__item__link__desc__wrapper">
-                                <p>Tổng đài hỗ trợ</p>
-                                <p>1800.2097</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+                
                 <li class="header__navbar__item">
                     <div class="header__navbar__item__wrapper">
                         <a href="" class="header__navbar__item__link">
@@ -105,29 +100,37 @@
                         </a>
                     </div>
                 </li>
-                <li class="header__navbar__item" style="position: relative;">
-                    <div class="header__navbar__item__wrapper">
-                        <a href="" class="header__navbar__item__link">
-                            <i class="user-icon nav-icon"></i>
+                <li class="header__navbar__item" style="position: relative; display:flex; align-items:center; color: white; cursor: pointer;">
+                    <div>
+                        <div class="header__navbar__item__wrapper">
+                            <a href="" class="header__navbar__item__link">
+                                <i class="user-icon nav-icon"></i>
 
-                        </a>
+                            </a>
 
+                        </div>
+                        <ul class="login-popup">
+                            <?php if (!isset($_SESSION['authenticated'])) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./login.php">Đăng nhập</a>
+                                </li>
+                            <?php } ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Thông tin khách hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Lịch sử mua hàng</a>
+                            </li>
+                            <?php if (isset($_SESSION['authenticated'])) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./logout.php">Đăng xuất</a>
+                                </li>
+                            <?php } ?>
+                        </ul>
                     </div>
-                    <ul class="login-popup">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Thông tin khách hàng</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Lịch sử mua hàng</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./logout.php">Đăng xuất</a>
-                        </li>
-                    </ul>
+                    <span><?= isset($_SESSION['username']) ?  $_SESSION['username'] : '';?></span>
                 </li>
+                
             </ul>
         </div>
     </div>

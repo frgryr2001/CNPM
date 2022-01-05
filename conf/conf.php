@@ -1,25 +1,35 @@
 <?php
     require_once('db.php');
     
-    function login($user,$pass){
-        $sql = "select * from account where username = ?";
+    function login($email,$pass){
+        $sql = "select * from account where email = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm -> bind_param('s',$user);
+        $stm -> bind_param('s',$email);
         if (!$stm->execute()){
-            return array('code' => 1,'error' => 'Can not execute');
+            return array(
+                "status" => false,
+                "response" => "",
+            );
         }
         $result = $stm->get_result();
         if($result->num_rows==0){
-            return array('code' => 1,'error' => 'User does not exists');
+            return array(
+                "status" => false,
+                "response" => "",
+            );
         }
         $data = $result->fetch_assoc();
-
-        if(($pass != $data['password'])){
-            return array('code' => 2,'error' => 'Invalid password');
-        }
-        else{
-            return array('code' => 0,'error' => '','data' => $data);
+        if (!password_verify($pass,$data['password'])){
+            return array(
+                "status" => false,
+                "response" => "Password invalid!",
+            );
+        } else{
+            return array(
+                "status" => true,
+                "response" => $data,
+            );
         }
     };
 
@@ -77,6 +87,19 @@
         };
     };
 
+    function is_username_exists($username){
+        $sql = "select * from account where username = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$username);
+        $stm->execute();
+        $result = $stm->fetch();
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        };
+    };
     function register($email, $password, $username, $given_name, $family_name, $phone, $address){
         // $_id = bin2hex(random_bytes(10));
         $fullname = $given_name." ".$family_name;
@@ -106,17 +129,17 @@
         }
     };
 
-    function is_username_exists($user){
-		$sql = "select * from account where username = ?";
-		$conn = open_database();
-		$stm = $conn->prepare($sql);
-		$stm->bind_param('s',$user);
-		if (!$stm ->execute()){
-			die('Query error: '.$stm->error);
-		}
-		$result = $stm->get_result();
-		if($result->num_rows >0){
-			return true;
-		}
-	};
+    // function is_username_exists($user){
+	// 	$sql = "select * from account where username = ?";
+	// 	$conn = open_database();
+	// 	$stm = $conn->prepare($sql);
+	// 	$stm->bind_param('s',$user);
+	// 	if (!$stm ->execute()){
+	// 		die('Query error: '.$stm->error);
+	// 	}
+	// 	$result = $stm->get_result();
+	// 	if($result->num_rows >0){
+	// 		return true;
+	// 	}
+	// };
 ?>
