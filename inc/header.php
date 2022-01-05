@@ -124,7 +124,7 @@
                             <a class="nav-link" href="">Lịch sử mua hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Đăng xuất</a>
+                            <a class="nav-link" href="./logout.php">Đăng xuất</a>
                         </li>
                     </ul>
                 </li>

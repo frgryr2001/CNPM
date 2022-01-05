@@ -6,15 +6,15 @@
 // }
 // require_once('../conf/conf.php');
 // $getAllUsers = json_decode(getAllUser())->data;
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: ./login.php");
-    exit();
-}
-require_once('../conf/conf.php');
-print_r(getAllUser());
-echo getAllUser();
-$getAllUsers = json_decode(getAllUser())->data;
+// session_start();
+// if (!isset($_SESSION['user'])) {
+//     header("Location: ./login.php");
+//     exit();
+// }
+// require_once('../conf/conf.php');
+// print_r(getAllUser());
+// echo getAllUser();
+// $getAllUsers = json_decode(getAllUser())->data;
 
 ?>
 
@@ -53,7 +53,7 @@ $getAllUsers = json_decode(getAllUser())->data;
                         </button>
                     </div>
                 </form> -->
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" style="margin-left : auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>

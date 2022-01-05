@@ -68,34 +68,42 @@
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm -> bind_param('s',$email);
-        if(!$stm->execute()){
-            die('Query error : ' .$conn->error);
-        }
-        $result = $stm->get_result();
-        if($result->num_rows > 0){
+        $stm->execute();
+        $result = $stm->fetch();
+        if ($result > 0) {
             return true;
-        }else{
+        } else {
             return false;
-        }
+        };
     };
 
-    function register($user,$pass,$name,$email,$phone,$address){
-        if(is_email_exists($email)){
-            return array('code' => 1 , 'error' => 'Email exists');
-        }
-        if(is_username_exists($user)){
-            return array('code' => 2 , 'error' => 'username is exists');
-        }
-        $hash = password_hash($pass,PASSWORD_DEFAULT);
-        $sql =  'insert into account(username,password,name,email,phone,address)
-                 values(?,?,?,?,?,?,?,?)';  
+    function register($email, $password, $username, $given_name, $family_name, $phone, $address){
+        // $_id = bin2hex(random_bytes(10));
+        $fullname = $given_name." ".$family_name;
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'insert into account(email, password, username, given_name, family_name, phone, address)
+                 values(?,?,?,?,?,?,?)';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm -> bind_param('ssssss',$user,$hash,$name,$email,$phone,$address);
-        if (!$stm->execute()){
-            return array('code' => 3 , 'error' => 'Can not execute');
+        $stm -> bind_param('sssssss', $email, $password, $username, $given_name, $family_name, $phone, $address);
+        try {
+            if ($stm->execute()) {
+                return array(
+                    "status" => true,
+                    "response" => "",
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    "response" => "",
+                );
+            };
+        } catch (Exception $e) {
+            return array(
+                "status" => false,
+                "response" => "",
+            );
         }
-        return array('code' => 0 , 'error' => 'Create account successful');
     };
 
     function is_username_exists($user){
