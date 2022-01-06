@@ -1,9 +1,9 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['user'])) {
-//     header("Location: http://localhost/login.php");
-//     exit();
-// }
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+    header("Location: http://localhost/login.php");
+    exit();
+}
 // require_once('../conf/conf.php');
 // $getAllUsers = json_decode(getAllUser())->data;
 ?>

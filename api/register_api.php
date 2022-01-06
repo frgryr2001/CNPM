@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../conf/conf.php');
 header('Content-Type: application/json');
 $BASE_URL = "http://localhost:8888/CNPM/login.php";
@@ -53,6 +54,10 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
         )));
     } else {
         if (register($email, $password, $username, $given_name, $family_name, $phone, $address)['status']) {
+            $_SESSION['authenticated'] = true;
+            $_SESSION['username'] = "fsfasfaf";
+            $_SESSION["email"] = "fgdsgsdg";
+            // $_SESSION["expired"] = time() + (60*60*24*2);
             echo (json_encode(array(
                 "status" => true,
                 "message" => "Register account successfully!",
@@ -61,8 +66,8 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
         } else {
             echo (json_encode(array(
                 "status" => false,
-                "message" => "Failed to register account!",
-                "error" => register($email, $password, $username, $given_name, $family_name, $phone, $address)['response'],
+                // "message" => "Failed to register account!",
+                "message" => register($email, $password, $username, $given_name, $family_name, $phone, $address)['response'],
             )));
         }
     };
