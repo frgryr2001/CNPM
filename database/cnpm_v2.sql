@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 05, 2022 lúc 07:45 AM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.3.33
+-- Thời gian đã tạo: Th1 06, 2022 lúc 08:28 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,16 +40,19 @@ CREATE TABLE `account` (
   `phone` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'user',
-  `createdAt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
-  `updatedAt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp()
+  `createdAt` date DEFAULT current_timestamp(),
+  `updatedAt` date DEFAULT current_timestamp(),
+  `birthday` date NOT NULL DEFAULT current_timestamp(),
+  `salary` double DEFAULT NULL,
+  `gender` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`id`, `email`, `password`, `username`, `given_name`, `family_name`, `fullname`, `phone`, `address`, `role`, `createdAt`, `updatedAt`) VALUES
-(1, 'ds', '$2y$10$NNCrc8zPvR7fOWtFmlVnw.LNbzFmqk2vmxq79XVXuanO8vL/SdZs2', 'dsa', 'da', 'dsad', '', 'dsa', 'dsa', 'user', '2022-01-05 13:43:42', '2022-01-05 13:43:42');
+INSERT INTO `account` (`id`, `email`, `password`, `username`, `given_name`, `family_name`, `fullname`, `phone`, `address`, `role`, `createdAt`, `updatedAt`, `birthday`, `salary`, `gender`) VALUES
+(1, 'ds', '$2y$10$NNCrc8zPvR7fOWtFmlVnw.LNbzFmqk2vmxq79XVXuanO8vL/SdZs2', 'dsa', 'da', 'dsad', '', 'dsa', 'dsa', 'user', '2022-01-05', '2022-01-05', '2022-01-06', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -73,17 +76,6 @@ CREATE TABLE `category` (
   `id_category` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `employee`
---
-
-CREATE TABLE `employee` (
-  `salary` double NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -120,8 +112,7 @@ CREATE TABLE `order_detail` (
 --
 
 CREATE TABLE `product` (
-  `_id` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT current_timestamp(),
-  `barcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -140,8 +131,7 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `productdetail` (
-  `_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
-  `barcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
   `screen` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
   `features` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
   `cpu` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
@@ -212,12 +202,6 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id_category`);
 
 --
--- Chỉ mục cho bảng `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Chỉ mục cho bảng `order`
 --
 ALTER TABLE `order`
@@ -235,13 +219,13 @@ ALTER TABLE `order_detail`
 -- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`barcode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `productdetail`
 --
 ALTER TABLE `productdetail`
-  ADD PRIMARY KEY (`barcode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `product_img`
@@ -283,6 +267,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `rate`

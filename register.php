@@ -50,7 +50,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
      <script src="./assets/js/loginU.js"></script>
     <script> 
-            const url = 'http://localhost/api/register_api.php'
+            const url = 'http://localhost:8888/CNPM/api/register_api.php'
             const formRegister = document.querySelector('#form-register')
             formRegister.addEventListener('submit',function(e){
                 e.preventDefault();

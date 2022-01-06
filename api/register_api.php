@@ -2,7 +2,7 @@
 session_start();
 require_once('../conf/conf.php');
 header('Content-Type: application/json');
-$BASE_URL = "http://localhost";
+$BASE_URL = "http://localhost:8888/CNPM/login.php";
 
 if (!isset($_POST['email']) || empty($_POST['email'])) {
     echo (json_encode(array(
