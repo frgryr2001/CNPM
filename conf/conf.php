@@ -118,13 +118,13 @@
             } else {
                 return array(
                     "status" => false,
-                    "response" => "",
+                    "response" => "Failed to register account!",
                 );
             };
         } catch (Exception $e) {
             return array(
                 "status" => false,
-                "response" => "",
+                "response" => $e,
             );
         }
     };

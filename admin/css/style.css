@@ -39,3 +39,8 @@ button {
     top: var(--topNavbarHeight);
   }
 }
+
+.add__employer{
+    width: 200px;
+    margin-left: 270px;
+}
