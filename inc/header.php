@@ -91,7 +91,7 @@ require_once('./conf/conf.php');
                 </li>
                 <li class="header__navbar__item">
                     <div class="header__navbar__item__wrapper">
-                        <a href="" class="header__navbar__item__link">
+                        <a href="./order_lookup.php" class="header__navbar__item__link">
                             <i class="ship-icon nav-icon"></i>
                             <div class="header__navbar__item__link__desc__wrapper">
                                 <p>Tra cứu</p>
@@ -126,7 +126,7 @@ require_once('./conf/conf.php');
                                 </li>
                             <?php } ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Thông tin khách hàng</a>
+                                <a class="nav-link" href="./profile.php">Thông tin khách hàng</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">Lịch sử mua hàng</a>
