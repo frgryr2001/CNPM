@@ -94,7 +94,7 @@
         </div>
     </div>
     <script>
-        const url = 'http://localhost:8888/CNPM/api/login_api.php'
+        const url = '../api/login_api.php'
         const loginForm = document.querySelector('#loginForm')
         loginForm.addEventListener('submit',function(e){
             e.preventDefault();

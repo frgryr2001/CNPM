@@ -1,11 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['authenticated'])) {
-    header("Location: http://localhost/login.php");
+    header("Location: ../login.php");
     exit();
 }
-// require_once('../conf/conf.php');
-// $getAllUsers = json_decode(getAllUser())->data;
 ?>
 
 <head>
@@ -27,6 +25,22 @@ if (!isset($_SESSION['authenticated'])) {
         .pt-60 {
             padding-top: 60px;
         }
+
+        .ml-6 {
+            margin-left: 6px;
+        }
+
+        .font-size-20 {
+            font-size: 20px;
+        }
+
+        .row-account-item {
+            cursor: pointer;
+        }
+
+        #DataTables_Table_0_filter {
+            display: none;
+        }
     </style>
 </head>
 
@@ -45,14 +59,6 @@ if (!isset($_SESSION['authenticated'])) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse flex-row-reverse" id="topNavBar">
-                <!-- <form class="d-flex ms-auto my-3 my-lg-0">
-                    <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form> -->
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -299,32 +305,34 @@ if (!isset($_SESSION['authenticated'])) {
                     <!-- <div class="card-header">
                         <span><i class="bi bi-table me-2"></i></span> Data Table
                     </div> -->
-
                     <div class="card-body">
                         <div class="">
-                            <div class="my-2 d-flex flex-row-reverse">
-                                <button data-bs-toggle="modal" data-bs-target="#add-employee-modal" class="btn btn-primary">Thêm nhân viên</button>
+                            <div class="my-2 d-flex">
+                                <form class="d-flex ms-auto my-3 my-lg-0">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <button data-bs-toggle="modal" data-bs-target="#add-employee-modal" class="btn btn-primary ms-2">Thêm nhân viên</button>
                             </div>
                             <table id="" class="table table-striped data-table" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Username</th>
+                                        <th>Họ tên</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>Action</th>
+                                        <th>Chức vụ</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="employee-account-list">
+                                    <!-- <tr>
                                         <td>Nguyễn Thế Trường</td>
-                                        <td>nttruong10101</td>
                                         <td>nguyenthetruong100621@gmail.com</td>
-                                        <td>0919004743</td>
-                                        <td>Quảng Bình</td>
-                                        <td>Delete</td>
-                                    </tr>
+                                        <td>Nhân viên bán hàng</td>
+                                    </tr> -->
                                 </tbody>
                                 <tfoot>
                                     <!-- <tr>
@@ -432,77 +440,311 @@ if (!isset($_SESSION['authenticated'])) {
 
         <!-- Thêm nhân viên modal -->
         <div class="modal fade" id="add-employee-modal">
-         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h4 class="modal-title">Thêm nhân viên mới</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-               </div>
-               <div class="modal-body">
-                   <div class="row">
-                       <div class="col">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="modal-add-employee-name" placeholder="Enter email" name="modal-add-employee-name">
-                                <label for="modal-add-employee-name">Họ tên</label>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm nhân viên mới</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="modal-add-employee-name" placeholder="Enter email" name="modal-add-employee-name">
+                                    <label for="modal-add-employee-name">Họ tên</label>
+                                </div>
                             </div>
-                       </div>
-                       <div class="col">
-                            <div class="form-floating mb-3 mt-3">
-                                <input id="modal-add-employee-email" name="modal-add-employee-email" type="email" class="form-control" placeholder="Nhập email">
-                                <label for="modal-add-employee-email">Email</label>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-add-employee-email" name="modal-add-employee-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-add-employee-email">Email</label>
+                                </div>
                             </div>
-                       </div>
-                   </div>
-                    <div class="row ms-0">
-                    <div class="form-check form-check-inline p-0">
-                        <div class="d-flex">
-                        <label class="control-label" for="modal-add-employee-sex">Giới tính:</label>
-                        <div class="">
-                            <label class="radio-inline mx-3 mb-0"><input id="modal-add-employee-male" class="me-2" type="radio" name="modal-add-employee-sex" value="1">Nam</label>
-                            <label class="radio-inline mb-0"><input id="modal-add-employee-female" class="me-2" type="radio" name="modal-add-employee-sex" value="0">Nữ</label>
                         </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-add-employee-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input id="modal-add-employee-male" class="me-2" type="radio" name="modal-add-employee-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input id="modal-add-employee-female" class="me-2" type="radio" name="modal-add-employee-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3 ml-6">
+                                    <select name="modal-add-employee-type" class="form-control form-select" id="modal-add-employee-type">
+                                        <option>1 - Nhân viên kho</option>
+                                        <option>2 - Nhân viên bán hàng</option>
+                                    </select>
+                                    <label for="modal-add-employee-type">Chức vụ</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="date" name="modal-add-employee-birthday" id="modal-add-employee-birthday" class="form-control">
+                                    <label for="modal-add-employee-birthday">Ngày sinh</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-add-employee-phone" name="modal-add-employee-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-add-employee-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-add-employee-address" name="modal-add-employee-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-add-employee-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-add-employee-salary" name="modal-add-employee-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-add-employee-salary">Lương</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="add-employee-error-mess" class="text-center alert-danger font-weight-bold"></div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button onclick=" addEmployeeAccount();" type="button" class="btn btn-primary">Thêm</button>
                     </div>
-                  <div class="row">
-                      <div class="col">
-                      <div class="form-floating mb-3 mt-3">
-                      <input type="date" name="modal-add-employee-birthday" id="modal-add-employee-birthday" class="form-control">
-                      <label for="modal-add-employee-birthday">Ngày sinh</label>
-                  </div>
-                      </div>
-                      <div class="col">
-                      <div class="form-floating mb-3 mt-3">
-                        <input id="modal-add-employee-phone" name="modal-add-employee-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                        <label for="modal-add-employee-phone">Số điện thoại</label>
-                    </div>  
-                      </div>
-                  </div>
-                    <div class="row">
-                        <div class="col">
-                        <div class="form-floating mb-3 mt-3">
-                        <input id="modal-add-employee-address" name="modal-add-employee-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
-                        <label for="modal-add-employee-address">Địa chỉ</label>
-                    </div>
-                        </div>
-                        <div class="col">
-                        <div class="form-floating mb-3 mt-3">
-                        <input id="modal-add-employee-salary" name="modal-add-employee-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                        <label for="modal-add-employee-salary">Lương</label>
-                    </div>  
-                        </div>
-                    </div>
-        
-				  <div class="form-group">
-					<div id="add-depart-error" class="text-center card alert-danger font-weight-bold"></div>
-				</div>
-               </div>
-               <div  class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Hủy bỏ</button>
-                    <button onclick="addDepartmental()" type="button" class="btn btn-success" >Thêm</button> 
-               </div>         
+                </div>
             </div>
-         </div>
+        </div>
+
+        <!-- Thông báo thêm thành công modal -->
+        <div class="modal fade" id="add-employee-success-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="add-model-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm nhân viên thành công</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button onclick="getAllEmployeeAccounts();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xem thông tin nhân viên chi tiết modal -->
+        <div class="modal fade" id="view-detail-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin chi tiết</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="text" class="form-control" id="modal-view-employee-detail-name" placeholder="Enter email" name="modal-view-employee-detail-name">
+                                    <label for="modal-view-employee-detail-name">Họ tên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-email" name="modal-view-employee-detail-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-view-employee-detail-email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-view-employee-detail-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-employee-detail-male" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input disabled id="modal-view-employee-detail-female" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3 ml-6">
+                                    <select disabled name="modal-view-employee-detail-type" class="form-control form-select" id="modal-view-employee-detail-type">
+                                        <option>1 - Nhân viên kho</option>
+                                        <option>2 - Nhân viên bán hàng</option>
+                                    </select>
+                                    <label for="modal-view-employee-detail-type">Chức vụ</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="date" name="modal-view-employee-detail-birthday" id="modal-view-employee-detail-birthday" class="form-control">
+                                    <label for="modal-view-employee-detail-birthday">Ngày sinh</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-phone" name="modal-view-employee-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-address" name="modal-view-employee-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-view-employee-detail-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-salary" name="modal-view-employee-detail-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-salary">Lương</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="add-employee-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Chỉnh sửa thông tin nhân viên modal -->
+         <div class="modal fade" data-bs-backdrop="static" id="edit-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Chỉnh sửa thông tin nhân viên</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="modal-edit-employee-name" placeholder="Enter email" name="modal-edit-employee-name">
+                                    <label for="modal-edit-employee-name">Họ tên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-edit-employee-email" name="modal-edit-employee-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-edit-employee-email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-edit-employee-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input id="modal-edit-employee-male" class="me-2" type="radio" name="modal-edit-employee-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input id="modal-edit-employee-female" class="me-2" type="radio" name="modal-edit-employee-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3 ml-6">
+                                    <select name="modal-edit-employee-type" class="form-control form-select" id="modal-edit-employee-type">
+                                        <option>1 - Nhân viên kho</option>
+                                        <option>2 - Nhân viên bán hàng</option>
+                                    </select>
+                                    <label for="modal-edit-employee-type">Chức vụ</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="date" name="modal-edit-employee-birthday" id="modal-edit-employee-birthday" class="form-control">
+                                    <label for="modal-edit-employee-birthday">Ngày sinh</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-edit-employee-phone" name="modal-edit-employee-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-edit-employee-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-edit-employee-address" name="modal-edit-employee-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-edit-employee-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input id="modal-edit-employee-salary" name="modal-edit-employee-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-edit-employee-salary">Lương</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="edit-employee-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button onclick="verifyEditEmployeeInfo();" id="btn-edit-employee" type="button" class="btn btn-primary">Chỉnh sửa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận chỉnh sửa thông tin nhân viên modal -->
+        <div class="modal fade" id="confirm-edit-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận chỉnh sửa thông tin nhân viên</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn chỉnh sửa thông tin của nhân viên <strong id="confirm-edit-employee-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-edit-employee" onclick="sendEditEmployeeRequest(this);" employee-id="0" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận xóa thông tin nhân viên modal -->
+        <div class="modal fade" id="confirm-delete-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận xóa nhân viên</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn xóa nhân viên <strong id="confirm-delete-employee-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-delete-employee" onclick="sendDeleteEmployeeRequest(this);" employee-id="0" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -511,4 +753,5 @@ if (!isset($_SESSION['authenticated'])) {
         <script src="./js/jquery.dataTables.min.js"></script>
         <script src="./js/dataTables.bootstrap5.min.js"></script>
         <script src="./js/script.js"></script>
+        <script src="./js/employee.js"></script>
 </body>
