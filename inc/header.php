@@ -1,7 +1,7 @@
-<?php 
-    session_start();
-    require_once('./conf/conf.php');
-    
+<?php
+session_start();
+require_once('./conf/conf.php');
+
 ?>
 <div class="header__height"></div>
 <div class="header__background">
@@ -56,7 +56,7 @@
     <div class="row">
         <!-- Logo Image -->
         <div class="header__logo__img">
-            <a href="" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a>
+            <a href="./" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Submenu modal -->
@@ -78,7 +78,17 @@
         <!-- Navbar list -->
         <div class="header__navbar">
             <ul class="header__navbar__list">
-                
+                <li class="header__navbar__item">
+                    <div class="header__navbar__item__wrapper">
+                        <a href="" class="header__navbar__item__link">
+                            <i class="support-icon nav-icon"></i>
+                            <div class="header__navbar__item__link__desc__wrapper">
+                                <p>Tổng đài hỗ trợ</p>
+                                <p>1800.2097</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
                 <li class="header__navbar__item">
                     <div class="header__navbar__item__wrapper">
                         <a href="" class="header__navbar__item__link">
@@ -128,9 +138,9 @@
                             <?php } ?>
                         </ul>
                     </div>
-                    <span><?= isset($_SESSION['username']) ?  $_SESSION['username'] : '';?></span>
+                    <span><?= isset($_SESSION['username']) ?  $_SESSION['username'] : ''; ?></span>
                 </li>
-                
+
             </ul>
         </div>
     </div>
