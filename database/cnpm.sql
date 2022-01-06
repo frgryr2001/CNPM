@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 05, 2022 lúc 07:45 AM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.3.33
+-- Thời gian đã tạo: Th1 06, 2022 lúc 06:08 AM
+-- Phiên bản máy phục vụ: 10.4.17-MariaDB
+-- Phiên bản PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -120,8 +120,7 @@ CREATE TABLE `order_detail` (
 --
 
 CREATE TABLE `product` (
-  `_id` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT current_timestamp(),
-  `barcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `_id` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -140,8 +139,7 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `productdetail` (
-  `_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
-  `barcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `_id` int(11) NOT NULL,
   `screen` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
   `features` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
   `cpu` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
@@ -235,13 +233,13 @@ ALTER TABLE `order_detail`
 -- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`barcode`);
+  ADD PRIMARY KEY (`_id`);
 
 --
 -- Chỉ mục cho bảng `productdetail`
 --
 ALTER TABLE `productdetail`
-  ADD PRIMARY KEY (`barcode`);
+  ADD PRIMARY KEY (`_id`);
 
 --
 -- Chỉ mục cho bảng `product_img`
@@ -285,10 +283,26 @@ ALTER TABLE `order`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT cho bảng `product`
+--
+ALTER TABLE `product`
+  MODIFY `_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `rate`
 --
 ALTER TABLE `rate`
   MODIFY `id_rate` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `productdetail`
+--
+ALTER TABLE `productdetail`
+  ADD CONSTRAINT `fk_product_productdetail` FOREIGN KEY (`_id`) REFERENCES `product` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
