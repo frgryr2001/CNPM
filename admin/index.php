@@ -137,64 +137,6 @@ if (!isset($_SESSION['authenticated'])) {
     </div>
 
 
-<<<<<<< HEAD
-        <!-- Trang đơn hàng -->
-        <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Data Table
-                        </div>
-                        <div class="card-body">
-                                <div class="add__employer">
-                                            <div class="cardHeader">
-                                                <h2>Add employer</h2>
-                                            </div>
-
-                                            <form action="">
-                                                <div class="form__control">
-                                                    <label for="name">Name:</label>
-                                                    <input type="text" id="name" />
-                                                </div>
-                                                <div class="form__control">
-                                                    <label for="sdt">Phone number:</label>
-                                                    <input type="text" id="name" />
-                                                </div>
-                                                <div class="form__control">
-                                                    <label for="position">Position: </label>
-                                                    <select name="position" id="position">
-                                                        <option value="cashier">Cashier</option>
-                                                        <option value="waiter">Waiter</option>
-                                                        <option value="management">Management</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form__control">
-                                                    <button class="add__item">ADD</button>
-                                                </div>
-                                            </form>
-                                            </div>
-                            <div class="table-responsive mt-4">
-                                
-                                <table id="example" class="table table-striped data-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center">Name</th>
-                                            <th style="text-align: center">Username</th>
-                                            <th style="text-align: center">Email</th>
-                                            <th style="text-align: center">Phone</th>
-                                            <th style="text-align: center">Address</th>
-                                            <th style="text-align: center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    
-                                    </tbody>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
-=======
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
         <div class="row">
@@ -222,7 +164,6 @@ if (!isset($_SESSION['authenticated'])) {
                                 <tfoot>
                                 </tfoot>
                             </table>
->>>>>>> e9e18b19565bbb670612f5c9c13d89a7a7e2f755
                         </div>
                     </div>
                 </div>
@@ -348,18 +289,6 @@ if (!isset($_SESSION['authenticated'])) {
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </main>
-    <!-- add product area -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="./js/jquery-3.5.1.js"></script>
-    <script src="./js/jquery.dataTables.min.js"></script>
-    <script src="./js/dataTables.bootstrap5.min.js"></script>
-    <script src="./js/script.js"></script>
-=======
     <?php
     }
     // Trang Quản lý nhân viên
@@ -582,5 +511,4 @@ if (!isset($_SESSION['authenticated'])) {
         <script src="./js/jquery.dataTables.min.js"></script>
         <script src="./js/dataTables.bootstrap5.min.js"></script>
         <script src="./js/script.js"></script>
->>>>>>> e9e18b19565bbb670612f5c9c13d89a7a7e2f755
 </body>
