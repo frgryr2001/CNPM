@@ -126,7 +126,7 @@ require_once('./conf/conf.php');
                                 </li>
                             <?php } ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Thông tin khách hàng</a>
+                                <a class="nav-link" href="./profile.php">Thông tin khách hàng</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">Lịch sử mua hàng</a>

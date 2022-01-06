@@ -128,18 +128,30 @@
             );
         }
     };
+    function update_profile($id,$username,$firstname,$lastname,$fullname,$Address,$phone){
+        $sql = 'Update account SET username=?,given_name=?,family_name=?,fullname=?,address=?,phone=?
+                where id = ?';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('ssssssi',$username,$firstname,$lastname,$fullname,$Address,$phone,$id);
+        try {
+            if ($stm->execute()) {
+                return array(
+                    "status" => true,
+                    "response" => "",
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    "response" => "",
+                );
+            };
+        } catch (Exception $e) {
+            return array(
+                "status" => false,
+                "response" => "",
+            );
+        }
+    }
 
-    // function is_username_exists($user){
-	// 	$sql = "select * from account where username = ?";
-	// 	$conn = open_database();
-	// 	$stm = $conn->prepare($sql);
-	// 	$stm->bind_param('s',$user);
-	// 	if (!$stm ->execute()){
-	// 		die('Query error: '.$stm->error);
-	// 	}
-	// 	$result = $stm->get_result();
-	// 	if($result->num_rows >0){
-	// 		return true;
-	// 	}
-	// };
 ?>
