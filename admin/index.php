@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 session_start();
-=======
-// session_start();
->>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
 // if (!isset($_SESSION['authenticated'])) {
 //     header("Location: ../login.php");
 //     exit();
