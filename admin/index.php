@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-session_start();
-=======
 // session_start();
->>>>>>> 3415b3bd2e32f2c5e2460483e02af115941c6c7a
 // if (!isset($_SESSION['authenticated'])) {
 //     header("Location: ../login.php");
 //     exit();
@@ -171,9 +167,6 @@ session_start();
             </nav>
         </div>
     </div>
-
-<<<<<<< HEAD
-
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
         <div class="row table-content">
@@ -310,9 +303,7 @@ session_start();
                 );
             };
         </script>
-=======
->>>>>>> 3415b3bd2e32f2c5e2460483e02af115941c6c7a
-    <?php
+    <?php }
     // Trang Tài khoản 
     if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
         <div class="row table-content">
