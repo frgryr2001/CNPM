@@ -21,11 +21,7 @@ $BASE_URL = "../";
         $userData = login($email, $password) ;
         if ($userData['status']) {
             $_SESSION['authenticated'] = true;
-            $_SESSION['id'] = $userData['response']["id"];
-            $_SESSION['username'] = $userData['response']["username"];
-            $_SESSION['firstname'] = $userData['response']["given_name"];
-            $_SESSION['lastname'] = $userData['response']["family_name"];
-            $_SESSION['fullname'] = $userData['response']["fullname"];
+            $_SESSION['name'] = $userData['response']["name"];
             $_SESSION['address'] = $userData['response']["address"];
             $_SESSION['phone'] = $userData['response']["phone"];
             $_SESSION["email"] = $email;

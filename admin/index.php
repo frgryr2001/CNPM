@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['authenticated'])) {
-    header("Location: ../login.php");
-    exit();
-}
+// if (!isset($_SESSION['authenticated'])) {
+//     header("Location: ../login.php");
+//     exit();
+// }
 ?>
 
 <head>
@@ -15,6 +15,35 @@ if (!isset($_SESSION['authenticated'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- alertify -->
+        <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+    <!-- 
+        RTL version
+    -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="css/style.css" />
     <title>Trang quản lý</title>
     <style>
@@ -145,36 +174,140 @@ if (!isset($_SESSION['authenticated'])) {
 
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
-        <div class="row">
+        <div class="row table-content">
             <div class="col-md-12 mb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
-                    </div>
+                <div class="card pt-60">
                     <div class="card-body">
-                        <div class="table-responsive mt-4">
-                            <table id="example" class="table table-striped data-table" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center">Name</th>
-                                        <th style="text-align: center">Username</th>
-                                        <th style="text-align: center">Email</th>
-                                        <th style="text-align: center">Phone</th>
-                                        <th style="text-align: center">Address</th>
-                                        <th style="text-align: center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
-                        </div>
+                        <div class="">
+                            <div class="my-2 d-flex">
+                                <form class="d-flex ms-auto my-3 my-lg-0">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <button id="add_product_btn"  class="btn btn-primary ms-2">Thêm sản phẩm</button>
+                            </div>
+                                <table id="" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Mô tả</th>
+                                            <th>Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-list">
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            const addProduct = document.getElementById("add_product_btn")
+            console.log(addProduct);
+            addProduct.onclick = function() {
+                alertify.confirm(`
+                <form id = "form_product">
+                    <div class="form-group">
+                        <label for="product_name">Tên sản phẩm</label>
+                        <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_category">Loại sản phẩm</label>
+                        <select class="form-control" id="id_category">
+                        <option value = "1">1</option>
+                        <option value = "2">2</option>
+                        <option value = "2">3</option>
+                        <option value = "2">4</option>
+                        <option value = "2">5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Mô tả sản phẩm</label>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="inital_price">Giá</label>
+                        <input type="number" class="form-control" id="inital_price" placeholder="Giá">
+                    </div>
+                    <div class="form-group">
+                        <label for="sale_off">Giảm giá</label>
+                        <input type="number" class="form-control" id="sale_off" placeholder="Giá">
+                    </div>
+                    <div class="form-group">
+                        <label for="sell_quantity">Số lượng bán ra</label>
+                        <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng">
+                    </div>
+                    <div class="form-group">
+                        <label for="guarantee">bảo hành</label>
+                        <select class="form-control" id="guarantee">
+                        <option>1 tháng</option>
+                        <option>3 tháng</option>
+                        <option>6 tháng</option>
+                        <option>1 năm</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Hình ảnh minh họa</label>
+                        <input type="file" class="form-control-file" id="image">
+                    </div>
+                </form>
+                `,
+                    function(){
+                        let url = '../admin/api/product/product_api.php'
+                        let formProduct = document.querySelector('#form_product')
+                        // formProduct.addEventListener('submit',function(e){
+                        //     e.preventDefault();
+                            let formData = new FormData();
+                            let product_name = document.querySelector('#product_name').value;
+                            let id_category = document.querySelector('#id_category').value;
+                            let description = document.querySelector('#description').value;
+                            let inital_price = document.querySelector('#inital_price').value;
+                            let sale_off = document.querySelector('#sale_off').value;
+                            let sell_quantity = document.querySelector('#sell_quantity').value;
+                            let guarantee = document.querySelector('#guarantee').value;
+                            let image = document.querySelector('#image');
+                            // console.log(image.files[0]);
+                            formData.append('product_name', product_name)
+                            formData.append('id_category', id_category)
+                            formData.append('description', description)
+                            formData.append('inital_price', inital_price)
+                            formData.append('sale_off', sale_off)
+                            formData.append('sell_quantity', sell_quantity)
+                            formData.append('guarantee', guarantee)
+                            formData.append('image', image.files[0])
+                            console.log({formData})
+                            $.ajax({
+                                url,
+                                method: 'POST',
+                                enctype: 'multipart/form-data',
+                                processData: false,
+                                contentType: false,
+                                data: formData
+                            }).done(response => {
+                                console.log(response);
+                                if (!response.status){
+                                    toastr.error(response.message);
+                                }else{
+                                    toastr.success(response.message);
+                                    // window.location.href = response.redirect;
+                                }
+                            });
+                        // })
+                    },
+                    function(){
+                        alertify.error('Cancel');
+                    }
+                );
+            };
+        </script>
     <?php
     }
     // Trang đơn hàng 

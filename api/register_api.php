@@ -15,20 +15,20 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
         "status" => false,
         "message" => "Password is required",
     )));
-} else if (!isset($_POST['username']) || empty($_POST['username'])) {
+} else if (!isset($_POST['name']) || empty($_POST['name'])) {
     echo (json_encode(array(
         "status" => false,
-        "message" => "Username is required",
+        "message" => "name is required",
     )));
-} else if (!isset($_POST['given_name']) || empty($_POST['given_name'])) {
+} else if (!isset($_POST['birthday']) || empty($_POST['birthday'])) {
     echo (json_encode(array(
         "status" => false,
-        "message" => "Given name is required",
+        "message" => "Birthday is required",
     )));
-} else if (!isset($_POST['family_name']) || empty($_POST['family_name'])) {
+} else if (!isset($_POST['gender'])) {
     echo (json_encode(array(
         "status" => false,
-        "message" => "Family name is required",
+        "message" => "Gender is required",
     )));
 } else if (!isset($_POST['phone']) || empty($_POST['phone'])) {
     echo (json_encode(array(
@@ -43,9 +43,9 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
 } else {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $username = $_POST['username'];
-    $given_name = $_POST['given_name'];
-    $family_name = $_POST['family_name'];
+    $name = $_POST['name'];
+    $birthday = $_POST['birthday'];
+    $gender = $_POST['gender'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     if (is_email_exists($email)) {
@@ -54,21 +54,27 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
             "message" => "This account already exists",
         )));
     } else {
-        if (register($email, $password, $username, $given_name, $family_name, $phone, $address)['status']) {
-            $_SESSION['authenticated'] = true;
-            $_SESSION['username'] = $username;
-            $_SESSION["email"] = $email;
-            // $_SESSION["expired"] = time() + (60*60*24*2);
-            echo (json_encode(array(
-                "status" => true,
-                "message" => "Register account successfully!",
-                "redirect" => $BASE_URL,
-            )));
-        } else {
+        try {
+            if (register($email, $password, $name, $phone, $address, $birthday, $gender)['status']) {
+                $_SESSION['authenticated'] = true;
+                $_SESSION['name'] = $name;
+                $_SESSION["email"] = $email;
+                $_SESSION["expired"] = time() + (60*60*24*2);
+                echo (json_encode(array(
+                    "status" => true,
+                    "message" => "Register account successfully!",
+                    "redirect" => $BASE_URL,
+                )));
+            } else {
+                echo (json_encode(array(
+                    "status" => false,
+                    "message" => register($email, $password, $name, $phone, $address, $birthday, $gender)['response'],
+                )));
+            }
+        } catch (Exception $err) {
             echo (json_encode(array(
                 "status" => false,
-                // "message" => "Failed to register account!",
-                "message" => register($email, $password, $username, $given_name, $family_name, $phone, $address)['response'],
+                "message" => $err,
             )));
         }
     };

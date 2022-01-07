@@ -73,7 +73,7 @@ function addEmployeeAccount() {
     add_employee_error_mess.innerHTML = "";
     add_employee_error_mess.classList.remove("card");
     let url =
-      "http://localhost:8080/FinalCNPM/admin/api/employee/add_employee.php";
+      "../admin/api/employee/add_employee.php";
     let data = {
       email: email,
       name: name,

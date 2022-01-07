@@ -125,6 +125,7 @@ require_once('./conf/conf.php');
                                     <a class="nav-link" href="./login.php">Đăng nhập</a>
                                 </li>
                             <?php } ?>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="./profile.php">Thông tin khách hàng</a>
                             </li>
@@ -135,10 +136,14 @@ require_once('./conf/conf.php');
                                 <li class="nav-item">
                                     <a class="nav-link" href="./logout.php">Đăng xuất</a>
                                 </li>
+                            <?php } else{ ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./register.php">Đăng ký</a>
+                                </li>   
                             <?php } ?>
                         </ul>
                     </div>
-                    <span><?= isset($_SESSION['username']) ?  $_SESSION['username'] : ''; ?></span>
+                    <span><?= isset($_SESSION['email']) ?  $_SESSION['email'] : ''; ?></span>
                 </li>
 
             </ul>
