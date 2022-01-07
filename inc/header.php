@@ -125,13 +125,16 @@ require_once('./conf/conf.php');
                                     <a class="nav-link" href="./login.php">Đăng nhập</a>
                                 </li>
                             <?php } ?>
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="./profile.php">Thông tin khách hàng</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Lịch sử mua hàng</a>
-                            </li>
+                            <?php if (isset($_SESSION['authenticated'])) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./profile.php">Thông tin khách hàng</a>
+                                </li>
+                            <?php } ?>
+                            <?php if (isset($_SESSION['authenticated'])) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Lịch sử mua hàng</a>
+                                </li>
+                            <?php } ?>
                             <?php if (isset($_SESSION['authenticated'])) { ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./logout.php">Đăng xuất</a>
@@ -143,7 +146,7 @@ require_once('./conf/conf.php');
                             <?php } ?>
                         </ul>
                     </div>
-                    <span><?= isset($_SESSION['email']) ?  $_SESSION['email'] : ''; ?></span>
+                    
                 </li>
 
             </ul>
