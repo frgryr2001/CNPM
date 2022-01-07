@@ -32,7 +32,7 @@ function getAllEmployeeAccounts() {
     });
 }
 
-window.addEventListener("load", (e) => {
+window.addEventListener("load", () => {
   getAllEmployeeAccounts();
 });
 
