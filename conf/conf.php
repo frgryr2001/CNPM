@@ -126,7 +126,6 @@
             );
         }
     };
-    
     function update_profile($id,$username,$firstname,$lastname,$fullname,$Address,$phone){
         $sql = 'Update account SET username=?,given_name=?,family_name=?,fullname=?,address=?,phone=?
                 where id = ?';  
