@@ -20,22 +20,25 @@
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="given-name" placeholder="given-name" />
+                <input type="number" class="form-control item" id="phone" placeholder="phone" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="family-name" placeholder="family-name" />
+                <input type="date" class="form-control item" id="birthday" placeholder="birthday" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="username" placeholder="Username" />
+                <input type="text" class="form-control item" id="name" placeholder="name" />
             </div>
             <div class="form-group">
                 <input type="text" class="form-control item" id="email" placeholder="Email" />
             </div>
             <div class="form-group">
                 <input type="password" class="form-control item" id="password" placeholder="Password" />
-            </div>
+            </div> 
             <div class="form-group">
-                <input type="text" class="form-control item" id="phone" placeholder="Phone Number" />
+                <select name="gender" id="gender" class="form-control" style="border-radius: 35px;">
+                    <option selected value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control item" id="address" placeholder="Address" />
@@ -54,17 +57,17 @@
             const formRegister = document.querySelector('#form-register')
             formRegister.addEventListener('submit',function(e){
                 e.preventDefault();
-                const given_name = document.querySelector('#given-name').value;
-                const family_name = document.querySelector('#family-name').value;
-                const username = document.querySelector('#username').value;
+                const phone = document.querySelector('#phone').value;
+                const birthday = document.querySelector('#birthday').value;
+                const name = document.querySelector('#name').value;
                 const password = document.querySelector('#password').value;
                 const email = document.querySelector('#email').value;
-                const phone = document.querySelector('#phone').value;
+                const gender = document.querySelector('#gender').value;
                 const address = document.querySelector('#address').value;
                 $.ajax({
                     url,
                     method: 'POST',
-                    data: {email, password, username, given_name, family_name, address, phone}
+                    data: {email, password, name, phone, address, birthday, gender}
                 }).done(response => {
                     console.log(response);
                     if (!response.status){

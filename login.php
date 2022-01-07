@@ -1,11 +1,11 @@
 <?php
     // require_once('./conf/conf.php');
 
-    // session_start();
-    // if(isset($_SESSION['user'])){
-    //     header('Location: ./admin/index.php');
-    //     exit();
-    // };
+    session_start();
+    if(isset($_SESSION['email'])){
+        header('Location: ./admin/index.php');
+        exit();
+    };
 
     // $error = '';
     // $user = '';
@@ -94,7 +94,7 @@
         </div>
     </div>
     <script>
-        const url = 'http://localhost/api/login_api.php'
+        const url = '../api/login_api.php'
         const loginForm = document.querySelector('#loginForm')
         loginForm.addEventListener('submit',function(e){
             e.preventDefault();

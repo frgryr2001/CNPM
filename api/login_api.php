@@ -21,7 +21,9 @@ $BASE_URL = "../";
         $userData = login($email, $password) ;
         if ($userData['status']) {
             $_SESSION['authenticated'] = true;
-            $_SESSION['username'] = $userData['response']["username"];
+            $_SESSION['name'] = $userData['response']["name"];
+            $_SESSION['address'] = $userData['response']["address"];
+            $_SESSION['phone'] = $userData['response']["phone"];
             $_SESSION["email"] = $email;
             $_SESSION["expired"] = time() + (60*60*24*2);
             echo (json_encode(array(

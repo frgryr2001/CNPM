@@ -100,15 +100,13 @@
             return false;
         };
     };
-    function register($email, $password, $username, $given_name, $family_name, $phone, $address){
-        // $_id = bin2hex(random_bytes(10));
-        $fullname = $given_name." ".$family_name;
+    
+    function register($email, $password, $name, $phone, $address, $birthday, $gender){
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = 'insert into account(email, password, username, given_name, family_name, phone, address)
-                 values(?,?,?,?,?,?,?)';  
+        $sql = 'insert into account(email, password, fullname, phone, address, birthday, gender) values(?,?,?,?,?,?,?)';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm -> bind_param('sssssss', $email, $password, $username, $given_name, $family_name, $phone, $address);
+        $stm -> bind_param('sssssss', $email, $password, $name, $phone, $address, $birthday, $gender);
         try {
             if ($stm->execute()) {
                 return array(
@@ -128,18 +126,72 @@
             );
         }
     };
+    
+    function update_profile($id,$username,$firstname,$lastname,$fullname,$Address,$phone){
+        $sql = 'Update account SET username=?,given_name=?,family_name=?,fullname=?,address=?,phone=?
+                where id = ?';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('ssssssi',$username,$firstname,$lastname,$fullname,$Address,$phone,$id);
+        try {
+            if ($stm->execute()) {
+                return array(
+                    "status" => true,
+                    "response" => "",
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    "response" => "",
+                );
+            };
+        } catch (Exception $e) {
+            return array(
+                "status" => false,
+                "response" => "",
+            );
+        }
+    }
 
-    // function is_username_exists($user){
-	// 	$sql = "select * from account where username = ?";
-	// 	$conn = open_database();
-	// 	$stm = $conn->prepare($sql);
-	// 	$stm->bind_param('s',$user);
-	// 	if (!$stm ->execute()){
-	// 		die('Query error: '.$stm->error);
-	// 	}
-	// 	$result = $stm->get_result();
-	// 	if($result->num_rows >0){
-	// 		return true;
-	// 	}
-	// };
+
+    function is_product_name_exists($product_name) {
+        $sql = "select * from product where product_name = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$product_name);
+        $stm->execute();
+        $result = $stm->fetch();
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        };
+    };
+
+    function create_product($product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image){
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'insert into product(product_name, id_category, description, inital_price, sale_off, sell_quantity, guarantee, image) 
+        values(?,?,?,?,?,?,?)';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('sssssss', $product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image);
+        try {
+            if ($stm->execute()) {
+                return array(
+                    "status" => true,
+                    "response" => "",
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    "response" => "Failed to create product!",
+                );
+            };
+        } catch (Exception $e) {
+            return array(
+                "status" => false,
+                "response" => $e,
+            );
+        }
+    };
 ?>
