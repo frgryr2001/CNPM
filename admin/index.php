@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 session_start();
+=======
+// session_start();
+>>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
 // if (!isset($_SESSION['authenticated'])) {
 //     header("Location: ../login.php");
 //     exit();
@@ -175,8 +179,11 @@ session_start();
             </nav>
         </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
         <div class="row table-content">
@@ -313,11 +320,18 @@ session_start();
                 );
             };
         </script>
+<<<<<<< HEAD
     <?php
     }
     // Trang đơn hàng 
     else if (isset($_GET['page']) && $_GET['page'] == 'orders') { ?>
         <div class="row">
+=======
+    <?php }
+    // Trang Tài khoản 
+    if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
+        <div class="row table-content">
+>>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
             <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-header">
