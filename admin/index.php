@@ -5,7 +5,6 @@
 //     exit();
 // }
 ?>
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -303,9 +302,10 @@
                 );
             };
         </script>
-    <?php }
+    <?php
+    }
     // Trang Tài khoản 
-    if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
+    else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
         <div class="row table-content">
             <div class="col-md-12 mb-3">
                 <div class="card pt-60">

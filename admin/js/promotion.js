@@ -45,7 +45,7 @@ function showPromotionDetailModal(id) {
 
 // Đổ dữ liệu sản phẩm vào modal thêm khuyến mãi
 function bindProductNamesToModal(id) {
-  let url = "../admin/api/product/get_products_by_category.php?id=" + id;
+  let url = "../admin/api/admin_product/get_products_by_category.php?id=" + id;
   let modal_add_promotion_product_name = document.getElementById(
     "modal-add-promotion-product-name"
   );

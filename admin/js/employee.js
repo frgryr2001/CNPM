@@ -74,12 +74,7 @@ function addEmployeeAccount() {
   } else {
     add_employee_error_mess.innerHTML = "";
     add_employee_error_mess.classList.remove("card");
-<<<<<<< HEAD
-    let url =
-      "../admin/api/employee/add_employee.php";
-=======
     let url = "../admin/api/employee/add_employee.php";
->>>>>>> 3415b3bd2e32f2c5e2460483e02af115941c6c7a
     let data = {
       email: email,
       name: name,
