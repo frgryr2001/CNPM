@@ -1,0 +1,1 @@
+document.querySelector(".ajs-header").innerText = "Tạo sản phẩm mới"
