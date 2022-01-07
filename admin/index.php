@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-session_start();
-=======
+require_once('.././conf/conf.php');
 // session_start();
->>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
 // if (!isset($_SESSION['authenticated'])) {
 //     header("Location: ../login.php");
 //     exit();
@@ -114,6 +111,8 @@ session_start();
         </div>
     </nav>
 
+    <!-- // ===================================================================================
+    // ----------------------------------------------------------------------------------- -->
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
         <div class="offcanvas-body p-0">
@@ -179,11 +178,10 @@ session_start();
             </nav>
         </div>
     </div>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
+    <!-- // ===================================================================================
+    // ----------------------------------------------------------------------------------- -->
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
         <div class="row table-content">
@@ -206,11 +204,30 @@ session_start();
                                     <thead>
                                         <tr>
                                             <th>Tên sản phẩm</th>
-                                            <th>Mô tả</th>
+                                            <th>Loại sản phẩm</th>
+                                            <th>Chi tiết</th>
                                             <th>Giá</th>
+                                            <th>Sale</th>
+                                            <th>Số lượng bán ra</th>
+                                            <th>bảo hành</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product-list">
+                                        <?php 
+                                            $product_array = get_product();
+                                            foreach ($product_array as $key => $value){
+                                                $category_res = get_category_byID($value['id_category']);
+                                                echo '<tr>';
+                                                echo '<td>'.$value['product_name'].'</td>';
+                                                echo '<td>'.$category_res['name'].'</td>';
+                                                echo '<td>'.$value['description'].'</td>';
+                                                echo '<td>'.$value['inital_price'].'</td>';
+                                                echo '<td>'.$value['sale_off'].'</td>';
+                                                echo '<td>'.$value['sell_quantity'].'</td>';
+                                                echo '<td>'.$value['guarantee'].'</td>';
+                                                echo '</tr>';
+                                            };
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                     </tfoot>
@@ -233,18 +250,18 @@ session_start();
                     <div class="form-group">
                         <label for="id_category">Loại sản phẩm</label>
                         <select class="form-control" id="id_category">
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "2">3</option>
-                        <option value = "2">4</option>
-                        <option value = "2">5</option>
+                        <?php 
+                            $category_array = get_category();
+                            foreach ($category_array as $key => $value){
+                                echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
+                            };
+                        ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="description">Mô tả sản phẩm</label>
                         <textarea class="form-control" id="description" rows="3"></textarea>
                     </div>
-                   
                     <div class="form-group">
                         <label for="inital_price">Giá</label>
                         <input type="number" class="form-control" id="inital_price" placeholder="Giá">
@@ -273,6 +290,7 @@ session_start();
                 </form>
                 `,
                     function(){
+
                         let url = '../admin/api/product/product_api.php'
                         let formProduct = document.querySelector('#form_product')
                         // formProduct.addEventListener('submit',function(e){
@@ -310,6 +328,7 @@ session_start();
                                 }else{
                                     toastr.success(response.message);
                                     // window.location.href = response.redirect;
+                                    // window.location.reload();
                                 }
                             });
                         // })
@@ -320,18 +339,14 @@ session_start();
                 );
             };
         </script>
-<<<<<<< HEAD
     <?php
     }
+
+    // ===================================================================================
+    // -----------------------------------------------------------------------------------
     // Trang đơn hàng 
     else if (isset($_GET['page']) && $_GET['page'] == 'orders') { ?>
         <div class="row">
-=======
-    <?php }
-    // Trang Tài khoản 
-    if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
-        <div class="row table-content">
->>>>>>> 2b95d75403186dc056705f869f65b33f9a8f69fb
             <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-header">
@@ -364,6 +379,9 @@ session_start();
 
     <?php
     }
+
+
+
     // Trang Tài khoản 
     else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
         <div class="row">
