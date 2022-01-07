@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
-include_path = '../../conf/conf.php';
+require('../../../conf/conf.php');
 $BASE_URL = "../";
 
 if (!isset($_POST['product_name']) || empty($_POST['product_name'])) {

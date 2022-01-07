@@ -70,6 +70,11 @@ session_start();
         #DataTables_Table_0_filter {
             display: none;
         }
+        
+        .ajs-commands,
+        .ajs-header{
+            display: none;
+        }
     </style>
 </head>
 
@@ -213,7 +218,7 @@ session_start();
             console.log(addProduct);
             addProduct.onclick = function() {
                 alertify.confirm(`
-                <form id = "form_product">
+                <form id = "form_product" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="product_name">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
@@ -239,7 +244,7 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="sale_off">Giảm giá</label>
-                        <input type="number" class="form-control" id="sale_off" placeholder="Giá">
+                        <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
                     </div>
                     <div class="form-group">
                         <label for="sell_quantity">Số lượng bán ra</label>
@@ -274,7 +279,7 @@ session_start();
                             let sell_quantity = document.querySelector('#sell_quantity').value;
                             let guarantee = document.querySelector('#guarantee').value;
                             let image = document.querySelector('#image');
-                            // console.log(image.files[0]);
+                            // console.log({image});
                             formData.append('product_name', product_name)
                             formData.append('id_category', id_category)
                             formData.append('description', description)
@@ -283,7 +288,7 @@ session_start();
                             formData.append('sell_quantity', sell_quantity)
                             formData.append('guarantee', guarantee)
                             formData.append('image', image.files[0])
-                            console.log({formData})
+                            // console.log({formData})
                             $.ajax({
                                 url,
                                 method: 'POST',
