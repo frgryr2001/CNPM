@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 07, 2022 lúc 10:43 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.12
+-- Thời gian đã tạo: Th1 08, 2022 lúc 02:43 PM
+-- Phiên bản máy phục vụ: 10.4.17-MariaDB
+-- Phiên bản PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,6 +81,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name`) VALUES
+(3, 'Laptop'),
 (4, 'Điện thoại'),
 (5, 'Phụ kiện'),
 (6, 'Máy tính bảng'),
@@ -135,15 +136,17 @@ CREATE TABLE `product` (
   `guarantee` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT 'No',
   `createdAt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
   `image` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `sale_off_period` date DEFAULT current_timestamp()
+  `sale_off_period` date DEFAULT current_timestamp(),
+  `rate` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `inital_price`, `sale_off`, `sell_quantity`, `guarantee`, `createdAt`, `image`, `sale_off_period`) VALUES
-(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 10, 0, 'No', 'current_timestamp()', NULL, '2022-01-15');
+INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `inital_price`, `sale_off`, `sell_quantity`, `guarantee`, `createdAt`, `image`, `sale_off_period`, `rate`) VALUES
+(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 0, 2, '12', 'current_timestamp()', 'phone4.webp', '2022-01-15', 4),
+(3, 7, 'Laptop', 'xin', 1000000, 30, 3, '12', 'current_timestamp()', 'laptop1.webp', '0000-00-00', 4.5);
 
 -- --------------------------------------------------------
 
@@ -294,7 +297,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `rate`
