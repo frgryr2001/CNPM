@@ -63,7 +63,7 @@ require_once('.././conf/conf.php');
             font-size: 20px;
         }
 
-        .row-account-item {
+        .row-item {
             cursor: pointer;
         }
 
@@ -146,14 +146,6 @@ require_once('.././conf/conf.php');
                             <span>SẢN PHẨM</span>
                         </a>
                     </li>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'orders') {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=orders" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="icon fas fa-shipping-fast"></i></span>
-                            <span>ĐƠN HÀNG</span>
-                        </a>
-                    </li>
                     <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts') {
                                     echo 'bg-secondary';
                                 } ?>">
@@ -168,6 +160,14 @@ require_once('.././conf/conf.php');
                         <a href="?page=employees" class="nav-link nav-link-custom px-3">
                             <span class="me-2"><i class="fas fa-user-circle"></i></span>
                             <span>NHÂN VIÊN</span>
+                        </a>
+                    </li>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions') {
+                                    echo 'bg-secondary';
+                                } ?>">
+                        <a href="?page=promotions" class="nav-link nav-link-custom px-3">
+                            <span class="me-2"><i class="far fa-bookmark"></i></i></span>
+                            <span>KHUYẾN MÃI</span>
                         </a>
                     </li>
                     <li class="my-4">

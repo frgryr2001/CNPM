@@ -3,21 +3,22 @@ function getAllEmployeeAccounts() {
   // $("#add-employee-success-modal").modal("hide");
   let employee_account_list = document.getElementById("employee-account-list");
   // console.log(employee_account_list);
-  employee_account_list.innerHTML = "";
-  let url = "../admin/api/employee/get_employees.php";
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      let accounts = data.data;
-      let html = accounts.map((account) => {
-        // console.log(account);
-        // console.log(account.fullname);
-        let type = "Nhân viên kho";
-        if (parseInt(account.role) === 2) {
-          type = "Nhân viên bán hàng";
-        }
-        return `   
-                    <tr data-bs-toggle="modal" data-bs-target="#view-detail-employee-modal" class="row-account-item" onclick="viewEmployeeAccountDetail(${account.id})">
+  if (employee_account_list) {
+    employee_account_list.innerHTML = "";
+    let url = "../admin/api/employee/get_employees.php";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        let accounts = data.data;
+        let html = accounts.map((account) => {
+          // console.log(account);
+          // console.log(account.fullname);
+          let type = "Nhân viên kho";
+          if (parseInt(account.role) === 2) {
+            type = "Nhân viên bán hàng";
+          }
+          return `   
+                    <tr data-bs-toggle="modal" data-bs-target="#view-detail-employee-modal" class="row-item" onclick="viewEmployeeAccountDetail(${account.id})">
                         <td>${account.fullname}</td>
                         <td>${account.email}</td>
                         <td>${type}</td>
@@ -26,10 +27,11 @@ function getAllEmployeeAccounts() {
                             <span data-bs-toggle="modal" data-bs-target="#confirm-delete-employee-modal" onclick="openConfirmDeleteEmployeeModal(${account.id}, '${account.fullname}')" class="font-size-20"><i class="fas fa-trash-alt"></i></span>
                         </td>
                     </tr>`;
-        // employee_account_list.appendChild(tr);
+          // employee_account_list.appendChild(tr);
+        });
+        employee_account_list.innerHTML = html.join("");
       });
-      employee_account_list.innerHTML = html.join("");
-    });
+  }
 }
 
 window.addEventListener("load", () => {
