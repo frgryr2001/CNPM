@@ -292,7 +292,9 @@ require_once('.././conf/conf.php');
                         </div>
                         <div class="form-group">
                             <label for="image">Hình ảnh minh họa</label>
-                            <input type="file" class="form-control-file" id="image">
+                            <input type="file" class="form-control-file image" id="image1">
+                            <input type="file" class="form-control-file image" id="image2">
+                            <input type="file" class="form-control-file image" id="image3">
                         </div>
                     </form>
                     `,
@@ -310,7 +312,8 @@ require_once('.././conf/conf.php');
                             let sale_off = document.querySelector('#sale_off').value;
                             let sell_quantity = document.querySelector('#sell_quantity').value;
                             let guarantee = document.querySelector('#guarantee').value;
-                            let image = document.querySelector('#image');
+                            let image = Array.from(document.querySelectorAll('.image'));
+                            // console.log({image} );
                             // console.log({image});
                             formData.append('product_name', product_name)
                             formData.append('id_category', id_category)
@@ -347,6 +350,7 @@ require_once('.././conf/conf.php');
             };
 
             function editProduct (id) { 
+
                 alertify.confirm(`
                     <form id = "form_product" enctype="multipart/form-data">
                         <div class="form-group">
