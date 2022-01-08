@@ -209,7 +209,8 @@ require_once('.././conf/conf.php');
                                             <th>Giá</th>
                                             <th>Sale</th>
                                             <th>Số lượng bán ra</th>
-                                            <th>bảo hành</th>
+                                            <th>Bảo hành</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product-list">
@@ -218,13 +219,18 @@ require_once('.././conf/conf.php');
                                             foreach ($product_array as $key => $value){
                                                 $category_res = get_category_byID($value['id_category']);
                                                 echo '<tr>';
-                                                echo '<td>'.$value['product_name'].'</td>';
-                                                echo '<td>'.$category_res['name'].'</td>';
-                                                echo '<td>'.$value['description'].'</td>';
-                                                echo '<td>'.$value['inital_price'].'</td>';
-                                                echo '<td>'.$value['sale_off'].'</td>';
-                                                echo '<td>'.$value['sell_quantity'].'</td>';
-                                                echo '<td>'.$value['guarantee'].'</td>';
+                                                echo '<td id = "product_name"> '.$value['product_name'].'</td>';
+                                                echo '<td id = "category_name">'.$category_res['name'].'</td>';
+                                                echo '<td id = "description">'.$value['description'].'</td>';
+                                                echo '<td id = "inital_price">'.$value['inital_price'].'</td>';
+                                                echo '<td id = "sale_off">'.$value['sale_off'].'</td>';
+                                                echo '<td id = "sell_quantity">'.$value['sell_quantity'].'</td>';
+                                                echo '<td id = "guarantee">'.$value['guarantee'].'</td>';
+                                                echo '<td>
+                                                            <span class="me-2 font-size-20" onclick="editProduct('.$value['id'].')">
+                                                            <i class="fas fa-edit"></i></span>
+                                                            <span class="font-size-20" onclick="deleteProduct('.$value['id'].')"><i class="fas fa-trash-alt"></i></span>
+                                                      </td>';
                                                 echo '</tr>';
                                             };
                                         ?>
@@ -238,57 +244,58 @@ require_once('.././conf/conf.php');
             </div>
         </div>
         <script>
+            
             const addProduct = document.getElementById("add_product_btn")
             console.log(addProduct);
             addProduct.onclick = function() {
                 alertify.confirm(`
-                <form id = "form_product" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="product_name">Tên sản phẩm</label>
-                        <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
-                    </div>
-                    <div class="form-group">
-                        <label for="id_category">Loại sản phẩm</label>
-                        <select class="form-control" id="id_category">
-                        <?php 
-                            $category_array = get_category();
-                            foreach ($category_array as $key => $value){
-                                echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
-                            };
-                        ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Mô tả sản phẩm</label>
-                        <textarea class="form-control" id="description" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inital_price">Giá</label>
-                        <input type="number" class="form-control" id="inital_price" placeholder="Giá">
-                    </div>
-                    <div class="form-group">
-                        <label for="sale_off">Giảm giá</label>
-                        <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
-                    </div>
-                    <div class="form-group">
-                        <label for="sell_quantity">Số lượng bán ra</label>
-                        <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng">
-                    </div>
-                    <div class="form-group">
-                        <label for="guarantee">bảo hành</label>
-                        <select class="form-control" id="guarantee">
-                        <option>1 tháng</option>
-                        <option>3 tháng</option>
-                        <option>6 tháng</option>
-                        <option>1 năm</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Hình ảnh minh họa</label>
-                        <input type="file" class="form-control-file" id="image">
-                    </div>
-                </form>
-                `,
+                    <form id = "form_product" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product_name">Tên sản phẩm</label>
+                            <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_category">Loại sản phẩm</label>
+                            <select class="form-control" id="id_category">
+                            <?php 
+                                $category_array = get_category();
+                                foreach ($category_array as $key => $value){
+                                    echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
+                                };
+                            ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Mô tả sản phẩm</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inital_price">Giá</label>
+                            <input type="number" class="form-control" id="inital_price" placeholder="Giá">
+                        </div>
+                        <div class="form-group">
+                            <label for="sale_off">Giảm giá</label>
+                            <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
+                        </div>
+                        <div class="form-group">
+                            <label for="sell_quantity">Số lượng bán ra</label>
+                            <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng">
+                        </div>
+                        <div class="form-group">
+                            <label for="guarantee">bảo hành</label>
+                            <select class="form-control" id="guarantee">
+                            <option>1 tháng</option>
+                            <option>3 tháng</option>
+                            <option>6 tháng</option>
+                            <option>1 năm</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Hình ảnh minh họa</label>
+                            <input type="file" class="form-control-file" id="image">
+                        </div>
+                    </form>
+                    `,
                     function(){
 
                         let url = '../admin/api/product/product_api.php'
@@ -332,6 +339,96 @@ require_once('.././conf/conf.php');
                                 }
                             });
                         // })
+                    },
+                    function(){
+                        alertify.error('Cancel');
+                    }
+                );
+            };
+
+            function editProduct (id) { 
+                alertify.confirm(`
+                    <form id = "form_product" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product_name"> </label>
+                            <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_category">Loại sản phẩm</label>
+                            <select class="form-control" id="id_category">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Mô tả sản phẩm</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inital_price">Giá</label>
+                            <input type="number" class="form-control" id="inital_price" placeholder="Giá">
+                        </div>
+                        <div class="form-group">
+                            <label for="sale_off">Giảm giá</label>
+                            <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
+                        </div>
+                        <div class="form-group">
+                            <label for="sell_quantity">Số lượng bán ra</label>
+                            <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng">
+                        </div>
+                        <div class="form-group">
+                            <label for="guarantee">bảo hành</label>
+                            <select class="form-control" id="guarantee">
+                            <option>1 tháng</option>
+                            <option>3 tháng</option>
+                            <option>6 tháng</option>
+                            <option>1 năm</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Hình ảnh minh họa</label>
+                            <input type="file" class="form-control-file" id="image">
+                        </div>
+                    </form>
+                `,
+                    function(){
+                        let url = '../admin/api/product/product_edit_api.php';
+                        $.ajax({
+                            url,
+                            method: 'POST',
+                            data: formData
+                        }).done(response => {
+                            console.log(response);
+                            if (!response.status){
+                                toastr.error(response.message);
+                            }else{
+                                toastr.success(response.message);
+                            }
+                        });
+                    },
+                    function(){
+                        alertify.error('Cancel');
+                    }
+                );
+            };
+            
+            function deleteProduct (id) {
+                alertify.confirm(`Bạn có chắc muốn xóa sản phẩm ?`,
+                    function(){
+                        let url = '../admin/api/product/product_remove_api.php';
+                        $.ajax({
+                            url,
+                            method: 'POST',
+                            data: {id}
+                        }).done(response => {
+                            console.log(response);
+                            if (!response.status){
+                                toastr.error(response.message);
+                            }else{
+                                toastr.success(response.message);
+                                window.location.reload();
+                            }
+                        }).fail((a,b,c)=>{
+                            console.log("Failed!");
+                        });
                     },
                     function(){
                         alertify.error('Cancel');

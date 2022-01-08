@@ -60,10 +60,10 @@ if (!isset($_POST['product_name']) || empty($_POST['product_name'])) {
         $image_tmp = $_FILES['image']["tmp_name"];
         $image_type = $_FILES['image']["type"];
         $target_file = '../../product_images/'. $image_name;
-        if ($image_type !== "image/jpg" && $image_type !== "image/jpeg" && $image_type !== "image/png") {
+        if ($image_type !== "image/jpg" && $image_type !== "image/jpeg" && $image_type !== "image/png" && $image_type !== "image/webp" ) {
             echo (json_encode(array(
                 "status" => false,
-                "message" => "Only accept jpeg, jpg, png",
+                "message" => "Only accept jpeg, jpg, png, webp",
             )));
         } else {
             if (move_uploaded_file($image_tmp, $target_file)) {
