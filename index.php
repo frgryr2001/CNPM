@@ -45,9 +45,7 @@ session_start();
                                 <li class="slidebar__item">
                                     <a href="#<?=$row['name']?>" class="slidebar__item__link">
                                         <div class="slidebar__item__link__text__wrapper">
-                                            <div class="slidebar__item__link__text__wrapper__icon__box">
-                                                <i class="mobile-icon icon"></i>
-                                            </div>
+                                            
                                             <p><?=$row['name']?></p>
                                         </div>
                                         <div class="slidebar__item__link__icon__last__wrapper">
@@ -1078,7 +1076,7 @@ session_start();
                             <p>Giảm ${e.sale_off}%</p>
                         </div>
                         <div class="flash__sale__product__img__wrapper">
-                            <a href="./product_detail.php?id=${e.id}"><img src="assets/img/flash_sale/${e.image}" alt=""></a>
+                            <a href="./product_detail.php?id=${e.id}"><img src="./assets/img/product/${e.image}" alt=""></a>
                         </div>
                         <div class="flash__sale__product__desc">
                             <a href="" class="flash__sale__product__desc__title">

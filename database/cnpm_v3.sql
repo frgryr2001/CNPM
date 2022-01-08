@@ -175,7 +175,10 @@ CREATE TABLE `productdetail` (
 
 CREATE TABLE `product_img` (
   `id_product` int(11) NOT NULL,
-  `image_path` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp'
+  `image_path1` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp',
+  `image_path2` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp',
+  `image_path3` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp',
+  `image_path4` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
