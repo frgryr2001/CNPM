@@ -3184,6 +3184,12 @@ ul.login-popup {
 .login-popup a:hover{
     background-color: rgb(226, 216, 216);
 }
-
+.menu-session {
+    position: relative;
+    top: -70px;
+}
+.slidebar{
+    height: 23rem;
+}
 
 
