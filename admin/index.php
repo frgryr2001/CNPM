@@ -344,120 +344,42 @@ require_once('.././conf/conf.php');
 
     // ===================================================================================
     // -----------------------------------------------------------------------------------
-    // Trang đơn hàng 
-    else if (isset($_GET['page']) && $_GET['page'] == 'orders') { ?>
-        <div class="row">
-            <div class="col-md-12 mb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive mt-4">
-                            <table id="example" class="table table-striped data-table" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center">Name</th>
-                                        <th style="text-align: center">Username</th>
-                                        <th style="text-align: center">Email</th>
-                                        <th style="text-align: center">Phone</th>
-                                        <th style="text-align: center">Address</th>
-                                        <th style="text-align: center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <?php
-    }
-
-
-
     // Trang Tài khoản 
     else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
-        <div class="row">
+        <div class="row table-content">
             <div class="col-md-12 mb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
-                    </div>
-
+                <div class="card pt-60">
+                    <!-- <div class="card-header">
+                    </div> -->
                     <div class="card-body">
-                        <div class="table-responsive mt-4">
-                            <table id="example" class="table table-striped data-table" style="width: 100%">
+                        <div class="">
+                            <div class="my-2 d-flex">
+                                <form class="d-flex ms-auto my-3 my-lg-0">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="" class="table table-striped data-table" style="width: 100%">
                                 <thead>
-
                                     <tr>
-
-                                        <th style="text-align: center">Name</th>
-                                        <th style="text-align: center">Username</th>
-                                        <th style="text-align: center">Email</th>
-                                        <th style="text-align: center">Phone</th>
-                                        <th style="text-align: center">Address</th>
-                                        <th style="text-align: center">Action</th>
+                                        <th>Họ tên</th>
+                                        <th>Email</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php foreach ($getAllUsers as $user) { ?>
-                                        <tr>
-                                            <td style="text-align: center"><?= $user->name ?></td>
-                                            <td style="text-align: center"><?= $user->username ?></td>
-                                            <td style="text-align: center"><?= $user->email ?></td>
-                                            <td style="text-align: center"><?= $user->phone ?></td>
-                                            <td style="text-align: center"><?= $user->address ?></td>
-                                            <td style="text-align: center">
-                                                <!-- <a href="" class="btn btn-danger" data-bs-toggle="modal" data-target="#exampleModal">Delete</a> -->
-                                                <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-<?= $user->userId ?>">
-                                                    Delete
-                                                </a>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="modal-delete-<?= $user->userId ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Xóa tài
-                                                                    khoản</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Bạn có muốn xóa tai khoan <p style="font-weight: 700; display: inline-block;">
-                                                                    <?= $user->username ?></p> ra khỏi hệ thống không?
-                                                            </div>
-                                                            <form action="./delete_User.php" method="post" enctype="multipart/form">
-                                                                <div class="modal-footer">
-                                                                    <input type="hidden" name="delete_idUser" value="<?= $user->userId ?>">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                                                                    <button type="submit" class="btn btn-primary">Có</button>
-                                                                </div>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end Modal -->
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                <tbody id="customer-account-list">
+                                    <!-- <tr>
+                                        <td>Nguyễn Thế Trường</td>
+                                        <td>nguyenthetruong100621@gmail.com</td>
+                                        <td>Nhân viên bán hàng</td>
+                                    </tr> -->
                                 </tbody>
                                 <tfoot>
-                                    <!-- <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
@@ -505,14 +427,53 @@ require_once('.././conf/conf.php');
                                     </tr> -->
                                 </tbody>
                                 <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    // Trang Quản lý khuyến mãi
+    else if (isset($_GET['page']) && $_GET['page'] == 'promotions') { ?>
+        <div class="row table-content">
+            <div class="col-md-12 mb-3">
+                <div class="card pt-60">
+                    <!-- <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span> Data Table
+                    </div> -->
+                    <div class="card-body">
+                        <div class="">
+                            <div class="my-2 d-flex">
+                                <form class="d-flex ms-auto my-3 my-lg-0">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <button onclick="bindCategoryDataToModal();" data-bs-toggle="modal" data-bs-target="#add-promotion-modal" class="btn btn-primary ms-2">Thêm khuyến mãi</button>
+                            </div>
+                            <table id="" class="table table-striped data-table" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Khuyến mãi</th>
+                                        <th>Hạn khuyến mãi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="promotion-list">
                                     <!-- <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    </tr> -->
+                                        <td>Nguyễn Thế Trường</td>
+                                        <td>nguyenthetruong100621@gmail.com</td>
+                                        <td>Nhân viên bán hàng</td>
+                                    </tr> -->
+                                </tbody>
+                                <tfoot>
                                 </tfoot>
                             </table>
                         </div>
@@ -608,6 +569,9 @@ require_once('.././conf/conf.php');
             </div>
         </main>
 
+        <!-- ############### MODAL ############# -->
+
+        <!-- ############### NHÂN VIÊN ############# -->
         <!-- Thêm nhân viên modal -->
         <div class="modal fade" id="add-employee-modal">
             <div class="modal-dialog modal-lg">
@@ -658,7 +622,7 @@ require_once('.././conf/conf.php');
                             <div class="col">
                                 <div class="form-floating mb-3 mt-3">
                                     <input type="date" name="modal-add-employee-birthday" id="modal-add-employee-birthday" class="form-control">
-                                    <label for="modal-add-employee-birthday">Ngày sinh</label>
+                                    <label for="modal-add-employee-birthday">Ngày sinh (MM/dd/yyyy)</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -695,7 +659,7 @@ require_once('.././conf/conf.php');
             </div>
         </div>
 
-        <!-- Thông báo thêm thành công modal -->
+        <!-- Thông báo thêm nhân viên thành công modal -->
         <div class="modal fade" id="add-employee-success-modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="add-model-content">
@@ -710,94 +674,8 @@ require_once('.././conf/conf.php');
             </div>
         </div>
 
-        <!-- Xem thông tin nhân viên chi tiết modal -->
-        <div class="modal fade" id="view-detail-employee-modal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Thông tin chi tiết</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="text" class="form-control" id="modal-view-employee-detail-name" placeholder="Enter email" name="modal-view-employee-detail-name">
-                                    <label for="modal-view-employee-detail-name">Họ tên</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-email" name="modal-view-employee-detail-email" type="email" class="form-control" placeholder="Nhập email">
-                                    <label for="modal-view-employee-detail-email">Email</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ms-0">
-                            <div class="col d-flex align-items-center px-0">
-                                <div class="form-check form-check-inline p-0">
-                                    <div class="d-flex">
-                                        <label class="control-label" for="modal-view-employee-detail-sex">Giới tính:</label>
-                                        <div class="">
-                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-employee-detail-male" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="1">Nam</label>
-                                            <label class="radio-inline mb-0"><input disabled id="modal-view-employee-detail-female" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="0">Nữ</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3 ml-6">
-                                    <select disabled name="modal-view-employee-detail-type" class="form-control form-select" id="modal-view-employee-detail-type">
-                                        <option>1 - Nhân viên kho</option>
-                                        <option>2 - Nhân viên bán hàng</option>
-                                    </select>
-                                    <label for="modal-view-employee-detail-type">Chức vụ</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="date" name="modal-view-employee-detail-birthday" id="modal-view-employee-detail-birthday" class="form-control">
-                                    <label for="modal-view-employee-detail-birthday">Ngày sinh</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-phone" name="modal-view-employee-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                                    <label for="modal-view-employee-detail-phone">Số điện thoại</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-address" name="modal-view-employee-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
-                                    <label for="modal-view-employee-detail-address">Địa chỉ</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-salary" name="modal-view-employee-detail-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                                    <label for="modal-view-employee-detail-salary">Lương</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div id="add-employee-error-mess" class="text-center alert-danger font-weight-bold"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-         <!-- Chỉnh sửa thông tin nhân viên modal -->
-         <div class="modal fade" data-bs-backdrop="static" id="edit-employee-modal">
+        <!-- Chỉnh sửa thông tin nhân viên modal -->
+        <div class="modal fade" data-bs-backdrop="static" id="edit-employee-modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -846,7 +724,7 @@ require_once('.././conf/conf.php');
                             <div class="col">
                                 <div class="form-floating mb-3 mt-3">
                                     <input type="date" name="modal-edit-employee-birthday" id="modal-edit-employee-birthday" class="form-control">
-                                    <label for="modal-edit-employee-birthday">Ngày sinh</label>
+                                    <label for="modal-edit-employee-birthday">Ngày sinh (MM/dd/yyyy)</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -899,6 +777,87 @@ require_once('.././conf/conf.php');
                 </div>
             </div>
         </div>
+        <!-- Xem thông tin nhân viên chi tiết modal -->
+        <div class="modal fade" id="view-detail-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin chi tiết</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="text" class="form-control" id="modal-view-employee-detail-name" placeholder="Enter email" name="modal-view-employee-detail-name">
+                                    <label for="modal-view-employee-detail-name">Họ tên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-email" name="modal-view-employee-detail-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-view-employee-detail-email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-view-employee-detail-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-employee-detail-male" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input disabled id="modal-view-employee-detail-female" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3 ml-6">
+                                    <select disabled name="modal-view-employee-detail-type" class="form-control form-select" id="modal-view-employee-detail-type">
+                                        <option>1 - Nhân viên kho</option>
+                                        <option>2 - Nhân viên bán hàng</option>
+                                    </select>
+                                    <label for="modal-view-employee-detail-type">Chức vụ</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="date" name="modal-view-employee-detail-birthday" id="modal-view-employee-detail-birthday" class="form-control">
+                                    <label for="modal-view-employee-detail-birthday">Ngày sinh (MM/dd/yyyy)</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-phone" name="modal-view-employee-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-address" name="modal-view-employee-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-view-employee-detail-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-salary" name="modal-view-employee-detail-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-salary">Lương</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Xác nhận xóa thông tin nhân viên modal -->
         <div class="modal fade" id="confirm-delete-employee-modal">
@@ -911,11 +870,199 @@ require_once('.././conf/conf.php');
                     <div class="modal-body">Bạn có chắc muốn xóa nhân viên <strong id="confirm-delete-employee-modal-name"></strong> không?</div>
                     <div class="modal-footer text-center">
                         <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
-                        <button id="btn-confirm-delete-employee" onclick="sendDeleteEmployeeRequest(this);" employee-id="0" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                        <button id="btn-confirm-delete-employee" onclick="sendDeleteEmployeeRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- ############### TÀI KHOẢN ############# -->
+        <!-- Xem thông tin chi tiết của khách hàng modal -->
+        <div class="modal fade" id="view-detail-customer-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin chi tiết</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="text" class="form-control" id="modal-view-customer-detail-name" placeholder="Enter email" name="modal-view-customer-detail-name">
+                                    <label for="modal-view-customer-detail-name">Họ tên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-customer-detail-email" name="modal-view-customer-detail-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-view-customer-detail-email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-view-customer-detail-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-customer-detail-male" class="me-2" type="radio" name="modal-view-customer-detail-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input disabled id="modal-view-customer-detail-female" class="me-2" type="radio" name="modal-view-customer-detail-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="date" name="modal-view-customer-detail-birthday" id="modal-view-customer-detail-birthday" class="form-control">
+                                    <label for="modal-view-customer-detail-birthday">Ngày sinh (MM/dd/yyyy)</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-customer-detail-address" name="modal-view-customer-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-view-customer-detail-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-customer-detail-phone" name="modal-view-customer-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-customer-detail-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ############### KHUYẾN MÃI ############# -->
+        <!-- Thêm khuyến mãi modal -->
+        <div class="modal fade" id="add-promotion-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <select changed="0" onchange="getCorrespondingProduct(this)" name="modal-add-promotion-category-name" class="form-control form-select" id="modal-add-promotion-category-name">
+                            </select>
+                            <label for="modal-add-promotion-category-name">Danh mục</label>
+                        </div>
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <select onchange="setProductIdAttribute(this);" name="modal-add-promotion-product-name" class="form-control form-select" id="modal-add-promotion-product-name">
+                            </select>
+                            <label for="modal-add-promotion-product-name">Sản phẩm</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input id="modal-add-promotion-quantity" name="modal-add-promotion-quantity" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                            <label for="modal-add-promotion-quantity">Khuyến mãi (%)</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="date" name="modal-add-promotion-period" id="modal-add-promotion-period" class="form-control">
+                            <label for="modal-add-promotion-period">Hạn khuyến mãi (mm/dd/yyyy)</label>
+                        </div>
+                        <div class="form-group">
+                            <div id="add-promotion-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button onclick=" addPromotion();" type="button" class="btn btn-primary">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông báo thêm khuyến mãi thành công modal -->
+        <div class="modal fade" id="add-promotion-success-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="add-model-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm khuyến mãi thành công</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button onclick="refreshPage();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xem thông tin khuyến mãi chi tiết modal -->
+        <div class="modal fade" id="view-promotion-detail-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <input disabled class="form-control" type="text" name="modal-view-promotion-detail-product-name" id="modal-view-promotion-detail-product-name">
+                            <label for="modal-view-promotion-detail-product-name">Sản phẩm</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input id="modal-view-promotion-detail-quantity" name="modal-view-promotion-detail-quantity" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                            <label for="modal-view-promotion-detail-quantity">Khuyến mãi (%)</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="date" name="modal-view-promotion-detail-period" id="modal-view-promotion-detail-period" class="form-control">
+                            <label for="modal-view-promotion-detail-period">Hạn khuyến mãi (mm/dd/yyyy)</label>
+                        </div>
+                        <div class="form-group">
+                            <div id="edit-promotion-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="validateEditPromotionInput();" type="button" class="btn btn-primary">Chỉnh sửa</button>
+                        <button data-bs-toggle="modal" data-bs-target="#confirm-delete-promotion-modal" type="button" class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận chỉnh sửa thông tin khuyến mãi modal -->
+        <div class="modal fade" id="confirm-edit-promotion-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận chỉnh sửa thông tin khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn chỉnh sửa thông tin khuyến mãi của sản phẩm <strong id="confirm-edit-promotion-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-edit-promotion" onclick="sendEditPomotionRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận xóa thông tin khuyến mãi modal -->
+        <div class="modal fade" id="confirm-delete-promotion-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận xóa nhân viên</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn xóa khuyến mãi của sản phẩm <strong id="confirm-delete-promotion-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-delete-promotion" onclick="sendDeletePromotionRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
@@ -924,4 +1071,6 @@ require_once('.././conf/conf.php');
         <script src="./js/dataTables.bootstrap5.min.js"></script>
         <script src="./js/script.js"></script>
         <script src="./js/employee.js"></script>
+        <script src="./js/customer.js"></script>
+        <script src="./js/promotion.js"></script>
 </body>
