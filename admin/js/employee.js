@@ -303,6 +303,7 @@ function openConfirmDeleteEmployeeModal(id, fullname) {
 // Call api Xóa nhân viên
 function sendDeleteEmployeeRequest(btn) {
   let id = btn.getAttribute("employee-id");
+  // console.log(btn);
   // console.log(id);
   let url = "../admin/api/employee/delete_employee.php?id=" + id;
   fetch(url, {
@@ -310,6 +311,7 @@ function sendDeleteEmployeeRequest(btn) {
   })
     .then((res) => res.json())
     .then((json) => {
+      console.log(json["code"]);
       if (json["code"] == 0) {
         getAllEmployeeAccounts();
       }

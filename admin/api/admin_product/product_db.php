@@ -30,4 +30,20 @@
         }
         return $products;
     }
+
+    // Lấy sản phẩm theo cụ thể
+    function get_product($id) {
+        $conn = open_database();
+        $sql = "SELECT * FROM product WHERE id = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param("i", $id);
+        $stm -> execute();
+        $result = $stm -> get_result();
+        if ($result -> num_rows > 0) {
+            $row = $result -> fetch_assoc();
+            return $row;
+        } else {
+            return null;
+        }
+    }
 ?>

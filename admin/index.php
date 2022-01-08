@@ -167,6 +167,7 @@
         </div>
     </div>
     <!-- Trang sản phẩm -->
+    <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
         <div class="row table-content">
             <div class="col-md-12 mb-3">
@@ -188,11 +189,30 @@
                                     <thead>
                                         <tr>
                                             <th>Tên sản phẩm</th>
-                                            <th>Mô tả</th>
+                                            <th>Loại sản phẩm</th>
+                                            <th>Chi tiết</th>
                                             <th>Giá</th>
+                                            <th>Sale</th>
+                                            <th>Số lượng bán ra</th>
+                                            <th>bảo hành</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product-list">
+                                        <?php 
+                                            $product_array = get_product();
+                                            foreach ($product_array as $key => $value){
+                                                $category_res = get_category_byID($value['id_category']);
+                                                echo '<tr>';
+                                                echo '<td>'.$value['product_name'].'</td>';
+                                                echo '<td>'.$category_res['name'].'</td>';
+                                                echo '<td>'.$value['description'].'</td>';
+                                                echo '<td>'.$value['inital_price'].'</td>';
+                                                echo '<td>'.$value['sale_off'].'</td>';
+                                                echo '<td>'.$value['sell_quantity'].'</td>';
+                                                echo '<td>'.$value['guarantee'].'</td>';
+                                                echo '</tr>';
+                                            };
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                     </tfoot>
@@ -215,18 +235,18 @@
                     <div class="form-group">
                         <label for="id_category">Loại sản phẩm</label>
                         <select class="form-control" id="id_category">
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "2">3</option>
-                        <option value = "2">4</option>
-                        <option value = "2">5</option>
+                        <?php 
+                            $category_array = get_category();
+                            foreach ($category_array as $key => $value){
+                                echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
+                            };
+                        ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="description">Mô tả sản phẩm</label>
                         <textarea class="form-control" id="description" rows="3"></textarea>
                     </div>
-                   
                     <div class="form-group">
                         <label for="inital_price">Giá</label>
                         <input type="number" class="form-control" id="inital_price" placeholder="Giá">
@@ -255,6 +275,7 @@
                 </form>
                 `,
                     function(){
+
                         let url = '../admin/api/product/product_api.php'
                         let formProduct = document.querySelector('#form_product')
                         // formProduct.addEventListener('submit',function(e){
@@ -292,6 +313,7 @@
                                 }else{
                                     toastr.success(response.message);
                                     // window.location.href = response.redirect;
+                                    // window.location.reload();
                                 }
                             });
                         // })
@@ -529,6 +551,9 @@
             </div>
         </main>
 
+        <!-- ############### MODAL ############# -->
+
+        <!-- ############### NHÂN VIÊN ############# -->
         <!-- Thêm nhân viên modal -->
         <div class="modal fade" id="add-employee-modal">
             <div class="modal-dialog modal-lg">
@@ -616,46 +641,7 @@
             </div>
         </div>
 
-        <!-- Thêm khuyến mãi modal -->
-        <div class="modal fade" id="add-promotion-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Thêm khuyến mãi</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating mb-3 mt-3 ml-6">
-                            <select changed="0" onchange="getCorrespondingProduct(this)" name="modal-add-promotion-category-name" class="form-control form-select" id="modal-add-promotion-category-name">
-                            </select>
-                            <label for="modal-add-promotion-category-name">Danh mục</label>
-                        </div>
-                        <div class="form-floating mb-3 mt-3 ml-6">
-                            <select name="modal-add-promotion-product-name" class="form-control form-select" id="modal-add-promotion-product-name">
-                            </select>
-                            <label for="modal-add-promotion-product-name">Sản phẩm</label>
-                        </div>
-                        <div class="form-floating mb-3 mt-3">
-                            <input id="modal-add-promotion-quantity" name="modal-add-promotion-quantity" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                            <label for="modal-add-promotion-quantity">Khuyến mãi (%)</label>
-                        </div>
-                        <div class="form-floating mb-3 mt-3">
-                            <input type="date" name="modal-add-promotion-period" id="modal-add-promotion-period" class="form-control">
-                            <label for="modal-add-promotion-period">Hạn khuyến mãi (mm/dd/yyyy)</label>
-                        </div>
-                        <div class="form-group">
-                            <div id="add-promotion-error-mess" class="text-center alert-danger font-weight-bold"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy bỏ</button>
-                        <button onclick=" addEmployeeAccount();" type="button" class="btn btn-primary">Thêm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Thông báo thêm thành công modal -->
+        <!-- Thông báo thêm nhân viên thành công modal -->
         <div class="modal fade" id="add-employee-success-modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="add-model-content">
@@ -665,88 +651,6 @@
                     </div>
                     <div class="modal-footer text-center">
                         <button onclick="getAllEmployeeAccounts();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Xem thông tin nhân viên chi tiết modal -->
-        <div class="modal fade" id="view-detail-employee-modal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Thông tin chi tiết</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="text" class="form-control" id="modal-view-employee-detail-name" placeholder="Enter email" name="modal-view-employee-detail-name">
-                                    <label for="modal-view-employee-detail-name">Họ tên</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-email" name="modal-view-employee-detail-email" type="email" class="form-control" placeholder="Nhập email">
-                                    <label for="modal-view-employee-detail-email">Email</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ms-0">
-                            <div class="col d-flex align-items-center px-0">
-                                <div class="form-check form-check-inline p-0">
-                                    <div class="d-flex">
-                                        <label class="control-label" for="modal-view-employee-detail-sex">Giới tính:</label>
-                                        <div class="">
-                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-employee-detail-male" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="1">Nam</label>
-                                            <label class="radio-inline mb-0"><input disabled id="modal-view-employee-detail-female" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="0">Nữ</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3 ml-6">
-                                    <select disabled name="modal-view-employee-detail-type" class="form-control form-select" id="modal-view-employee-detail-type">
-                                        <option>1 - Nhân viên kho</option>
-                                        <option>2 - Nhân viên bán hàng</option>
-                                    </select>
-                                    <label for="modal-view-employee-detail-type">Chức vụ</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="date" name="modal-view-employee-detail-birthday" id="modal-view-employee-detail-birthday" class="form-control">
-                                    <label for="modal-view-employee-detail-birthday">Ngày sinh (MM/dd/yyyy)</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-phone" name="modal-view-employee-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                                    <label for="modal-view-employee-detail-phone">Số điện thoại</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-address" name="modal-view-employee-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
-                                    <label for="modal-view-employee-detail-address">Địa chỉ</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 mt-3">
-                                    <input disabled id="modal-view-employee-detail-salary" name="modal-view-employee-detail-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
-                                    <label for="modal-view-employee-detail-salary">Lương</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
@@ -855,6 +759,87 @@
                 </div>
             </div>
         </div>
+        <!-- Xem thông tin nhân viên chi tiết modal -->
+        <div class="modal fade" id="view-detail-employee-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin chi tiết</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="text" class="form-control" id="modal-view-employee-detail-name" placeholder="Enter email" name="modal-view-employee-detail-name">
+                                    <label for="modal-view-employee-detail-name">Họ tên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-email" name="modal-view-employee-detail-email" type="email" class="form-control" placeholder="Nhập email">
+                                    <label for="modal-view-employee-detail-email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-0">
+                            <div class="col d-flex align-items-center px-0">
+                                <div class="form-check form-check-inline p-0">
+                                    <div class="d-flex">
+                                        <label class="control-label" for="modal-view-employee-detail-sex">Giới tính:</label>
+                                        <div class="">
+                                            <label class="radio-inline mx-3 mb-0"><input disabled id="modal-view-employee-detail-male" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="1">Nam</label>
+                                            <label class="radio-inline mb-0"><input disabled id="modal-view-employee-detail-female" class="me-2" type="radio" name="modal-view-employee-detail-sex" value="0">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3 ml-6">
+                                    <select disabled name="modal-view-employee-detail-type" class="form-control form-select" id="modal-view-employee-detail-type">
+                                        <option>1 - Nhân viên kho</option>
+                                        <option>2 - Nhân viên bán hàng</option>
+                                    </select>
+                                    <label for="modal-view-employee-detail-type">Chức vụ</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled type="date" name="modal-view-employee-detail-birthday" id="modal-view-employee-detail-birthday" class="form-control">
+                                    <label for="modal-view-employee-detail-birthday">Ngày sinh (MM/dd/yyyy)</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-phone" name="modal-view-employee-detail-phone" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-phone">Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-address" name="modal-view-employee-detail-address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                    <label for="modal-view-employee-detail-address">Địa chỉ</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input disabled id="modal-view-employee-detail-salary" name="modal-view-employee-detail-salary" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                                    <label for="modal-view-employee-detail-salary">Lương</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Xác nhận xóa thông tin nhân viên modal -->
         <div class="modal fade" id="confirm-delete-employee-modal">
@@ -867,12 +852,12 @@
                     <div class="modal-body">Bạn có chắc muốn xóa nhân viên <strong id="confirm-delete-employee-modal-name"></strong> không?</div>
                     <div class="modal-footer text-center">
                         <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
-                        <button id="btn-confirm-delete-employee" onclick="sendDeleteEmployeeRequest(this);" employee-id="0" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                        <button id="btn-confirm-delete-employee" onclick="sendDeleteEmployeeRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!-- ############### TÀI KHOẢN ############# -->
         <!-- Xem thông tin chi tiết của khách hàng modal -->
         <div class="modal fade" id="view-detail-customer-modal">
             <div class="modal-dialog modal-lg">
@@ -937,6 +922,129 @@
                 </div>
             </div>
         </div>
+        
+        <!-- ############### KHUYẾN MÃI ############# -->
+        <!-- Thêm khuyến mãi modal -->
+        <div class="modal fade" id="add-promotion-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <select changed="0" onchange="getCorrespondingProduct(this)" name="modal-add-promotion-category-name" class="form-control form-select" id="modal-add-promotion-category-name">
+                            </select>
+                            <label for="modal-add-promotion-category-name">Danh mục</label>
+                        </div>
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <select onchange="setProductIdAttribute(this);" name="modal-add-promotion-product-name" class="form-control form-select" id="modal-add-promotion-product-name">
+                            </select>
+                            <label for="modal-add-promotion-product-name">Sản phẩm</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input id="modal-add-promotion-quantity" name="modal-add-promotion-quantity" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                            <label for="modal-add-promotion-quantity">Khuyến mãi (%)</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="date" name="modal-add-promotion-period" id="modal-add-promotion-period" class="form-control">
+                            <label for="modal-add-promotion-period">Hạn khuyến mãi (mm/dd/yyyy)</label>
+                        </div>
+                        <div class="form-group">
+                            <div id="add-promotion-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button onclick=" addPromotion();" type="button" class="btn btn-primary">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông báo thêm khuyến mãi thành công modal -->
+        <div class="modal fade" id="add-promotion-success-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="add-model-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm khuyến mãi thành công</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button onclick="refreshPage();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xem thông tin khuyến mãi chi tiết modal -->
+        <div class="modal fade" id="view-promotion-detail-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating ms-0 mb-3 mt-3 ml-6">
+                            <input disabled class="form-control" type="text" name="modal-view-promotion-detail-product-name" id="modal-view-promotion-detail-product-name">
+                            <label for="modal-view-promotion-detail-product-name">Sản phẩm</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input id="modal-view-promotion-detail-quantity" name="modal-view-promotion-detail-quantity" type="number" class="form-control" placeholder="Nhập số điện thoại">
+                            <label for="modal-view-promotion-detail-quantity">Khuyến mãi (%)</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="date" name="modal-view-promotion-detail-period" id="modal-view-promotion-detail-period" class="form-control">
+                            <label for="modal-view-promotion-detail-period">Hạn khuyến mãi (mm/dd/yyyy)</label>
+                        </div>
+                        <div class="form-group">
+                            <div id="edit-promotion-error-mess" class="text-center alert-danger font-weight-bold"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="validateEditPromotionInput();" type="button" class="btn btn-primary">Chỉnh sửa</button>
+                        <button data-bs-toggle="modal" data-bs-target="#confirm-delete-promotion-modal" type="button" class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận chỉnh sửa thông tin khuyến mãi modal -->
+        <div class="modal fade" id="confirm-edit-promotion-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận chỉnh sửa thông tin khuyến mãi</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn chỉnh sửa thông tin khuyến mãi của sản phẩm <strong id="confirm-edit-promotion-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-edit-promotion" onclick="sendEditPomotionRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xác nhận xóa thông tin khuyến mãi modal -->
+        <div class="modal fade" id="confirm-delete-promotion-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận xóa nhân viên</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Bạn có chắc muốn xóa khuyến mãi của sản phẩm <strong id="confirm-delete-promotion-modal-name"></strong> không?</div>
+                    <div class="modal-footer text-center">
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-danger">Hủy bỏ</button>
+                        <button id="btn-confirm-delete-promotion" onclick="sendDeletePromotionRequest(this);" data-bs-dismiss="modal" type="button" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>

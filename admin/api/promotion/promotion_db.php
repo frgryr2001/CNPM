@@ -17,4 +17,16 @@
         }
         return $promotions;
     }
+
+    // Thêm khuyến mãi
+    function update_promotion($id, $sale_off, $sale_of_period) {
+        $sql = "UPDATE `product` SET `sale_off` = ?, `sale_off_period` = ? WHERE `id` = ?";
+        $conn = open_database();
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param("isi", $sale_off, $sale_of_period, $id);
+        $stm -> execute();
+
+        return $stm -> affected_rows === 1;
+    }
 ?>
