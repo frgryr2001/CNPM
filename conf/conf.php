@@ -167,6 +167,20 @@
         };
     };
 
+    function is_product_id_exists($id) {
+        $sql = "select * from product where id = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$id);
+        $stm->execute();
+        $result = $stm->fetch();
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        };
+    };
+
     function create_product($product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image){
         // $password = password_hash($password, PASSWORD_DEFAULT);
         $sql = 'insert into product(product_name, id_category, description, inital_price, sale_off, sell_quantity, guarantee, image) 
@@ -233,6 +247,28 @@
         $stm->execute();
         return $stm -> get_result() -> fetch_assoc();
     };
+
+    function remove_product_byId($id){
+        $sql = 'delete from product where id = ?';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$id);
+        if ($stm->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    function get_product_byID($id){
+        $sql = 'select * from product where id = ?';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$id);
+        $stm->execute();
+        return $stm -> get_result() -> fetch_assoc();
+    };
+
 
 
 ?>
