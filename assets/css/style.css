@@ -332,6 +332,7 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
+    margin-left: 50px;
     border-radius: 8px;
     padding: 5px 0;
     transition: all ease 0.1s;
@@ -3183,5 +3184,6 @@ ul.login-popup {
 .login-popup a:hover{
     background-color: rgb(226, 216, 216);
 }
+
 
 

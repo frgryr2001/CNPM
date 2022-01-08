@@ -1,5 +1,4 @@
 <?php
-    require_once('./conf/db.php');
-    require_once('./conf/conf.php');
-    print_r(update_profile(1,"haha","haha","haha","haha","haha","haha"))
+require_once('./conf/conf.php');
+    print_r(login('nhanle.lx@gmail.com','123123'));
 ?>

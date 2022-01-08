@@ -170,10 +170,10 @@
     function create_product($product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image){
         // $password = password_hash($password, PASSWORD_DEFAULT);
         $sql = 'insert into product(product_name, id_category, description, inital_price, sale_off, sell_quantity, guarantee, image) 
-        values(?,?,?,?,?,?,?)';  
+        values(?,?,?,?,?,?,?,?)';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm -> bind_param('sssssss', $product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image);
+        $stm -> bind_param('ssssssss', $product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $image);
         try {
             if ($stm->execute()) {
                 return array(
@@ -193,4 +193,46 @@
             );
         }
     };
+    function get_product(){
+        $sql = 'select * from product';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->execute(); 
+        try {
+            $result = $stm -> get_result();
+            $data = array();    
+            while($row = $result -> fetch_assoc() ){
+                $data[] = $row;
+            };
+            return $data;
+        } catch (Exception $e) {
+            return false;
+        }
+    };
+    function get_category(){
+        $sql = 'select * from category';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->execute(); 
+        try {
+            $result = $stm -> get_result();
+            $data = array();    
+            while($row = $result -> fetch_assoc() ){
+                $data[] = $row;
+            };
+            return $data;
+        } catch (Exception $e) {
+            return false;
+        }
+    };
+    function get_category_byID($id){
+        $sql = 'select * from category where id_category = ?';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('s',$id);
+        $stm->execute();
+        return $stm -> get_result() -> fetch_assoc();
+    };
+
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+require_once('.././conf/conf.php');
 // session_start();
 // if (!isset($_SESSION['authenticated'])) {
 //     header("Location: ../login.php");
@@ -62,7 +63,7 @@
             font-size: 20px;
         }
 
-        .row-item {
+        .row-account-item {
             cursor: pointer;
         }
 
@@ -109,6 +110,8 @@
         </div>
     </nav>
 
+    <!-- // ===================================================================================
+    // ----------------------------------------------------------------------------------- -->
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
         <div class="offcanvas-body p-0">
@@ -135,6 +138,22 @@
                             CHỨC NĂNG
                         </div>
                     </li>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'products') {
+                                    echo 'bg-secondary';
+                                } ?>">
+                        <a href="?page=products" class="nav-link nav-link-custom px-3">
+                            <span class="me-2"><i class="icon fas fa-store"></i></span>
+                            <span>SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'orders') {
+                                    echo 'bg-secondary';
+                                } ?>">
+                        <a href="?page=orders" class="nav-link nav-link-custom px-3">
+                            <span class="me-2"><i class="icon fas fa-shipping-fast"></i></span>
+                            <span>ĐƠN HÀNG</span>
+                        </a>
+                    </li>
                     <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts') {
                                     echo 'bg-secondary';
                                 } ?>">
@@ -151,14 +170,6 @@
                             <span>NHÂN VIÊN</span>
                         </a>
                     </li>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions') {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=promotions" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="far fa-bookmark"></i></i></span>
-                            <span>KHUYẾN MÃI</span>
-                        </a>
-                    </li>
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light" />
                     </li>
@@ -166,6 +177,10 @@
             </nav>
         </div>
     </div>
+
+
+    <!-- // ===================================================================================
+    // ----------------------------------------------------------------------------------- -->
     <!-- Trang sản phẩm -->
     <!-- Trang sản phẩm -->
     <?php if (isset($_GET['page']) && $_GET['page'] == 'products') { ?>
@@ -326,6 +341,9 @@
         </script>
     <?php
     }
+
+    // ===================================================================================
+    // -----------------------------------------------------------------------------------
     // Trang Tài khoản 
     else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
         <div class="row table-content">
