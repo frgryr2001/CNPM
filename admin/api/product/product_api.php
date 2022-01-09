@@ -55,11 +55,11 @@ if (!isset($_POST['product_name']) || empty($_POST['product_name'])) {
             "message" => "This product already exists",
         )));
     } else {
-        $token = bin2hex(random_bytes(16));
+        $token = bin2hex(random_bytes(8));
         $image_name =$token . $_FILES['image']["name"];
         $image_tmp = $_FILES['image']["tmp_name"];
         $image_type = $_FILES['image']["type"];
-        $target_file = '../../product_images/'. $image_name;
+        $target_file = '../../../assets/img/product/'. $image_name;
         if ($image_type !== "image/jpg" && $image_type !== "image/jpeg" && $image_type !== "image/png" && $image_type !== "image/webp" ) {
             echo (json_encode(array(
                 "status" => false,

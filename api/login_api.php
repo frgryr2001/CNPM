@@ -24,6 +24,7 @@ $BASE_URL = "../";
             $_SESSION['name'] = $userData['response']["fullname"];
             $_SESSION['address'] = $userData['response']["address"];
             $_SESSION['phone'] = $userData['response']["phone"];
+            $_SESSION['role'] = $userData['response']["role"];
             $_SESSION["email"] = $email;
             $_SESSION["expired"] = time() + (60*60*24*2);
             echo (json_encode(array(

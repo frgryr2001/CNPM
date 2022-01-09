@@ -1,10 +1,13 @@
 <?php
 require_once('.././conf/conf.php');
-// session_start();
-// if (!isset($_SESSION['authenticated'])) {
-//     header("Location: ../login.php");
-//     exit();
-// }
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+    header("Location: ../login.php");
+    exit();
+}
+else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
+    header("Location: ../error.php");
+}
 ?>
 <head>
     <meta charset="UTF-8" />
@@ -138,6 +141,7 @@ require_once('.././conf/conf.php');
                             CHỨC NĂNG
                         </div>
                     </li>
+                    <?php if(isset($_SESSION['role']) && ($_SESSION['role'] == 0 || $_SESSION['role'] == 1)){ ?>
                     <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'products') {
                                     echo 'bg-secondary';
                                 } ?>">
@@ -146,7 +150,10 @@ require_once('.././conf/conf.php');
                             <span>SẢN PHẨM</span>
                         </a>
                     </li>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts') {
+                    <?php } ?>
+
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
                                     echo 'bg-secondary';
                                 } ?>">
                         <a href="?page=accounts" class="nav-link nav-link-custom px-3">
@@ -154,7 +161,10 @@ require_once('.././conf/conf.php');
                             <span>TÀI KHOẢN</span>
                         </a>
                     </li>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'employees') {
+                    <?php } ?>
+               
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'employees' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
                                     echo 'bg-secondary';
                                 } ?>">
                         <a href="?page=employees" class="nav-link nav-link-custom px-3">
@@ -162,7 +172,10 @@ require_once('.././conf/conf.php');
                             <span>NHÂN VIÊN</span>
                         </a>
                     </li>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions') {
+                    <?php } ?>
+
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
+                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
                                     echo 'bg-secondary';
                                 } ?>">
                         <a href="?page=promotions" class="nav-link nav-link-custom px-3">
@@ -170,6 +183,7 @@ require_once('.././conf/conf.php');
                             <span>KHUYẾN MÃI</span>
                         </a>
                     </li>
+                    <?php } ?>
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light" />
                     </li>
@@ -219,13 +233,13 @@ require_once('.././conf/conf.php');
                                             foreach ($product_array as $key => $value){
                                                 $category_res = get_category_byID($value['id_category']);
                                                 echo '<tr>';
-                                                echo '<td id = "product_name"> '.$value['product_name'].'</td>';
-                                                echo '<td id = "category_name">'.$category_res['name'].'</td>';
-                                                echo '<td id = "description">'.$value['description'].'</td>';
-                                                echo '<td id = "inital_price">'.$value['inital_price'].'</td>';
-                                                echo '<td id = "sale_off">'.$value['sale_off'].'</td>';
-                                                echo '<td id = "sell_quantity">'.$value['sell_quantity'].'</td>';
-                                                echo '<td id = "guarantee">'.$value['guarantee'].'</td>';
+                                                echo '<td > '.$value['product_name'].'</td>';
+                                                echo '<td >'.$category_res['name'].'</td>';
+                                                echo '<td >'.$value['description'].'</td>';
+                                                echo '<td >'.$value['inital_price'].'</td>';
+                                                echo '<td >'.$value['sale_off'].'</td>';
+                                                echo '<td >'.$value['sell_quantity'].'</td>';
+                                                echo '<td >'.$value['guarantee'].'</td>';
                                                 echo '<td>
                                                             <span class="me-2 font-size-20" onclick="editProduct('.$value['id'].')">
                                                             <i class="fas fa-edit"></i></span>
@@ -275,7 +289,7 @@ require_once('.././conf/conf.php');
                         </div>
                         <div class="form-group">
                             <label for="sale_off">Giảm giá</label>
-                            <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
+                            <input type="number" class="form-control" id="sale_off" placeholder="% giảm" >
                         </div>
                         <div class="form-group">
                             <label for="sell_quantity">Số lượng bán ra</label>
@@ -292,9 +306,7 @@ require_once('.././conf/conf.php');
                         </div>
                         <div class="form-group">
                             <label for="image">Hình ảnh minh họa</label>
-                            <input type="file" class="form-control-file image" id="image1">
-                            <input type="file" class="form-control-file image" id="image2">
-                            <input type="file" class="form-control-file image" id="image3">
+                            <input type="file" class="form-control-file" id="image">
                         </div>
                     </form>
                     `,
@@ -312,7 +324,7 @@ require_once('.././conf/conf.php');
                             let sale_off = document.querySelector('#sale_off').value;
                             let sell_quantity = document.querySelector('#sell_quantity').value;
                             let guarantee = document.querySelector('#guarantee').value;
-                            let image = Array.from(document.querySelectorAll('.image'));
+                            let image = document.querySelector('#image')    ;
                             // console.log({image} );
                             // console.log({image});
                             formData.append('product_name', product_name)
@@ -446,7 +458,9 @@ require_once('.././conf/conf.php');
     // ===================================================================================
     // -----------------------------------------------------------------------------------
     // Trang Tài khoản 
-    else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { ?>
+    else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { 
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+        ?>
         <div class="row table-content">
             <div class="col-md-12 mb-3">
                 <div class="card pt-60">
@@ -489,101 +503,107 @@ require_once('.././conf/conf.php');
             </div>
         </div>
     <?php
-    }
+    }}
     // Trang Quản lý nhân viên
-    else if (isset($_GET['page']) && $_GET['page'] == 'employees') { ?>
-        <div class="row table-content">
-            <div class="col-md-12 mb-3">
-                <div class="card pt-60">
-                    <!-- <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
-                    </div> -->
-                    <div class="card-body">
-                        <div class="">
-                            <div class="my-2 d-flex">
-                                <form class="d-flex ms-auto my-3 my-lg-0">
-                                    <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                                <button data-bs-toggle="modal" data-bs-target="#add-employee-modal" class="btn btn-primary ms-2">Thêm nhân viên</button>
+    else if (isset($_GET['page']) && $_GET['page'] == 'employees') {
+    
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 0) 
+        
+        { ?>
+            <div class="row table-content">
+                <div class="col-md-12 mb-3">
+                    <div class="card pt-60">
+                        <!-- <div class="card-header">
+                            <span><i class="bi bi-table me-2"></i></span> Data Table
+                        </div> -->
+                        <div class="card-body">
+                            <div class="">
+                                <div class="my-2 d-flex">
+                                    <form class="d-flex ms-auto my-3 my-lg-0">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <button data-bs-toggle="modal" data-bs-target="#add-employee-modal" class="btn btn-primary ms-2">Thêm nhân viên</button>
+                                </div>
+                                <table id="" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ tên</th>
+                                            <th>Email</th>
+                                            <th>Chức vụ</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="employee-account-list">
+                                        <!-- <tr>
+                                            <td>Nguyễn Thế Trường</td>
+                                            <td>nguyenthetruong100621@gmail.com</td>
+                                            <td>Nhân viên bán hàng</td>
+                                        </tr> -->
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
                             </div>
-                            <table id="" class="table table-striped data-table" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>Họ tên</th>
-                                        <th>Email</th>
-                                        <th>Chức vụ</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="employee-account-list">
-                                    <!-- <tr>
-                                        <td>Nguyễn Thế Trường</td>
-                                        <td>nguyenthetruong100621@gmail.com</td>
-                                        <td>Nhân viên bán hàng</td>
-                                    </tr> -->
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php
-    }
+        <?php
+    }}
     // Trang Quản lý khuyến mãi
-    else if (isset($_GET['page']) && $_GET['page'] == 'promotions') { ?>
-        <div class="row table-content">
-            <div class="col-md-12 mb-3">
-                <div class="card pt-60">
-                    <!-- <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
-                    </div> -->
-                    <div class="card-body">
-                        <div class="">
-                            <div class="my-2 d-flex">
-                                <form class="d-flex ms-auto my-3 my-lg-0">
-                                    <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                                <button onclick="bindCategoryDataToModal();" data-bs-toggle="modal" data-bs-target="#add-promotion-modal" class="btn btn-primary ms-2">Thêm khuyến mãi</button>
+    else if (isset($_GET['page']) && $_GET['page'] == 'promotions'){
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+        ?>
+            <div class="row table-content">
+                <div class="col-md-12 mb-3">
+                    <div class="card pt-60">
+                        <!-- <div class="card-header">
+                            <span><i class="bi bi-table me-2"></i></span> Data Table
+                        </div> -->
+                        <div class="card-body">
+                            <div class="">
+                                <div class="my-2 d-flex">
+                                    <form class="d-flex ms-auto my-3 my-lg-0">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <button onclick="bindCategoryDataToModal();" data-bs-toggle="modal" data-bs-target="#add-promotion-modal" class="btn btn-primary ms-2">Thêm khuyến mãi</button>
+                                </div>
+                                <table id="" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Khuyến mãi</th>
+                                            <th>Hạn khuyến mãi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="promotion-list">
+                                        <!-- <tr>
+                                            <td>Nguyễn Thế Trường</td>
+                                            <td>nguyenthetruong100621@gmail.com</td>
+                                            <td>Nhân viên bán hàng</td>
+                                        </tr> -->
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
                             </div>
-                            <table id="" class="table table-striped data-table" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>Sản phẩm</th>
-                                        <th>Danh mục</th>
-                                        <th>Khuyến mãi</th>
-                                        <th>Hạn khuyến mãi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="promotion-list">
-                                    <!-- <tr>
-                                        <td>Nguyễn Thế Trường</td>
-                                        <td>nguyenthetruong100621@gmail.com</td>
-                                        <td>Nhân viên bán hàng</td>
-                                    </tr> -->
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php
-    }
+        <?php
+    }}
     // Trang tổng quan
     else {
     ?>

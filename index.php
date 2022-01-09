@@ -329,6 +329,9 @@ session_start();
 
         <!-- Featured item -->
         <!-- Phone -->
+        <?php 
+        
+        ?>
         <div class="menu-session" id="Điện thoại"></div>
         <div class="featured__phone grid wide">
             <!-- Title -->
@@ -447,7 +450,24 @@ session_start();
         <!-- End phone -->
 
         <!-- Laptop -->
+        <?php 
+            $conn = open_database();
+            $sql = "select * from product where id_category = 3";
+            $result = $conn->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                $sale = $row['inital_price'] - ($row['inital_price'] * ($row['sale_off'] / 100));
+            };
+        ?>
         <div class="menu-session" id="Laptop"></div>
+        <?php
+            if ($row['sale_off'] != 0) {
+            ?>
+                <div class="flash__sale__discount">
+                    <p>Giảm <?= $row['sale_off'] ?>%</p>
+                </div>
+            <?php
+            }
+        ?>
         <div class="featured__phone grid wide">
             <!-- Title -->
             <div class="row featured__phone__gutter">
