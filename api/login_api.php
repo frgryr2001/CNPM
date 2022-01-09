@@ -3,6 +3,7 @@ session_start();
 require_once('../conf/conf.php');
 header('Content-Type: application/json');
 $BASE_URL = "../";
+$DASH_URL = "../admin/";
 
  if (!isset($_POST['email']) || empty($_POST['email'])) {
     echo (json_encode(array(
@@ -27,11 +28,19 @@ $BASE_URL = "../";
             $_SESSION['role'] = $userData['response']["role"];
             $_SESSION["email"] = $email;
             $_SESSION["expired"] = time() + (60*60*24*2);
+            if($_SESSION['role'] == 0 || $_SESSION['role'] == 1 || $_SESSION['role'] ==2){
+                echo (json_encode(array(
+                    "status" => true,
+                    "message" => "Login successfully! Redirecting...",
+                    "redirect" => $DASH_URL,
+                )));
+            }else{
             echo (json_encode(array(
                 "status" => true,
                 "message" => "Login successfully! Redirecting...",
                 "redirect" => $BASE_URL,
             )));
+            }
         } else {
             echo (json_encode(array(
                 "status" => false,

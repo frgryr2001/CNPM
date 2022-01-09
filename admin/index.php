@@ -18,6 +18,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- alertify -->
         <!-- JavaScript -->
@@ -96,13 +97,13 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse flex-row-reverse" id="topNavBar">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" >
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li> -->
                             <li>
                                 <a class="dropdown-item" href="../logout.php">Đăng xuất</a>
                             </li>
@@ -110,6 +111,16 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                     </li>
                 </ul>
             </div>
+            <!-- <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div> -->
         </div>
     </nav>
 
@@ -227,7 +238,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="product-list">
+                                    <tbody id="product-list" class= "product-list">
                                         <?php 
                                             $product_array = get_product();
                                             foreach ($product_array as $key => $value){
@@ -241,9 +252,9 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                                                 echo '<td >'.$value['sell_quantity'].'</td>';
                                                 echo '<td >'.$value['guarantee'].'</td>';
                                                 echo '<td>
-                                                            <span class="me-2 font-size-20" onclick="editProduct('.$value['id'].')">
+                                                            <span class="me-2 font-size-20" onclick="editProduct(this)" style = "cursor : pointer;">
                                                             <i class="fas fa-edit"></i></span>
-                                                            <span class="font-size-20" onclick="deleteProduct('.$value['id'].')"><i class="fas fa-trash-alt"></i></span>
+                                                            <span class="font-size-20" onclick="deleteProduct('.$value['id'].')"><i class="fas fa-trash-alt" style = "cursor : pointer;"></i></span>
                                                       </td>';
                                                 echo '</tr>';
                                             };
@@ -360,35 +371,42 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                     }
                 );
             };
-
-            function editProduct (id) { 
-
+           
+            function editProduct (spanElement) { 
+                tbodyElement = spanElement.parentElement.parentElement;
+                tdElement = tbodyElement.children;
                 alertify.confirm(`
                     <form id = "form_product" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="product_name"> </label>
-                            <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm">
+                            <label for="product_name">Tên sản phẩm</label>
+                            <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm" value ="${tdElement[0].innerHTML}">
                         </div>
                         <div class="form-group">
                             <label for="id_category">Loại sản phẩm</label>
                             <select class="form-control" id="id_category">
+                            <?php 
+                                $category_array = get_category();
+                                foreach ($category_array as $key => $value){
+                                    echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
+                                };
+                            ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="description">Mô tả sản phẩm</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" rows="3">${tdElement[2].innerHTML}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="inital_price">Giá</label>
-                            <input type="number" class="form-control" id="inital_price" placeholder="Giá">
+                            <input type="number" class="form-control" id="inital_price" placeholder="Giá" value = "${tdElement[3].innerHTML}">
                         </div>
                         <div class="form-group">
                             <label for="sale_off">Giảm giá</label>
-                            <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" >
+                            <input type="number" class="form-control" id="sale_off" placeholder="Giá giảm" value = "${tdElement[4].innerHTML}">
                         </div>
                         <div class="form-group">
                             <label for="sell_quantity">Số lượng bán ra</label>
-                            <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng">
+                            <input type="number" class="form-control" id="sell_quantity" placeholder="Số lượng" value ="${tdElement[5].innerHTML}">
                         </div>
                         <div class="form-group">
                             <label for="guarantee">bảo hành</label>
@@ -397,11 +415,12 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             <option>3 tháng</option>
                             <option>6 tháng</option>
                             <option>1 năm</option>
+                            <option selected>${tdElement[6].innerHTML}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="image">Hình ảnh minh họa</label>
-                            <input type="file" class="form-control-file" id="image">
+                            <input type="file" class="form-control-file" id="image" >
                         </div>
                     </form>
                 `,
