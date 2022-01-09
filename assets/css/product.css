@@ -69,6 +69,9 @@ body{
 .rate_cmt{
 	margin-left: 5px;
 }
+.box-info__price{
+	display: flex;
+}
 .box-info__price
 .new-price{
 	display: inline-block;

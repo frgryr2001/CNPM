@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 08, 2022 lúc 02:43 PM
+-- Thời gian đã tạo: Th1 09, 2022 lúc 07:01 AM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 8.0.2
 
@@ -167,6 +167,13 @@ CREATE TABLE `productdetail` (
   `battery` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `productdetail`
+--
+
+INSERT INTO `productdetail` (`id`, `screen`, `features`, `cpu`, `ram`, `weight`, `camera`, `storage`, `bluetooth`, `battery`) VALUES
+(3, '13.3 inches', 'Ổ cứng SSD, Wi-Fi 6, Viền màn hình siêu mỏng, Bảo mật vân tay', '8 nhân với 4 nhân hiệu năng cao và 4 nhân tiết kiệm điện', '8GB', '1.4 kg', 'HD webcam\r\n', '256GB SSD', 'Bluetooth 5.0', '58.2-watt-hour lithium-polymer, 61W USB-C Power Adapter');
+
 -- --------------------------------------------------------
 
 --
@@ -180,6 +187,13 @@ CREATE TABLE `product_img` (
   `image_path3` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp',
   `image_path4` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_img`
+--
+
+INSERT INTO `product_img` (`id_product`, `image_path1`, `image_path2`, `image_path3`, `image_path4`) VALUES
+(3, 'laptop0.webp', 'laptop1.webp', 'laptop2.webp', 'laptop3.webp');
 
 -- --------------------------------------------------------
 
@@ -317,6 +331,18 @@ ALTER TABLE `rate`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
+
+--
+-- Các ràng buộc cho bảng `productdetail`
+--
+ALTER TABLE `productdetail`
+  ADD CONSTRAINT `fk_product_detail` FOREIGN KEY (`id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `product_img`
+--
+ALTER TABLE `product_img`
+  ADD CONSTRAINT `fk_product_image` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
