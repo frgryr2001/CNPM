@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 10, 2022 lúc 04:55 AM
+-- Thời gian đã tạo: Th1 10, 2022 lúc 05:25 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -65,6 +65,7 @@ INSERT INTO `account` (`id`, `email`, `password`, `fullname`, `phone`, `address`
 --
 
 CREATE TABLE `cart` (
+  `id_cart` int(11) NOT NULL,
   `id_account` int(11) NOT NULL,
   `productId` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
@@ -116,6 +117,7 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_detail` (
+  `id_order_detail` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
   `id_product` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
@@ -140,18 +142,19 @@ CREATE TABLE `product` (
   `guarantee` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT 'No',
   `createdAt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
   `image` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `sale_off_period` date DEFAULT NULL
+  `sale_off_period` date DEFAULT current_timestamp(),
+  `rate` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `inital_price`, `sale_off`, `sell_quantity`, `guarantee`, `createdAt`, `image`, `sale_off_period`) VALUES
-(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 11, 0, 'No', 'current_timestamp()', NULL, '2022-02-01'),
-(2, 4, 'Galaxy S21', 'Fullbox', 12000000, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00'),
-(3, 6, 'Samsung Galaxy Tab S7 FE', 'Một chiếc máy tính bảng màn hình lớn sẽ giúp mọi trải nghiệm dù là học hay chơi đều trở nên vô cùng hấp dẫn. Samsung Galaxy Tab S7 FE với hiệu năng tuyệt đỉnh và bút S Pen chuyên nghiệp sẽ luôn mang đến sự thú vị cho bạn.', 13990000, 13, 0, 'No', 'current_timestamp()', NULL, '2022-01-14'),
-(4, 4, 'Galaxy A52s 5G', 'Tiên phong công nghệ 5G - Tốc độ vượt trội', 10190021, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00');
+INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `inital_price`, `sale_off`, `sell_quantity`, `guarantee`, `createdAt`, `image`, `sale_off_period`, `rate`) VALUES
+(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 11, 0, 'No', 'current_timestamp()', NULL, '2022-02-01', 0),
+(2, 4, 'Galaxy S21', 'Fullbox', 12000000, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00', 0),
+(3, 6, 'Samsung Galaxy Tab S7 FE', 'Một chiếc máy tính bảng màn hình lớn sẽ giúp mọi trải nghiệm dù là học hay chơi đều trở nên vô cùng hấp dẫn. ', 13990000, 13, 0, 'No', 'current_timestamp()', NULL, '2022-01-14', 0),
+(4, 4, 'Galaxy A52s 5G', 'Tiên phong công nghệ 5G - Tốc độ vượt trội', 10190021, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -231,6 +234,7 @@ ALTER TABLE `account`
 -- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_cart`),
   ADD KEY `fk_cart_acc` (`id_account`),
   ADD KEY `fk_cart_product` (`productId`);
 
@@ -251,8 +255,8 @@ ALTER TABLE `order`
 -- Chỉ mục cho bảng `order_detail`
 --
 ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id_order`),
-  ADD KEY `fk_orderdetail_product` (`id_product`);
+  ADD PRIMARY KEY (`id_order_detail`),
+  ADD KEY `fk_orderDetail_order` (`id_order`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -294,7 +298,13 @@ ALTER TABLE `warehouse`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT cho bảng `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
@@ -307,6 +317,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `id_order_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -323,6 +339,12 @@ ALTER TABLE `rate`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `fk_orderDetail_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`);
 
 --
 -- Các ràng buộc cho bảng `product`

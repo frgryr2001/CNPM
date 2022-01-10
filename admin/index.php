@@ -631,15 +631,19 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
     ?>
         <main class="mt-5 pt-3">
             <div class="container-fluid">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <h4>Dashboard</h4>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 my-3">
                         <div class="card bg-primary text-white h-100">
-                            <div class="card-body py-5">Primary Card</div>
+                        <div class="card-header">Thống kê tình trạng đơn hàng</div>
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <div class="mb-3" id="oder-status-0">Chưa duyệt: <span id="num-of-not-approved-orders">0</span></div>
+                                <div id="oder-status-0">Đã duyệt: <span id="num-of-approved-orders">0</span></div>
+                            </div>
                             <div class="card-footer d-flex">
                                 View Details
                                 <span class="ms-auto">
@@ -648,31 +652,22 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card bg-warning text-dark h-100">
-                            <div class="card-body py-5">Warning Card</div>
+                    <div class="col-md-4 my-3">
+                        <div class="card bg-secondary text-white h-100">
+                        <div class="card-header">Thống kê sản phẩm đã bán</div>
+                            <div class="card-body py-5">Số lượng sản phẩm đã bán: <span id="num-of-product-sold">0</span></div>
                             <div class="card-footer d-flex">
-                                View Details
+                            View Details
                                 <span class="ms-auto">
                                     <i class="bi bi-chevron-right"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 my-3">
                         <div class="card bg-success text-white h-100">
-                            <div class="card-body py-5">Success Card</div>
-                            <div class="card-footer d-flex">
-                                View Details
-                                <span class="ms-auto">
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card bg-danger text-white h-100">
-                            <div class="card-body py-5">Danger Card</div>
+                        <div class="card-header">Thống kê doanh thu</div>
+                            <div class="card-body py-5">Tổng doanh thu: <span id="num-of-total-sales"></span></div>
                             <div class="card-footer d-flex">
                                 View Details
                                 <span class="ms-auto">
@@ -714,6 +709,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
 
         <!-- ############### MODAL ############# -->
 
+        <!-- --------------------------------------------------------------------------------------- -->
         <!-- ############### NHÂN VIÊN ############# -->
         <!-- Thêm nhân viên modal -->
         <div class="modal fade" id="add-employee-modal">
@@ -1018,6 +1014,8 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 </div>
             </div>
         </div>
+
+        <!-- --------------------------------------------------------------------------------- -->
         <!-- ############### TÀI KHOẢN ############# -->
         <!-- Xem thông tin chi tiết của khách hàng modal -->
         <div class="modal fade" id="view-detail-customer-modal">
@@ -1084,6 +1082,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
             </div>
         </div>
         
+        <!-- ---------------------------------------------------------------------------------- -->
         <!-- ############### KHUYẾN MÃI ############# -->
         <!-- Thêm khuyến mãi modal -->
         <div class="modal fade" id="add-promotion-modal">
@@ -1216,4 +1215,5 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
         <script src="./js/employee.js"></script>
         <script src="./js/customer.js"></script>
         <script src="./js/promotion.js"></script>
+        <script src="./js/statistical.js"></script>
 </body>
