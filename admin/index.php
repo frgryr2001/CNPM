@@ -384,10 +384,11 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         <div class="form-group">
                             <label for="product_name">Tên sản phẩm</label>
                             <input type="text" class="form-control" id="product_name" placeholder="Tên sản phẩm" value ="${tdElement[0].innerHTML}">
+                            <input type="hidden" class="form-control" id="old_product_name" value ="${tdElement[0].innerHTML}">
                         </div>
                         <div class="form-group">
-                            <label for="id_category">Loại sản phẩm</label>
-                            <select class="form-control" id="id_category">
+                            <label for="id_category_edit">Loại sản phẩm</label>
+                            <select class="form-control" id="id_category_edit">
                             <?php 
                                 $category_array = get_category();
                                 foreach ($category_array as $key => $value){
@@ -422,24 +423,43 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             <option selected>${tdElement[6].innerHTML}</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="image">Hình ảnh minh họa</label>
-                            <input type="file" class="form-control-file" id="image" >
-                        </div>
+                      
                     </form>
                 `,
                     function(){
                         let url = '../admin/api/product/product_edit_api.php';
+                        let _product_name =  document.querySelector('#product_name').value;
+                        let _id_category_edit = document.querySelector('#id_category_edit').value
+                        let old_product_name = document.querySelector('#old_product_name').value
+                        let _description = document.querySelector('#description').value;
+                        let _inital_price = document.querySelector('#inital_price').value;
+                        let _sale_off = document.querySelector('#sale_off').value;
+                        let _sell_quantity = document.querySelector('#sell_quantity').value;
+                        let _guarantee = document.querySelector('#guarantee').value;
+                        console.log({ _product_name, _id_category_edit, old_product_name, _description, _inital_price, _sale_off, _sell_quantity, _guarantee} )
+
                         $.ajax({
                             url,
                             method: 'POST',
-                            data: formData
+                            data: { 
+                                "old_product_name": old_product_name.trim(),
+                                "product_name":_product_name.trim(),
+                                 "id_category":_id_category_edit.trim() ,
+                                "description":_description.trim() ,
+                                "inital_price":_inital_price.trim(), 
+                                "sale_off":_sale_off.trim(), 
+                                "sell_quantity":_sell_quantity.trim(),
+                                 "guarantee":_guarantee.trim()
+                            }
                         }).done(response => {
-                            console.log(response);
+                            console.log({response});
                             if (!response.status){
                                 toastr.error(response.message);
                             }else{
                                 toastr.success(response.message);
+                               setTimeout(function(){
+                                   window.location.reload();
+                               }, 2000);
                             }
                         });
                     },

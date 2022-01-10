@@ -207,9 +207,35 @@
             );
         }
     };
+    function edit_product($old_product_name, $product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee ){
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'update product set product_name = ?, id_category = ?, description = ?, inital_price = ?, sale_off = ?, sell_quantity = ?, guarantee = ? where product_name = ?';
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('ssssssss', $product_name, $id_category, $description, $inital_price, $sale_off, $sell_quantity, $guarantee, $old_product_name);
+        try {
+            if ($stm->execute()) {
+                return array(
+                    "status" => true,
+                    "response" => "",
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    "response" => "Failed to create product!",
+                );
+            };
+        } catch (Exception $e) {
+            return array(
+                "status" => false,
+                "response" => $e,
+            );
+        }
+    };
+
     function create_image($id,$path1,$path2,$path3,$path4){
         // $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = 'insert into product_img( id, path1, path2, path3, path4) 
+        $sql = 'insert into product_img( id_product,) 
         values(?,?,?,?,?)';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
@@ -221,6 +247,7 @@
             return false;
         };
     };
+
     function get_product(){
         $sql = 'select * from product';  
         $conn = open_database();
