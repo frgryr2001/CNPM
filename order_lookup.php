@@ -43,13 +43,13 @@
                     </tr>
                 </thead>
                 <tbody id="rowBody">
-                    <!-- <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;">
+                    <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;">
                         <th scope="row">Mh001</th>
                         <td>lê hoàng nhân</td>
                         <td>020402340</td>
                         <td>TP.HCM</td>
                         <td class="text-primary">Đang xử lí đơn hàng</td>
-                    </tr> -->
+                    </tr>
 
                 </tbody>
             </table>
@@ -92,9 +92,7 @@
         $.ajax({
             url: "./api/lookup_api.php",
             success: function(result) {
-                console.log(result)
                 let data = JSON.parse(result);
-                console.log(data.data)
                 const dataArray = data.data;
                 let html = dataArray.map((e) => {
                     let status = '';
@@ -123,8 +121,6 @@
         let url = "./api/order_detailAPI.php?id=" + id;
         $.get(url, function(data) {
             const data_new = JSON.parse(data).data;
-
-            console.log(data_new);
             let total = 0;
             let html = data_new.map(e => {
                 total+= e.inital_price * e.qty;
@@ -133,23 +129,26 @@
                                 <img src="./assets/img/product/${e.image}" alt="">
                             </th>
                             <td style="vertical-align: middle;">${e.product_name}</td>
-                            <td style="vertical-align: middle;">${e.inital_price}$</td>
+                            <td style="vertical-align: middle;">${new Intl.NumberFormat().format(e.inital_price)}VND</td>
                             <td style="vertical-align: middle;">${e.qty}</td>
                         </tr>
                         `
             });
            
+           let html2 = ` <tr class="total">
+                                        <th scope="row"></th>
+                                        <td>Total</td>
+                                        <td>${new Intl.NumberFormat().format(total)}VND</td>
+                                        <td></td>
+                            </tr>`
+           html.push(html2)
+           
             const orderDetail =document.getElementById('orderDetail');
             orderDetail.innerHTML = html.join("");
             
-            let html2 = ` <tr class="total">
-                                        <th scope="row"></th>
-                                        <td>Total</td>
-                                        <td>${total}</td>
-                                        <td></td>
-                            </tr>`
+           
                            
-            orderDetail.insertAdjacentElement('beforeend ', "html2");
+            
         })
 
 
