@@ -88,9 +88,11 @@ function bindProductNamesToModal(id) {
       .then((res) => res.json())
       .then((json) => {
         let products = json.data;
+        let products_temp = new Array();
         if (products) {
           products.forEach((product) => {
             if (parseInt(product.sale_off) === 0) {
+              products_temp.push(product);
               let option = document.createElement("option");
               option.classList.add("product-name-item");
               option.setAttribute("product-id", product.id);
@@ -102,11 +104,11 @@ function bindProductNamesToModal(id) {
             //   `;
           });
           // if (modal_add_promotion_product_name) {
-          //   modal_add_promotion_product_name.innerHTML = htmls.join("");
-          //   modal_add_promotion_product_name.setAttribute(
-          //     "product-id",
-          //     products[0].id
-          //   );
+          // modal_add_promotion_product_name.innerHTML = htmls.join("");
+          modal_add_promotion_product_name.setAttribute(
+            "product-id",
+            products_temp[0].id
+          );
           // }
         } else {
           modal_add_promotion_product_name.innerHTML = "";

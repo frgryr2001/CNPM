@@ -126,12 +126,12 @@
             );
         }
     };
-    function update_profile($id,$username,$firstname,$lastname,$fullname,$Address,$phone){
-        $sql = 'Update account SET username=?,given_name=?,family_name=?,fullname=?,address=?,phone=?
-                where id = ?';  
+    function update_profile($email,$fullname,$Address,$phone){
+        $sql = 'Update account SET fullname=?,address=?,phone=?
+                where email = ?';  
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm -> bind_param('ssssssi',$username,$firstname,$lastname,$fullname,$Address,$phone,$id);
+        $stm -> bind_param('ssss',$fullname,$Address,$phone,$email);
         try {
             if ($stm->execute()) {
                 return array(

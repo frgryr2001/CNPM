@@ -98,7 +98,9 @@ function addEmployeeAccount() {
         if (json["code"] == 0) {
           $("#add-employee-modal").modal("hide");
           $("#add-employee-success-modal").modal("show");
-          document.querySelector(".modal-backdrop").classList.add("d-none");
+          document
+            .querySelector(".modal-backdrop.fade")
+            .classList.add("d-none");
         }
         // Thất bại
         else {

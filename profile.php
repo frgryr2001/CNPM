@@ -31,35 +31,19 @@
         require_once('./conf/db.php');
         require_once('./conf/conf.php');
         $error = '';
-        $username='';
-        $firstname ='';
-        $lastname ='';
         $fullname='';
         $Address ='';
         $phone = '';
         $success = '';
-                if (isset($_POST['username']) && isset($_POST['firstname']) 
-            &&  isset($_POST['lastname']) && isset($_POST['fullname']) && isset($_POST['Address'])
-            && isset($_POST['phone'])&& isset($_POST['id']))
+                if (isset($_POST['fullname']) && isset($_POST['Address'])
+            && isset($_POST['phone'])&& isset($_POST['email']))
             {
-                    $username = $_POST['username'];
-                    $firstname = $_POST['firstname'];
-                    $lastname = $_POST['lastname'];
                     $fullname = $_POST['fullname'];
                     $Address = $_POST['Address'];
                     $phone = $_POST['phone'];
-                    $id = $_POST['id'];
+                    $email = $_POST['email'];
                 
-                if (empty($username)) {
-                    $error = 'Please enter your username';
-                }
-                else if (empty($firstname)) {
-                    $error = 'Please enter your firstname';
-                }
-                else if (empty($lastname)) {
-                    $error = 'Please enter your lastname ';
-                }
-                else if(empty($fullname)){
+               if(empty($fullname)){
                     $error = 'Please enter your fullname ';
                 }
                 else if(empty($Address)){
@@ -70,7 +54,7 @@
                 }
                 else {
                     // update profile
-                    $result = update_profile($id,$username,$firstname,$lastname,$fullname,$Address,$phone);
+                    $result = update_profile($email,$fullname,$Address,$phone);
                     if ($result['status'] == true){
                         $success = 'Cập nhật thành công ';
                     }else{
@@ -82,9 +66,9 @@
         
     ?>
     <?php 
-        $id_user = $_SESSION['id'];
+        $email_user = $_SESSION['email'];
         $conn = open_database();
-        $sql = "select * from account where id = '$id_user'";
+        $sql = "select * from account where email = '$email_user'";
         $result = $conn-> query($sql);
         $row = $result -> fetch_assoc();
     
@@ -93,17 +77,17 @@
         <h1 class="text-center">Thông tin cá nhân</h1>
         <form method="post" action="" enctype="multipart/form-data">
             <div class="form-group ">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="username" value="<?= $row['username']?>">
+                <label for="email">Email</label>
+                <input type="text" readonly class="form-control" name="email" placeholder="email" value="<?=$row['email']?>">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="firstname">Fisrt name</label>
-                    <input type="text" class="form-control" name="firstname" value=<?= $row['given_name']?>>
+                    <label for="Birthday">Birthday</label>
+                    <input type="text" readonly class="form-control" name="birthday" value=<?=$row['birthday']?>>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="lastname">Last name</label>
-                    <input type="text" class="form-control" name="lastname" value="<?= $row['family_name']?>">
+                    <label for="Gender">Gender</label>
+                    <input type="text" class="form-control" readonly name="Gender" value="<?= $row['gender'] ? "nam" : "nu" ?>" placeholder="">
                 </div>
             </div>
             
@@ -119,7 +103,7 @@
                 <label for="phone">Phone</label>
                 <input type="text" class="form-control" name="phone"  placeholder="09..." value="<?=$row['phone']?>">
             </div>
-            <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
+            <input type="hidden" name="id" value="<?=$_SESSION['email']?>">
             <?php
                 if(!empty($error)){
                     echo "<div class='alert alert-danger'>$error</div>";

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 09, 2022 lúc 07:01 AM
--- Phiên bản máy phục vụ: 10.4.17-MariaDB
--- Phiên bản PHP: 8.0.2
+-- Thời gian đã tạo: Th1 10, 2022 lúc 05:25 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,9 +49,14 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `email`, `password`, `fullname`, `phone`, `address`, `role`, `createdAt`, `updatedAt`, `birthday`, `salary`, `gender`) VALUES
-(8, 'kh1@gmail.com', '123456', 'Khách hàng 1', '0919002424', 'Quảng Bình', 3, '2022-01-07', '2022-01-07', '2022-01-07', NULL, 1),
-(9, 'kh2@gmail.com', '123456', 'Khách hàng 2', '0919004743', 'Nam Định', 3, '2022-01-07', '2022-01-07', '2022-01-01', NULL, 0),
-(10, 'nttruong10101@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Nguyễn Thế Trường', '0919004743', 'Quảng Bình', 1, '2022-01-07', '2022-01-07', '2001-06-10', 7000000, 0);
+(8, 'kh1@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Khách hàng 1', '0919002424', 'Quảng Bình', 3, '2022-01-07', '2022-01-07', '2022-01-07', NULL, 1),
+(9, 'kh2@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Khách hàng 2', '0919004743', 'Nam Định', 3, '2022-01-07', '2022-01-07', '2022-01-01', NULL, 0),
+(10, 'nttruong10101@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Nguyễn Thế Trường', '0919004743', 'Quảng Bình', 1, '2022-01-07', '2022-01-07', '2001-06-10', 7000000, 0),
+(11, 'nhan@gmail.com', '$2y$10$SSzAc/XFb7gwdIdwcY0UmubHTT3rIeWYsTjo2raRqHSbfjt3kgCC.', 'Lê Hoàng Nhân', '0919004743', 'An Giang', 2, '2022-01-08', '2022-01-08', '2001-01-01', 12000000, 0),
+(16, 'admin@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Nguyễn Thế Trường', '0919004743', 'Quảng Bình', 0, '2022-01-10', '2022-01-10', '2001-06-10', NULL, 1),
+(17, 'tin@gmail.com', '$2y$10$6kMy8Qw1YJrcy0I7l94oVOeeQA4EU9PTdUpD6ZWjrMAlhyRlGsAra', 'Nguyễn Trung Tín', '0988425563', 'Đồng Nai', 2, '2022-01-10', '2022-01-10', '2022-01-10', 12000000, 1),
+(18, 'quan@gmail.com', '$2y$10$BVu8MGKNxoC9u6g2roWsy.j62rzgiggts3LUsOpMWNkZWyoHnGqY.', 'Phạm Nguyễn Hoàng Quân', '098492424', 'TP Hồ Chí Minh', 1, '2022-01-10', '2022-01-10', '2022-01-10', 9000000, 0),
+(19, 'son@gmail.com', '$2y$10$nwUMLDLwvA0kYBOMzHOxKePK7VEGYCS86cGIE3QFPFn0vGu0e3SQ2', 'Đậu Đăng Sơn', '019317452', 'Vĩnh Long', 1, '2022-01-10', '2022-01-10', '2022-01-10', 13000000, 1);
 
 -- --------------------------------------------------------
 
@@ -60,6 +65,7 @@ INSERT INTO `account` (`id`, `email`, `password`, `fullname`, `phone`, `address`
 --
 
 CREATE TABLE `cart` (
+  `id_cart` int(11) NOT NULL,
   `id_account` int(11) NOT NULL,
   `productId` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
@@ -81,7 +87,6 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name`) VALUES
-(3, 'Laptop'),
 (4, 'Điện thoại'),
 (5, 'Phụ kiện'),
 (6, 'Máy tính bảng'),
@@ -112,6 +117,7 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_detail` (
+  `id_order_detail` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
   `id_product` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
@@ -145,8 +151,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `inital_price`, `sale_off`, `sell_quantity`, `guarantee`, `createdAt`, `image`, `sale_off_period`, `rate`) VALUES
-(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 0, 2, '12', 'current_timestamp()', 'phone4.webp', '2022-01-15', 4),
-(3, 7, 'Laptop', 'xin', 1000000, 30, 3, '12', 'current_timestamp()', 'laptop1.webp', '0000-00-00', 4.5);
+(1, 4, 'Samsung Galaxy Z Fold3 5G', 'Fullbox', 23000000, 11, 0, 'No', 'current_timestamp()', NULL, '2022-02-01', 0),
+(2, 4, 'Galaxy S21', 'Fullbox', 12000000, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00', 0),
+(3, 6, 'Samsung Galaxy Tab S7 FE', 'Một chiếc máy tính bảng màn hình lớn sẽ giúp mọi trải nghiệm dù là học hay chơi đều trở nên vô cùng hấp dẫn. ', 13990000, 13, 0, 'No', 'current_timestamp()', NULL, '2022-01-14', 0),
+(4, 4, 'Galaxy A52s 5G', 'Tiên phong công nghệ 5G - Tốc độ vượt trội', 10190021, 0, 0, 'No', 'current_timestamp()', NULL, '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -166,13 +174,6 @@ CREATE TABLE `productdetail` (
   `bluetooth` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown',
   `battery` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `productdetail`
---
-
-INSERT INTO `productdetail` (`id`, `screen`, `features`, `cpu`, `ram`, `weight`, `camera`, `storage`, `bluetooth`, `battery`) VALUES
-(3, '13.3 inches', 'Ổ cứng SSD, Wi-Fi 6, Viền màn hình siêu mỏng, Bảo mật vân tay', '8 nhân với 4 nhân hiệu năng cao và 4 nhân tiết kiệm điện', '8GB', '1.4 kg', 'HD webcam\r\n', '256GB SSD', 'Bluetooth 5.0', '58.2-watt-hour lithium-polymer, 61W USB-C Power Adapter');
 
 -- --------------------------------------------------------
 
@@ -233,6 +234,7 @@ ALTER TABLE `account`
 -- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_cart`),
   ADD KEY `fk_cart_acc` (`id_account`),
   ADD KEY `fk_cart_product` (`productId`);
 
@@ -253,8 +255,8 @@ ALTER TABLE `order`
 -- Chỉ mục cho bảng `order_detail`
 --
 ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id_order`),
-  ADD KEY `fk_orderdetail_product` (`id_product`);
+  ADD PRIMARY KEY (`id_order_detail`),
+  ADD KEY `fk_orderDetail_order` (`id_order`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -296,7 +298,13 @@ ALTER TABLE `warehouse`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT cho bảng `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
@@ -309,6 +317,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `id_order_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -325,6 +339,12 @@ ALTER TABLE `rate`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `fk_orderDetail_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`);
 
 --
 -- Các ràng buộc cho bảng `product`

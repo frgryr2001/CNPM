@@ -30,9 +30,10 @@
         error_response(4, "Dữ liệu không hợp lệ");
     }
 
-        $result = update_promotion($id, $sale_off, $sale_of_period);
-        if ($result) {
-            success_response(0, "Cập nhật khuyến mãi thành công");
-        } else {
-            error_response(5, "Cập nhật khuyến mãi thất bại");
-        }
+    $result = update_promotion($id, $sale_off, $sale_of_period);
+    if ($result) {
+        success_response(0, "Cập nhật khuyến mãi thành công");
+    } else {
+        error_response(5, "Cập nhật khuyến mãi thất bại");
+    }
+?>
