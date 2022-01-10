@@ -271,7 +271,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
         <script>
             
             const addProduct = document.getElementById("add_product_btn")
-            console.log(addProduct);
+            // console.log(addProduct);
             addProduct.onclick = function() {
                 alertify.confirm(`
                     <form id = "form_product" enctype="multipart/form-data">
@@ -317,7 +317,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         </div>
                         <div class="form-group">
                             <label for="image">Hình ảnh minh họa</label>
-                            <input type="file" class="form-control-file" id="image">
+                            <input type="file" class="form-control-file" id="image" name= "image" multiple>
                         </div>
                     </form>
                     `,
@@ -335,8 +335,9 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             let sale_off = document.querySelector('#sale_off').value;
                             let sell_quantity = document.querySelector('#sell_quantity').value;
                             let guarantee = document.querySelector('#guarantee').value;
-                            let image = document.querySelector('#image')    ;
-                            // console.log({image} );
+                            let image = document.querySelector('#image');
+                            let totalImages = image.files.length;
+                            // console.log(totalImages);
                             // console.log({image});
                             formData.append('product_name', product_name)
                             formData.append('id_category', id_category)
@@ -345,7 +346,10 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             formData.append('sale_off', sale_off)
                             formData.append('sell_quantity', sell_quantity)
                             formData.append('guarantee', guarantee)
-                            formData.append('image', image.files[0])
+                            for (var index = 0; index < totalImages; index++) {
+                                formData.append("image", image.files[index]);
+                            }
+                            // formData.append('image', image.files[0])
                             // console.log({formData})
                             $.ajax({
                                 url,
