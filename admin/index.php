@@ -525,8 +525,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
     }}
     // Trang Quản lý nhân viên
     else if (isset($_GET['page']) && $_GET['page'] == 'employees') {
-    
-    if (isset($_SESSION['role']) && $_SESSION['role'] == 0) 
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) 
         
         { ?>
             <div class="row table-content">
@@ -808,7 +807,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-footer text-center">
-                        <button onclick="getAllEmployeeAccounts();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
+                        <button onclick="refreshPage();" data-bs-dismiss="modal" type="button" class="btn btn-success">OK</button>
                     </div>
                 </div>
             </div>
