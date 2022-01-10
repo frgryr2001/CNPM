@@ -356,6 +356,7 @@ session_start();
                 </div>
             </div>
             <!-- Product List -->
+        <div class="featured__phone__product__list">
             <?php
             $conn = open_database();
             $sql = "select * from product where id_category = 4 and  sale_off < 20";
@@ -364,7 +365,7 @@ session_start();
                 $sale = 0;
                 $sale = $row['inital_price'] - ($row['inital_price'] * ($row['sale_off'] / 100));
             ?>
-                <div class="featured__phone__product__list">
+                
                     <!-- 1st -->
                     <div class="featured__phone__product__item">
                         <!--  Discount -->
@@ -439,13 +440,13 @@ session_start();
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
             <?php
             }
             ?>
 
-
+        </div>
         </div>
         <!-- End phone -->
 
@@ -459,15 +460,6 @@ session_start();
             };
         ?>
         <div class="menu-session" id="Laptop"></div>
-        <?php
-            if ($row['sale_off'] != 0) {
-            ?>
-                <div class="flash__sale__discount">
-                    <p>Giảm <?= $row['sale_off'] ?>%</p>
-                </div>
-            <?php
-            }
-        ?>
         <div class="featured__phone grid wide">
             <!-- Title -->
             <div class="row featured__phone__gutter">

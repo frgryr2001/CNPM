@@ -57,6 +57,7 @@ if (!isset($_POST['email']) || empty($_POST['email'])) {
         try {
             if (register($email, $password, $name, $phone, $address, $birthday, $gender)['status']) {
                 $_SESSION['authenticated'] = true;
+                // $_SESSION['id'] = $userData['response']["id"];
                 $_SESSION['name'] = $name;
                 $_SESSION["email"] = $email;
                 $_SESSION["expired"] = time() + (60*60*24*2);

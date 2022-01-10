@@ -22,6 +22,7 @@ $DASH_URL = "../admin/";
         $userData = login($email, $password) ;
         if ($userData['status']) {
             $_SESSION['authenticated'] = true;
+            $_SESSION['id'] = $userData['response']["id"];
             $_SESSION['name'] = $userData['response']["fullname"];
             $_SESSION['address'] = $userData['response']["address"];
             $_SESSION['phone'] = $userData['response']["phone"];
