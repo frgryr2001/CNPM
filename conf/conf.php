@@ -207,6 +207,20 @@
             );
         }
     };
+    function create_image($id,$path1,$path2,$path3,$path4){
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'insert into product_img( id, path1, path2, path3, path4) 
+        values(?,?,?,?,?)';  
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm -> bind_param('sssss', $id,$path1,$path2,$path3,$path4);
+        $result = $stm->execute();
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        };
+    };
     function get_product(){
         $sql = 'select * from product';  
         $conn = open_database();
