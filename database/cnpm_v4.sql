@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 10, 2022 lúc 04:55 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.12
+-- Thời gian đã tạo: Th1 08, 2022 lúc 02:43 PM
+-- Phiên bản máy phục vụ: 10.4.17-MariaDB
+-- Phiên bản PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,7 +47,6 @@ CREATE TABLE `account` (
 --
 -- Đang đổ dữ liệu cho bảng `account`
 --
-
 INSERT INTO `account` (`id`, `email`, `password`, `fullname`, `phone`, `address`, `role`, `createdAt`, `updatedAt`, `birthday`, `salary`, `gender`) VALUES
 (8, 'kh1@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Khách hàng 1', '0919002424', 'Quảng Bình', 3, '2022-01-07', '2022-01-07', '2022-01-07', NULL, 1),
 (9, 'kh2@gmail.com', '$2y$10$iFye9PfJodh1xnw0pUUDlO.2f7hhWTtwy5z5wr.QPNncKCy8zzrNq', 'Khách hàng 2', '0919004743', 'Nam Định', 3, '2022-01-07', '2022-01-07', '2022-01-01', NULL, 0),
@@ -58,13 +57,13 @@ INSERT INTO `account` (`id`, `email`, `password`, `fullname`, `phone`, `address`
 (18, 'quan@gmail.com', '$2y$10$BVu8MGKNxoC9u6g2roWsy.j62rzgiggts3LUsOpMWNkZWyoHnGqY.', 'Phạm Nguyễn Hoàng Quân', '098492424', 'TP Hồ Chí Minh', 1, '2022-01-10', '2022-01-10', '2022-01-10', 9000000, 0),
 (19, 'son@gmail.com', '$2y$10$nwUMLDLwvA0kYBOMzHOxKePK7VEGYCS86cGIE3QFPFn0vGu0e3SQ2', 'Đậu Đăng Sơn', '019317452', 'Vĩnh Long', 1, '2022-01-10', '2022-01-10', '2022-01-10', 13000000, 1);
 
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
+    `id_cart` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_account` int(11) NOT NULL,
   `productId` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
@@ -86,6 +85,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name`) VALUES
+(3, 'Laptop'),
 (4, 'Điện thoại'),
 (5, 'Phụ kiện'),
 (6, 'Máy tính bảng'),
@@ -116,6 +116,7 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_detail` (
+  `id_order_detail` int(11) PRIMARY KEY AUTO_INCREMENT,
   `id_order` int(11) NOT NULL,
   `id_product` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
@@ -140,7 +141,8 @@ CREATE TABLE `product` (
   `guarantee` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT 'No',
   `createdAt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT current_timestamp(),
   `image` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `sale_off_period` date DEFAULT NULL
+  `sale_off_period` date DEFAULT current_timestamp(),
+  `rate` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -185,10 +187,6 @@ CREATE TABLE `product_img` (
   `image_path3` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp',
   `image_path4` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.webp'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `product_img`
---
 
 INSERT INTO `product_img` (`id_product`, `image_path1`, `image_path2`, `image_path3`, `image_path4`) VALUES
 (3, 'laptop0.webp', 'laptop1.webp', 'laptop2.webp', 'laptop3.webp');
@@ -247,12 +245,6 @@ ALTER TABLE `order`
   ADD PRIMARY KEY (`id_order`),
   ADD KEY `fk_order_acc` (`id_account`);
 
---
--- Chỉ mục cho bảng `order_detail`
---
-ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id_order`),
-  ADD KEY `fk_orderdetail_product` (`id_product`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -325,14 +317,9 @@ ALTER TABLE `rate`
 --
 
 --
--- Các ràng buộc cho bảng `product`
---
-ALTER TABLE `product`
-  ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
-
---
 -- Các ràng buộc cho bảng `productdetail`
 --
+
 ALTER TABLE `productdetail`
   ADD CONSTRAINT `fk_product_detail` FOREIGN KEY (`id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -341,6 +328,13 @@ ALTER TABLE `productdetail`
 --
 ALTER TABLE `product_img`
   ADD CONSTRAINT `fk_product_image` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- Các ràng buộc cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `fk_orderDetail_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
