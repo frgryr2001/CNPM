@@ -29,33 +29,27 @@
     <div class="container">
         <div class="row justify-content-center mt-3 bg-light p-3">
             <h4>KIỂM TRA THÔNG TIN ĐƠN HÀNG & TÌNH TRẠNG VẬN CHUYỂN</h4>
-            <form class="form-inline mt-3" action="">
-                <label for="sdt" class="mr-sm-2 mb-2 font-weight-bold">Số điện thoại:</label>
-                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(Bắt buộc)" id="sdt">
-                <label for="mdh" class="mr-sm-2 mb-2 font-weight-bold">Mã đơn hàng:</label>
-                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(Bắt buộc)" id="mdh">
-                <button type="submit" class="text-center btn btn-danger mb-2 pl-4 pr-4">KIỂM TRA</button>
-            </form>
+
         </div>
         <div class="row">
-            <table class="table table-bordered mt-4 text-center">
+            <table class="table table-hover table-bordered mt-4 text-center">
                 <thead>
                     <tr>
                         <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Họ tên</th>
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Địa chỉ</th>
-                        <th scope="col">Sản phẩm mua</th>
                         <th scope="col">Tình trạng vận chuyển</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr data-toggle="modal" data-target=".bd-example-modal-lg">
+                <tbody id="rowBody">
+                    <!-- <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;">
                         <th scope="row">Mh001</th>
+                        <td>lê hoàng nhân</td>
                         <td>020402340</td>
                         <td>TP.HCM</td>
-                        <td>Iphone 12 pro max</td>
                         <td class="text-primary">Đang xử lí đơn hàng</td>
-                    </tr>
+                    </tr> -->
 
                 </tbody>
             </table>
@@ -75,33 +69,10 @@
                                         <th>quantity</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Product 1</td>
-                                        <td>100$</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Product 2</td>
-                                        <td>100$</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Product 3</td>
-                                        <td>100$</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Product 4</td>
-                                        <td>100$</td>
-                                        <td>4</td>
-                                    </tr>
+                                <tbody id="orderDetail">
+                                    
                                     <tr class="total">
-                                        <th scope="row">5</th>
+                                        <th scope="row"></th>
                                         <td>Total</td>
                                         <td>1100$</td>
                                         <td></td>
@@ -115,5 +86,75 @@
         </div>
     </div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "./api/lookup_api.php",
+            success: function(result) {
+                console.log(result)
+                let data = JSON.parse(result);
+                console.log(data.data)
+                const dataArray = data.data;
+                let html = dataArray.map((e) => {
+                    let status = '';
+                    if (e.status == 0) {
+                        status = 'Chờ xác nhận'
+                    }
+                    if (e.status == 1) {
+                        status = 'Đang vận chuyển'
+                    }
+                    return ` 
+                        <tr data-toggle="modal" data-target=".bd-example-modal-lg" onclick="viewOrder(${e.id_order})" style="cursor: pointer;">
+                            <th scope="row">${e.id_order}</th>
+                            <td>${e.fullname}</td>
+                            <td>${e.phone}</td>
+                            <td>${e.address}</td>
+                            <td class="text-primary">${status}</td>
+                        </tr>`
+                });
+                document.getElementById('rowBody').innerHTML = html.join("")
+            }
+        });
+
+    });
+
+    function viewOrder(id) {
+        let url = "./api/order_detailAPI.php?id=" + id;
+        $.get(url, function(data) {
+            const data_new = JSON.parse(data).data;
+
+            console.log(data_new);
+            let total = 0;
+            let html = data_new.map(e => {
+                total+= e.inital_price * e.qty;
+                return `<tr>
+                            <th scope="row">
+                                <img src="./assets/img/product/${e.image}" alt="">
+                            </th>
+                            <td style="vertical-align: middle;">${e.product_name}</td>
+                            <td style="vertical-align: middle;">${e.inital_price}$</td>
+                            <td style="vertical-align: middle;">${e.qty}</td>
+                        </tr>
+                        `
+            });
+           
+            const orderDetail =document.getElementById('orderDetail');
+            orderDetail.innerHTML = html.join("");
+            
+            let html2 = ` <tr class="total">
+                                        <th scope="row"></th>
+                                        <td>Total</td>
+                                        <td>${total}</td>
+                                        <td></td>
+                            </tr>`
+                           
+            orderDetail.insertAdjacentElement('beforeend ', "html2");
+        })
+
+
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </html>
