@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ERROR | E_PARSE);
+
 
 // $title = $output[0]['title_task'];
 
@@ -187,6 +187,7 @@ error_reporting(E_ERROR | E_PARSE);
                         }
                         $sqlDeleteCart = "DELETE FROM `cart` WHERE id_cart='$id_cart'";
                         $conn->query($sqlDeleteCart);
+                        echo '<script>window.location.href = "../";</script>';
                     }
 
                     $totalPrice = (int) $totalPrice + ((int)$quantity * (int)$inital_price);
