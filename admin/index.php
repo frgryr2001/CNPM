@@ -91,7 +91,8 @@ if (!isset($_SESSION['authenticated'])) {
             </button>
 
             <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="index.php">
-                <img width="260px" height="36px" style="object-fit: cover;" src="../assets/img/logo.png" alt="logo">
+                <!-- <img width="260px" height="36px" style="object-fit: cover;" src="../assets/img/Samsung Logo PNG White.png" alt="logo"> -->
+                <!-- TRANG CHỦ -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -195,7 +196,7 @@ if (!isset($_SESSION['authenticated'])) {
                             </a>
                         </li>
                     <?php } ?>
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 0 || $_SESSION['role'] == 2)) { ?>
                         <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'orders' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
                                         echo 'bg-secondary';
                                     } ?>">
@@ -671,7 +672,7 @@ if (!isset($_SESSION['authenticated'])) {
     }
     // Trang Quản lý don hang
     else if (isset($_GET['page']) && $_GET['page'] == 'orders') {
-        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+        if (isset($_SESSION['role']) && ($_SESSION['role'] == 0 || $_SESSION['role'] == 2)) {
         ?>
             <div class="row table-content">
                 <div class="col-md-12 mb-3">

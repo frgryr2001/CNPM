@@ -7,7 +7,7 @@ require_once('./conf/conf.php');
 <div class="header__background">
     <!-- Điện thoại -->
     <div class="smartphone__header__logo">
-        <a href=""><img src="assets/img/logo.png" alt=""></a>
+        <!-- <a href=""><img src="assets/img/logo.png" alt=""></a> -->
     </div>
     <div class="smartphone__header__search">
         <i class="fas fa-search"></i>
@@ -55,8 +55,8 @@ require_once('./conf/conf.php');
 <div class="header grid wide">
     <div class="row">
         <!-- Logo Image -->
-        <div class="header__logo__img">
-            <a href="./" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a>
+        <div class="header__logo__img" style="width: 300px;">
+            <!-- <a href="./" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a> -->
         </div>
 
         <!-- Submenu modal -->
