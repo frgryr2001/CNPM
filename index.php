@@ -1099,13 +1099,13 @@ session_start();
                             <div class="flash__sale__product__desc__price">
                                 <div class="flash__sale__product__desc__price__new">
                                     <p>
-                                        ${priceSale}
+                                        ${new Intl.NumberFormat().format(priceSale)}
                                         <span class="flash__sale__product__desc__price__unit__new">đ</span>
                                     </p>
                                 </div>
                                 <div class="flash__sale__product__desc__price__old">
                                     <p>
-                                        ${e.inital_price}
+                                        ${new Intl.NumberFormat().format(e.inital_price)}
                                         <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                     </p>
                                 </div>
