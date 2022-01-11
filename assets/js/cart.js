@@ -32,16 +32,16 @@ function reduce(li, id, price) {
   let qty = parseInt(li_qty.innerHTML); /* value in li.product_qty */
   if (qty > 1) {
     li_qty.innerHTML = `${qty - 1}`;
+    var formData = { id: id, qty: `${qty - 1}` };
+    $.ajax({
+      url: "../api/updateQty.php",
+      type: "POST",
+      data: formData,
+      success: function (res) {
+        priceTotal.innerHTML = Number(defaultPrice) - Number(price);
+      },
+    });
   }
-  var formData = { id: id, qty: `${qty - 1}` };
-  $.ajax({
-    url: "../api/updateQty.php",
-    type: "POST",
-    data: formData,
-    success: function (res) {
-      priceTotal.innerHTML = Number(defaultPrice) - Number(price);
-    },
-  });
 }
 
 /* Thêm số lượng */
