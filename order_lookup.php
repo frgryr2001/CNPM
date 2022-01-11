@@ -96,6 +96,9 @@
                     if (e.status == 1) {
                         status = 'Đang vận chuyển'
                     }
+                    if (e.status == 2) {
+                        status = 'Đã bị hủy đơn hàng'
+                    }
                     return ` 
                         <tr data-toggle="modal" data-target=".bd-example-modal-lg" onclick="viewOrder(${e.id_order})" style="cursor: pointer;">
                             <th scope="row">${e.id_order}</th>

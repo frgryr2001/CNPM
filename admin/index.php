@@ -4,11 +4,11 @@ session_start();
 if (!isset($_SESSION['authenticated'])) {
     header("Location: ../login.php");
     exit();
-}
-else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
+} else if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
     header("Location: ../error.php");
 }
 ?>
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,28 +21,28 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- alertify -->
-        <!-- JavaScript -->
+    <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
     <!-- 
         RTL version
     -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css" />
     <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css" />
     <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css" />
     <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
@@ -74,9 +74,9 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
         #DataTables_Table_0_filter {
             display: none;
         }
-        
+
         .ajs-commands,
-        .ajs-header{
+        .ajs-header {
             display: none;
         }
     </style>
@@ -98,7 +98,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse flex-row-reverse" id="topNavBar">
-                <ul class="navbar-nav" >
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>
@@ -153,48 +153,58 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                             CHỨC NĂNG
                         </div>
                     </li>
-                    <?php if(isset($_SESSION['role']) && ($_SESSION['role'] == 0 || $_SESSION['role'] == 1)){ ?>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'products') {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=products" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="icon fas fa-store"></i></span>
-                            <span>SẢN PHẨM</span>
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 0 || $_SESSION['role'] == 1)) { ?>
+                        <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'products') {
+                                        echo 'bg-secondary';
+                                    } ?>">
+                            <a href="?page=products" class="nav-link nav-link-custom px-3">
+                                <span class="me-2"><i class="icon fas fa-store"></i></span>
+                                <span>SẢN PHẨM</span>
+                            </a>
+                        </li>
                     <?php } ?>
 
-                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=accounts" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="icon fas fa-user"></i></span>
-                            <span>TÀI KHOẢN</span>
-                        </a>
-                    </li>
-                    <?php } ?>
-               
-                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'employees' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=employees" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="fas fa-user-circle"></i></span>
-                            <span>NHÂN VIÊN</span>
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
+                        <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'accounts' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+                                        echo 'bg-secondary';
+                                    } ?>">
+                            <a href="?page=accounts" class="nav-link nav-link-custom px-3">
+                                <span class="me-2"><i class="icon fas fa-user"></i></span>
+                                <span>TÀI KHOẢN</span>
+                            </a>
+                        </li>
                     <?php } ?>
 
-                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 0){ ?>
-                    <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
-                                    echo 'bg-secondary';
-                                } ?>">
-                        <a href="?page=promotions" class="nav-link nav-link-custom px-3">
-                            <span class="me-2"><i class="far fa-bookmark"></i></i></span>
-                            <span>KHUYẾN MÃI</span>
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
+                        <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'employees' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+                                        echo 'bg-secondary';
+                                    } ?>">
+                            <a href="?page=employees" class="nav-link nav-link-custom px-3">
+                                <span class="me-2"><i class="fas fa-user-circle"></i></span>
+                                <span>NHÂN VIÊN</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
+                        <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'promotions' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+                                        echo 'bg-secondary';
+                                    } ?>">
+                            <a href="?page=promotions" class="nav-link nav-link-custom px-3">
+                                <span class="me-2"><i class="far fa-bookmark"></i></i></span>
+                                <span>KHUYẾN MÃI</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
+                        <li class="<?php if (isset($_GET['page']) && $_GET['page'] == 'orders' && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+                                        echo 'bg-secondary';
+                                    } ?>">
+                            <a href="?page=orders" class="nav-link nav-link-custom px-3">
+                                <span class="me-2"><i class="fa fa-shopping-cart"></i></i></span>
+                                <span>ĐƠN HÀNG</span>
+                            </a>
+                        </li>
                     <?php } ?>
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light" />
@@ -224,53 +234,52 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                                         </button>
                                     </div>
                                 </form>
-                                <button id="add_product_btn"  class="btn btn-primary ms-2">Thêm sản phẩm</button>
+                                <button id="add_product_btn" class="btn btn-primary ms-2">Thêm sản phẩm</button>
                             </div>
-                                <table id="" class="table table-striped data-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Loại sản phẩm</th>
-                                            <th>Chi tiết</th>
-                                            <th>Giá</th>
-                                            <th>Sale</th>
-                                            <th>Số lượng bán ra</th>
-                                            <th>Bảo hành</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="product-list" class= "product-list">
-                                        <?php 
-                                            $product_array = get_product();
-                                            foreach ($product_array as $key => $value){
-                                                $category_res = get_category_byID($value['id_category']);
-                                                echo '<tr>';
-                                                echo '<td > '.$value['product_name'].'</td>';
-                                                echo '<td >'.$category_res['name'].'</td>';
-                                                echo '<td >'.$value['description'].'</td>';
-                                                echo '<td >'.$value['inital_price'].'</td>';
-                                                echo '<td >'.$value['sale_off'].'</td>';
-                                                echo '<td >'.$value['sell_quantity'].'</td>';
-                                                echo '<td >'.$value['guarantee'].'</td>';
-                                                echo '<td>
+                            <table id="" class="table table-striped data-table" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Loại sản phẩm</th>
+                                        <th>Chi tiết</th>
+                                        <th>Giá</th>
+                                        <th>Sale</th>
+                                        <th>Số lượng bán ra</th>
+                                        <th>Bảo hành</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product-list" class="product-list">
+                                    <?php
+                                    $product_array = get_product();
+                                    foreach ($product_array as $key => $value) {
+                                        $category_res = get_category_byID($value['id_category']);
+                                        echo '<tr>';
+                                        echo '<td > ' . $value['product_name'] . '</td>';
+                                        echo '<td >' . $category_res['name'] . '</td>';
+                                        echo '<td >' . $value['description'] . '</td>';
+                                        echo '<td >' . $value['inital_price'] . '</td>';
+                                        echo '<td >' . $value['sale_off'] . '</td>';
+                                        echo '<td >' . $value['sell_quantity'] . '</td>';
+                                        echo '<td >' . $value['guarantee'] . '</td>';
+                                        echo '<td>
                                                             <span class="me-2 font-size-20" onclick="editProduct(this)" style = "cursor : pointer;">
                                                             <i class="fas fa-edit"></i></span>
-                                                            <span class="font-size-20" onclick="deleteProduct('.$value['id'].')"><i class="fas fa-trash-alt" style = "cursor : pointer;"></i></span>
+                                                            <span class="font-size-20" onclick="deleteProduct(' . $value['id'] . ')"><i class="fas fa-trash-alt" style = "cursor : pointer;"></i></span>
                                                       </td>';
-                                                echo '</tr>';
-                                            };
-                                        ?>
-                                    </tbody>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
+                                        echo '</tr>';
+                                    };
+                                    ?>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-            
             const addProduct = document.getElementById("add_product_btn")
             // console.log(addProduct);
             addProduct.onclick = function() {
@@ -283,11 +292,11 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         <div class="form-group">
                             <label for="id_category">Loại sản phẩm</label>
                             <select class="form-control" id="id_category">
-                            <?php 
-                                $category_array = get_category();
-                                foreach ($category_array as $key => $value){
-                                    echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
-                                };
+                            <?php
+                            $category_array = get_category();
+                            foreach ($category_array as $key => $value) {
+                                echo '<option value = "' . $value['id_category'] . '">' . $value['name'] . '</option>';
+                            };
                             ?>
                             </select>
                         </div>
@@ -322,62 +331,62 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         </div>
                     </form>
                     `,
-                    function(){
+                    function() {
 
                         let url = '../admin/api/product/product_api.php'
                         let formProduct = document.querySelector('#form_product')
                         // formProduct.addEventListener('submit',function(e){
                         //     e.preventDefault();
-                            let formData = new FormData();
-                            let product_name = document.querySelector('#product_name').value;
-                            let id_category = document.querySelector('#id_category').value;
-                            let description = document.querySelector('#description').value;
-                            let inital_price = document.querySelector('#inital_price').value;
-                            let sale_off = document.querySelector('#sale_off').value;
-                            let sell_quantity = document.querySelector('#sell_quantity').value;
-                            let guarantee = document.querySelector('#guarantee').value;
-                            let image = document.querySelector('#image');
-                            let totalImages = image.files.length;
-                            // console.log(totalImages);
-                            // console.log({image});
-                            formData.append('product_name', product_name)
-                            formData.append('id_category', id_category)
-                            formData.append('description', description)
-                            formData.append('inital_price', inital_price)
-                            formData.append('sale_off', sale_off)
-                            formData.append('sell_quantity', sell_quantity)
-                            formData.append('guarantee', guarantee)
-                            for (var index = 0; index < totalImages; index++) {
-                                formData.append("image", image.files[index]);
+                        let formData = new FormData();
+                        let product_name = document.querySelector('#product_name').value;
+                        let id_category = document.querySelector('#id_category').value;
+                        let description = document.querySelector('#description').value;
+                        let inital_price = document.querySelector('#inital_price').value;
+                        let sale_off = document.querySelector('#sale_off').value;
+                        let sell_quantity = document.querySelector('#sell_quantity').value;
+                        let guarantee = document.querySelector('#guarantee').value;
+                        let image = document.querySelector('#image');
+                        let totalImages = image.files.length;
+                        // console.log(totalImages);
+                        // console.log({image});
+                        formData.append('product_name', product_name)
+                        formData.append('id_category', id_category)
+                        formData.append('description', description)
+                        formData.append('inital_price', inital_price)
+                        formData.append('sale_off', sale_off)
+                        formData.append('sell_quantity', sell_quantity)
+                        formData.append('guarantee', guarantee)
+                        for (var index = 0; index < totalImages; index++) {
+                            formData.append("image", image.files[index]);
+                        }
+                        // formData.append('image', image.files[0])
+                        // console.log({formData})
+                        $.ajax({
+                            url,
+                            method: 'POST',
+                            enctype: 'multipart/form-data',
+                            processData: false,
+                            contentType: false,
+                            data: formData
+                        }).done(response => {
+                            console.log(response);
+                            if (!response.status) {
+                                toastr.error(response.message);
+                            } else {
+                                toastr.success(response.message);
+                                // window.location.href = response.redirect;
+                                // window.location.reload();
                             }
-                            // formData.append('image', image.files[0])
-                            // console.log({formData})
-                            $.ajax({
-                                url,
-                                method: 'POST',
-                                enctype: 'multipart/form-data',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(response => {
-                                console.log(response);
-                                if (!response.status){
-                                    toastr.error(response.message);
-                                }else{
-                                    toastr.success(response.message);
-                                    // window.location.href = response.redirect;
-                                    // window.location.reload();
-                                }
-                            });
+                        });
                         // })
                     },
-                    function(){
+                    function() {
                         alertify.error('Cancel');
                     }
                 );
             };
-           
-            function editProduct (spanElement) { 
+
+            function editProduct(spanElement) {
                 tbodyElement = spanElement.parentElement.parentElement;
                 tdElement = tbodyElement.children;
                 alertify.confirm(`
@@ -390,11 +399,11 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         <div class="form-group">
                             <label for="id_category_edit">Loại sản phẩm</label>
                             <select class="form-control" id="id_category_edit">
-                            <?php 
-                                $category_array = get_category();
-                                foreach ($category_array as $key => $value){
-                                    echo '<option value = "'.$value['id_category'].'">'.$value['name'].'</option>';
-                                };
+                            <?php
+                            $category_array = get_category();
+                            foreach ($category_array as $key => $value) {
+                                echo '<option value = "' . $value['id_category'] . '">' . $value['name'] . '</option>';
+                            };
                             ?>
                             </select>
                         </div>
@@ -427,9 +436,9 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                       
                     </form>
                 `,
-                    function(){
+                    function() {
                         let url = '../admin/api/product/product_edit_api.php';
-                        let _product_name =  document.querySelector('#product_name').value;
+                        let _product_name = document.querySelector('#product_name').value;
                         let _id_category_edit = document.querySelector('#id_category_edit').value
                         let old_product_name = document.querySelector('#old_product_name').value
                         let _description = document.querySelector('#description').value;
@@ -437,122 +446,134 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                         let _sale_off = document.querySelector('#sale_off').value;
                         let _sell_quantity = document.querySelector('#sell_quantity').value;
                         let _guarantee = document.querySelector('#guarantee').value;
-                        console.log({ _product_name, _id_category_edit, old_product_name, _description, _inital_price, _sale_off, _sell_quantity, _guarantee} )
+                        console.log({
+                            _product_name,
+                            _id_category_edit,
+                            old_product_name,
+                            _description,
+                            _inital_price,
+                            _sale_off,
+                            _sell_quantity,
+                            _guarantee
+                        })
 
                         $.ajax({
                             url,
                             method: 'POST',
-                            data: { 
+                            data: {
                                 "old_product_name": old_product_name.trim(),
-                                "product_name":_product_name.trim(),
-                                 "id_category":_id_category_edit.trim() ,
-                                "description":_description.trim() ,
-                                "inital_price":_inital_price.trim(), 
-                                "sale_off":_sale_off.trim(), 
-                                "sell_quantity":_sell_quantity.trim(),
-                                 "guarantee":_guarantee.trim()
+                                "product_name": _product_name.trim(),
+                                "id_category": _id_category_edit.trim(),
+                                "description": _description.trim(),
+                                "inital_price": _inital_price.trim(),
+                                "sale_off": _sale_off.trim(),
+                                "sell_quantity": _sell_quantity.trim(),
+                                "guarantee": _guarantee.trim()
                             }
                         }).done(response => {
-                            console.log({response});
-                            if (!response.status){
+                            console.log({
+                                response
+                            });
+                            if (!response.status) {
                                 toastr.error(response.message);
-                            }else{
+                            } else {
                                 toastr.success(response.message);
-                               setTimeout(function(){
-                                   window.location.reload();
-                               }, 2000);
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 2000);
                             }
                         });
                     },
-                    function(){
+                    function() {
                         alertify.error('Cancel');
                     }
                 );
             };
-            
-            function deleteProduct (id) {
+
+            function deleteProduct(id) {
                 alertify.confirm(`Bạn có chắc muốn xóa sản phẩm ?`,
-                    function(){
+                    function() {
                         let url = '../admin/api/product/product_remove_api.php';
                         $.ajax({
                             url,
                             method: 'POST',
-                            data: {id}
+                            data: {
+                                id
+                            }
                         }).done(response => {
                             console.log(response);
-                            if (!response.status){
+                            if (!response.status) {
                                 toastr.error(response.message);
-                            }else{
+                            } else {
                                 toastr.success(response.message);
                                 window.location.reload();
                             }
-                        }).fail((a,b,c)=>{
+                        }).fail((a, b, c) => {
                             console.log("Failed!");
                         });
                     },
-                    function(){
+                    function() {
                         alertify.error('Cancel');
                     }
                 );
             };
         </script>
-    <?php
+        <?php
     }
 
     // ===================================================================================
     // -----------------------------------------------------------------------------------
     // Trang Tài khoản 
-    else if (isset($_GET['page']) && $_GET['page'] == 'accounts') { 
+    else if (isset($_GET['page']) && $_GET['page'] == 'accounts') {
         if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
         ?>
-        <div class="row table-content">
-            <div class="col-md-12 mb-3">
-                <div class="card pt-60">
-                    <!-- <div class="card-header">
+            <div class="row table-content">
+                <div class="col-md-12 mb-3">
+                    <div class="card pt-60">
+                        <!-- <div class="card-header">
                     </div> -->
-                    <div class="card-body">
-                        <div class="">
-                            <div class="my-2 d-flex">
-                                <form class="d-flex ms-auto my-3 my-lg-0">
-                                    <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <table id="" class="table table-striped data-table" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>Họ tên</th>
-                                        <th>Email</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="customer-account-list">
-                                    <!-- <tr>
+                        <div class="card-body">
+                            <div class="">
+                                <div class="my-2 d-flex">
+                                    <form class="d-flex ms-auto my-3 my-lg-0">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <table id="" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ tên</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Địa chỉ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customer-account-list">
+                                        <!-- <tr>
                                         <td>Nguyễn Thế Trường</td>
                                         <td>nguyenthetruong100621@gmail.com</td>
                                         <td>Nhân viên bán hàng</td>
                                     </tr> -->
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php
-    }}
+        <?php
+        }
+    }
     // Trang Quản lý nhân viên
     else if (isset($_GET['page']) && $_GET['page'] == 'employees') {
-        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) 
-        
-        { ?>
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) { ?>
             <div class="row table-content">
                 <div class="col-md-12 mb-3">
                     <div class="card pt-60">
@@ -597,9 +618,10 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 </div>
             </div>
         <?php
-    }}
+        }
+    }
     // Trang Quản lý khuyến mãi
-    else if (isset($_GET['page']) && $_GET['page'] == 'promotions'){
+    else if (isset($_GET['page']) && $_GET['page'] == 'promotions') {
         if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
         ?>
             <div class="row table-content">
@@ -646,10 +668,126 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 </div>
             </div>
         <?php
-    }}
+        }
+    }
+    // Trang Quản lý don hang
+    else if (isset($_GET['page']) && $_GET['page'] == 'orders') {
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 0) {
+        ?>
+            <div class="row table-content">
+                <div class="col-md-12 mb-3">
+                    <div class="card pt-60">
+                        <!-- <div class="card-header">
+                                <span><i class="bi bi-table me-2"></i></span> Data Table
+                            </div> -->
+                        <div class="card-body">
+                            <div class="">
+                                <div class="my-2 d-flex">
+                                    <form class="d-flex ms-auto my-3 my-lg-0">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search" />
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <table id="" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        require_once("../conf/db.php");
+
+                                        $conn = open_database();
+                                        $sql = "SELECT * FROM `order`";
+                                        $result = $conn->query($sql);
+
+                                        $orders = array();
+                                        while ($row = $result->fetch_assoc()) {
+                                            if ($row['status'] == 0) {
+                                                $orders[] = $row;
+                                            }
+                                        }
+                                        foreach ($orders as $value) {
+                                            $id_order = $value['id_order'];
+                                            $status = (int)$value['status'];
+                                            $id_order = $value['id_order'];
+                                            if ($status == 0) {
+                                                $statusStr = "Đơn hàng chưa duyệt";
+                                            }
+                                            if ($status == 1) {
+                                                $statusStr = "Đơn hàng đã duyệt";
+                                            }
+                                            if ($status == 2) {
+                                                $statusStr = "Đơn hàng đã từ chối";
+                                            }
+                                            echo "<tr data-toggle='modal' data-target='.bd-example-modal-lg' style='cursor: pointer;' onclick='detailOrder($id_order)' id='tr_$id_order'>";
+                                            echo "<td>$id_order</td>";
+                                            echo "<td>$statusStr</td>";
+
+                                            echo "<td>  
+    
+                                                <button onclick='tinOrder($id_order, 1)' class='btn btn-outline-primary'>Duyệt</button>
+                                                <button onclick='tinOrder($id_order, 2)' class='btn btn-outline-danger'>Từ chối</button>
+    
+                                                    </td>";
+
+                                            echo "</tr>";
+                                        }
+                                        ?>
+                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Đơn hàng</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table table-hover text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Product name</th>
+                                                                    <th>Price</th>
+                                                                    <th>quantity</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="orderDetail">
+
+                                                                <tr class="total">
+                                                                    <th scope="row"></th>
+                                                                    <td>Total</td>
+                                                                    <td>1100$</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+    }
     // Trang tổng quan
     else {
-    ?>
+        ?>
         <main class="mt-5 pt-3">
             <div class="container-fluid">
                 <!-- <div class="row">
@@ -660,7 +798,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 <div class="row">
                     <div class="col-md-4 my-3">
                         <div class="card bg-primary text-white h-100">
-                        <div class="card-header">Thống kê tình trạng đơn hàng</div>
+                            <div class="card-header">Thống kê tình trạng đơn hàng</div>
                             <div class="card-body d-flex flex-column justify-content-center">
                                 <div class="mb-3" id="oder-status-0">Chưa duyệt: <span id="num-of-not-approved-orders">0</span></div>
                                 <div id="oder-status-0">Đã duyệt: <span id="num-of-approved-orders">0</span></div>
@@ -675,10 +813,10 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                     </div>
                     <div class="col-md-4 my-3">
                         <div class="card bg-secondary text-white h-100">
-                        <div class="card-header">Thống kê sản phẩm đã bán</div>
+                            <div class="card-header">Thống kê sản phẩm đã bán</div>
                             <div class="card-body py-5">Số lượng sản phẩm đã bán: <span id="num-of-product-sold">0</span></div>
                             <div class="card-footer d-flex">
-                            View Details
+                                View Details
                                 <span class="ms-auto">
                                     <i class="bi bi-chevron-right"></i>
                                 </span>
@@ -687,7 +825,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                     </div>
                     <div class="col-md-4 my-3">
                         <div class="card bg-success text-white h-100">
-                        <div class="card-header">Thống kê doanh thu</div>
+                            <div class="card-header">Thống kê doanh thu</div>
                             <div class="card-body py-5">Tổng doanh thu: <span id="num-of-total-sales"></span></div>
                             <div class="card-footer d-flex">
                                 View Details
@@ -1102,7 +1240,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
                 </div>
             </div>
         </div>
-        
+
         <!-- ---------------------------------------------------------------------------------- -->
         <!-- ############### KHUYẾN MÃI ############# -->
         <!-- Thêm khuyến mãi modal -->
@@ -1237,4 +1375,6 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
         <script src="./js/customer.js"></script>
         <script src="./js/promotion.js"></script>
         <script src="./js/statistical.js"></script>
+
+        <script src="./js/tin_order.js"></script>
 </body>
