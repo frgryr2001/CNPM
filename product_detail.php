@@ -98,10 +98,7 @@
             <img id="slideLeft" class="arrow" src="./assets/img/arrow/arrow-right.png">
             <div id="slider">
               <img class="thumbnail" src="./assets/img/product/<?= $row['image_path1'] ?>">
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path2'] ?>">
-
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path3'] ?>">
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path4'] ?>">
+             
             </div>
 
             <img id="slideRight" class="arrow" src="./assets/img/arrow/arrow-right.png">
