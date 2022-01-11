@@ -1,7 +1,7 @@
 <?php
 define('HOST','localhost');
 define('USER','root');
-define('PASSWORD','123456');
+define('PASSWORD','');
 define('DB','cnpm');
 
 function open_database(){
@@ -12,4 +12,3 @@ function open_database(){
     }
     return $conn;
 }
-?>

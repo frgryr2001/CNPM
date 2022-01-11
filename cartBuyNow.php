@@ -37,20 +37,29 @@ session_start();
 <body>
     <?php
     include('./inc/header.php');
-    if (isset($_GET['id'])) {
-        $cartID = $_GET['id'];
-    }
-    if (isset($_SESSION['email'])) {
-        $email = $_SESSION['email'];
-    }
     $conn = open_database();
+
+    if (isset($_SESSION['email'])) {
+
+        $email = $_SESSION['email'];
+        $sql = "
+            SELECT * FROM `account` WHERE email=$email
+        ";
+        $accoutResult = NULL;
+        if ($result = $conn->query($sql)) {
+            while ($row = $result->fetch_assoc()) {
+                $accoutResult[] = $row;
+            }
+        }
+        $accoutID = $accoutResult[0]['id'];
+    }
+    // select * from cart ORDER BY id_account DESC LIMIT 1; 
     $sql = "
-    SELECT * FROM 
-    (account INNER JOIN cart ON account.id = cart.id_account) 
+    select * from (account INNER JOIN cart ON account.id = cart.id_account) 
     INNER JOIN product ON product.id = cart.productId 
     INNER JOIN product_img ON product_img.id_product = cart.productId 
-    WHERE account.email = '$email';  
-        ";
+    WHERE cart.id_cart = (SELECT MAX(id_cart) FROM cart);  
+    ";
     $output = NULL;
     if ($result = $conn->query($sql)) {
         while ($row = $result->fetch_assoc()) {
@@ -102,7 +111,6 @@ session_start();
                 <!-- Sản phẩm -->
                 <?php
                 $totalPrice = 0;
-
                 foreach ($output as $value) {
                     $product_name = $value['product_name'];
                     $inital_price = (int)$value['inital_price'];
@@ -111,9 +119,8 @@ session_start();
                     $inital_priceFormat = number_format($inital_price, ((int) $inital_price == $inital_price ? 0 : 2), '.', ',');
                     $quantity = $value['quantity'];
                     $id_cart = $value['id_cart'];
-
                     $image_product = $value['image_path1'];
-                    // var_dump($value);
+
                     $listProductHTML = "
                         <div class='shopping-cart__list__product'>
                             <div class='shopping-cart__list__product-block'>
@@ -135,61 +142,61 @@ session_start();
                                         <li class='product__qty'>$quantity</li>
                                         <li onclick='add(this,$id_cart, $inital_price)'>+</li>
                                     </ul>
-                                    <a class='shopping-cart__list__product-delete' href=''>Xóa khỏi giỏ</a>
                                 </div>
-                                
+                            
                                 
                             </div>
                         </div>";
                     echo $listProductHTML;
                     $totalPrice = (int) $totalPrice + ((int)$quantity * (int)$inital_price);
                     // echo "<p>$totalPrice</p>";
-                }
-
-                if (isset($_POST['btn_order'])) {
-                    $sql = "
-                    SELECT * FROM 
-                    (account INNER JOIN cart ON account.id = cart.id_account) 
-                    INNER JOIN product ON product.id = cart.productId 
-                    WHERE account.email = '$email';  
-                        ";
-                    $output2 = NULL;
-                    if ($result2 = $conn->query($sql)) {
-                        while ($row2 = $result2->fetch_assoc()) {
-                            $output2[] = $row2;
+                    if (isset($_POST['btn_order'])) {
+                        $sql = "
+                            select * from (account INNER JOIN cart ON account.id = cart.id_account) 
+                            INNER JOIN product ON product.id = cart.productId 
+                            WHERE cart.id_cart = (SELECT MAX(id_cart) FROM cart); 
+                            ";
+                        $output2 = NULL;
+                        if ($result2 = $conn->query($sql)) {
+                            while ($row2 = $result2->fetch_assoc()) {
+                                $output2[] = $row2;
+                            }
                         }
-                    }
-                    $totalPriceF = 0;
-                    foreach ($output2 as $value2) {
-                        $priceF = (int)$value2['inital_price'];
-                        $quantityF = (int)$value2['quantity'];
-                        $id_accountF = $value2['id_account'];
-                        $totalPriceF = $totalPriceF + ($priceF * $quantityF);
-                    }
-                    $id_order = (int)rand(10000, 99999);
-                    $serial = rand(1000000, 9999999);
-                    $sqlInsertOrder = "INSERT INTO `order` (`id_order`, `id_account`, `status`, `time`, `total`) 
+                        $id_cart = $output2[0]['id_cart'];
+                        $totalPriceF = 0;
+                        foreach ($output2 as $value2) {
+                            $priceF = (int)$value2['inital_price'];
+                            $quantityF = (int)$value2['quantity'];
+                            $totalPriceF = $totalPriceF + ($priceF * $quantityF);
+                            $id_accountF = $value2['id_account'];
+                        }
+                        $id_order = (int)rand(10000, 99999);
+                        $serial = rand(1000000, 9999999);
+                        $sqlInsertOrder = "INSERT INTO `order` (`id_order`, `id_account`, `status`, `time`, `total`) 
                                 VALUES ('$id_order', '$id_accountF', '0', current_timestamp(), '$totalPriceF');";
-                    $conn->query($sqlInsertOrder);
-                    foreach ($output2 as $value2) {
-                        $id_accountF = $value2['id'];
-                        $productIdF = $value2['productId'];
-                        $quantityF = (int)$value2['quantity'];
-                        $priceF = (int)$value2['inital_price'];
 
-                        $sqlInsertOrderDetail = "INSERT INTO `order_detail` (`id_order_detail`, `id_order`, `id_product`, `qty`, `serial`, `productPrice`) 
+                        $conn->query($sqlInsertOrder);
+                        foreach ($output2 as $value2) {
+                            $id_accountF = $value2['id'];
+                            $productIdF = $value2['productId'];
+                            $quantityF = (int)$value2['quantity'];
+                            $priceF = (int)$value2['inital_price'];
+                            $sqlInsertOrderDetail = "INSERT INTO `order_detail` (`id_order_detail`, `id_order`, `id_product`, `qty`, `serial`, `productPrice`) 
                             VALUES (NULL, '$id_order', '$productIdF', '$quantityF', '$serial', '$priceF')";
-                        $conn->query($sqlInsertOrderDetail);
+
+                            $conn->query($sqlInsertOrderDetail);
+                        }
+                        $sqlDeleteCart = "DELETE FROM `cart` WHERE id_cart='$id_cart'";
+                        $conn->query($sqlDeleteCart);
                     }
-                    $sqlDeleteCart = "TRUNCATE TABLE `cart`;";
-                    $conn->query($sqlDeleteCart);
                 }
+
                 ?>
 
                 <!-- Tổng tiền -->
                 <div class="total-price mt-3">
                     <span class="total-price-left">Tổng tiền:</span>
-                    <span class="total-price-right" id="price-total"><?= $totalPrice ?></span>
+                    <span class="total-price-right" id="price-total"><?= number_format($totalPrice, ((int) $totalPrice == $totalPrice ? 0 : 2), '.', ',') ?></span>
                 </div>
 
                 <div class="shopping-cart__form">
