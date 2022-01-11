@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(E_ERROR | E_PARSE);
 
 // $title = $output[0]['title_task'];
 
@@ -20,7 +20,7 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- cart.js -->
-    <script src="./assets/js/cart.js"></script>
+    
     <!-- link css  -->
     <link rel="stylesheet" href="./assets/css/cart.css">
     <link rel="shortcut icon" href="favi.ico" type="image/x-icon">
@@ -218,5 +218,5 @@ session_start();
         alert(str);
     }
 </script>
-
+<script src="./assets/js/cart.js"></script>
 </html>

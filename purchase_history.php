@@ -160,7 +160,7 @@
                         <td class="text-primary">
                             <div class="container d-flex justify-content-center">
                                 <div class="row">
-                                    <div class="col-md-6"> <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Review</button></div>
+                                    <div class="col-md-6"> <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" onclick="loadData(${e.id});" data-target="#myModal">Review</button></div>
                                 </div>
                             </div>
                             
@@ -172,6 +172,9 @@
         });
 
     });
+    function loadData(id) {
+        console.log(id);
+    }
 </script>
 
 </html>

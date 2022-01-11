@@ -43,13 +43,7 @@
                     </tr>
                 </thead>
                 <tbody id="rowBody">
-                    <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;">
-                        <th scope="row">Mh001</th>
-                        <td>lê hoàng nhân</td>
-                        <td>020402340</td>
-                        <td>TP.HCM</td>
-                        <td class="text-primary">Đang xử lí đơn hàng</td>
-                    </tr>
+                   
 
                 </tbody>
             </table>
