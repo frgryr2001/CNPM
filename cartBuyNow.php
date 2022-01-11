@@ -148,7 +148,6 @@ session_start();
                             </div>
                         </div>";
                     echo $listProductHTML;
-                    $totalPrice = (int) $totalPrice + ((int)$quantity * (int)$inital_price);
                     // echo "<p>$totalPrice</p>";
                     if (isset($_POST['btn_order'])) {
                         $sql = "
@@ -189,6 +188,8 @@ session_start();
                         $sqlDeleteCart = "DELETE FROM `cart` WHERE id_cart='$id_cart'";
                         $conn->query($sqlDeleteCart);
                     }
+
+                    $totalPrice = (int) $totalPrice + ((int)$quantity * (int)$inital_price);
                 }
 
                 ?>
@@ -196,7 +197,7 @@ session_start();
                 <!-- Tổng tiền -->
                 <div class="total-price mt-3">
                     <span class="total-price-left">Tổng tiền:</span>
-                    <span class="total-price-right" id="price-total"><?= number_format($totalPrice, ((int) $totalPrice == $totalPrice ? 0 : 2), '.', ',') ?></span>
+                    <span class="total-price-right" id="price-total"><?= $totalPrice ?></span>
                 </div>
 
                 <div class="shopping-cart__form">
