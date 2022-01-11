@@ -91,7 +91,8 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] == 3){
             </button>
 
             <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="index.php">
-                <img width="260px" height="36px" style="object-fit: cover;" src="../assets/img/logo.png" alt="logo">
+                <!-- <img width="260px" height="36px" style="object-fit: cover;" src="../assets/img/Samsung Logo PNG White.png" alt="logo"> -->
+                <!-- TRANG CHỦ -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
