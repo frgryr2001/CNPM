@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 12, 2022 lúc 02:52 PM
+-- Thời gian đã tạo: Th1 12, 2022 lúc 03:28 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -182,7 +182,22 @@ INSERT INTO `product` (`id`, `id_category`, `product_name`, `description`, `init
 (21, 8, 'Pin sạc dự phòng Polymer 20.000 mAh Type C PD Samsung EB-P5300', 'Kiểu dáng đơn giản, nhỏ gọn, màu đen thời trang', 1192000, 0, 0, 'No', 'current_timestamp()', NULL, '2022-01-12', 0),
 (22, 8, 'Pin Samsung EB-P3300', 'Sạc dự phòng Samsung mỏng nhẹ, vẻ ngoài tỏa sáng với gam màu xám sang trọng', 792000, 0, 0, 'No', 'current_timestamp()', NULL, '2022-01-12', 0),
 (23, 8, 'Pin Fast Charge Samsung ', 'Pin sạc dự phòng 10.200 mAh Fast Charge Samsung sở hữu dung lượng pin lớn có thể thoải mái sạc cho nhiều thiết bị liên tục, đảm bảo smartphone của bạn luôn giữ kết nối.', 1280000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
-(24, 8, 'Pin sạc dự phòng 20.000 mAh Fast Charge Samsung ', 'Pin sạc dự phòng 20.000 mAh Fast Charge Samsung sở hữu dung lượng pin lớn có thể thoải mái sạc cho nhiều thiết bị liên tục, đảm bảo smartphone của bạn luôn giữ kết nối', 1330000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0);
+(24, 8, 'Pin sạc dự phòng 20.000 mAh Fast Charge Samsung ', 'Pin sạc dự phòng 20.000 mAh Fast Charge Samsung sở hữu dung lượng pin lớn có thể thoải mái sạc cho nhiều thiết bị liên tục, đảm bảo smartphone của bạn luôn giữ kết nối', 1330000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(25, 9, 'Tai nghe Bluetooth True Wireless Samsung Galaxy Buds 2 R177N', 'Thiết kế hiện đại, sang trọng và tinh tế với gam màu trắng thuần khiết', 2990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(26, 9, 'Tai nghe Bluetooth True Wireless Samsung Galaxy Buds Live R180', 'Ngoại hình hoàn toàn mới, độc đáo riêng biệt', 1990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(27, 9, 'Tai nghe Bluetooth True Wireless Galaxy Buds Pro', 'Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm', 3990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(28, 9, 'Tai nghe Bluetooth True Wireless Galaxy Buds Pro', 'Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm', 3990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(29, 9, 'Tai nghe Bluetooth True Wireless Samsung Galaxy Buds 2 R177N', 'Galaxy Buds 2 R177N nhỏ nhẹ, 3 phiên bản thời thượng', 2990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(30, 10, 'Màn hình LCD Samsung Smart Monitor M5 27 inch Full HD - Remote (LS27AM501NEXXV)', 'LCD Samsung Smart Monitor (LS27AM501NEXXV) là phiên bản màn hình thông minh với dáng vẻ thời thượng cùng các tính năng hiện đại mang đến cho bạn những trải nghiệm công việc và giải trí bất tận', 8090000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(31, 10, 'Samsung LCD Gaming 27 inch Full HD 240Hz 4ms (LC27RG50FQEXXV)', 'Màn hình máy tính LCD Samsung Gaming 27 inch Full HD 240Hz 4ms/GSync (LC27RG50FQEXXV) với độ cong 1500R, tần số quét lên đến 240 Hz,... đáp ứng tốt nhu cầu chơi game của các game thủ', 9990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(32, 10, 'Màn hình Samsung LCD Smart Monitor M5 32 inch Full HD-Remote (LS32AM500NEXXV)', 'Màn hình Samsung Smart Monitor M5 (LS32AM500NEXXV) là màn hình thông minh không cần máy tính đầu tiên có mặt trên toàn thế giới để thỏa mãn mọi nhu cầu từ công việc đến giải trí cho bạn những phút giây làm việc, thư giãn thật trọn vẹn', 9090000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(33, 10, 'Samsung LCD Gaming 24 inch Full HD (LC24RG50FQEXXV)', 'Màn hình máy tính LCD Samsung Gaming (LC24RG50FQEXXV) được thiết kế dành cho các game thủ với khả năng làm mới khung hình cực nhanh, đảm bảo các tựa game có tốc độ nhanh vẫn được chơi một cách mượt mà', 6590000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(34, 10, 'Samsung LCD Gaming 27 inch WQHD (LC27G55TQWEXXV)', 'LCD Samsung Gaming 27 inch WQHD 144Hz 1ms/HDR10 (LC27G55TQWEXXV) thiết kế đặc biệt với màn hình cong 27 inch, độ phân giải 2K, tần số quét 144Hz, công nghệ hình ảnh HDR10,... mang đến trải nghiệm hình ảnh và chuyển động chân thật, lý thú, lôi cuốn', 7990000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(35, 11, 'Loa thanh Samsung HW-T420', 'Thiết kế dạng hình khối, chắc chắn', 2790000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(36, 11, 'Loa Tháp Samsung MX-T70/XV', 'Thiết kế 2 mặt loa vát cạnh độc đáo, âm thanh đa hướng sống động', 8740000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(37, 11, 'Loa thanh Samsung HW-T550', 'Kiểu dáng hiện đại, gam màu đen mạnh mẽ, sang trọng', 3890000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(38, 11, 'Loa thanh Samsung HW-Q630', 'Thiết kế hiện đại, gọn đẹp', 6120000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0),
+(39, 11, 'Loa Tháp Samsung MX-T50/XV', 'Thiết kế dạng tháp với 3 chân đế vững chắc, 2 mặt loa vát cạnh, màu đen lôi cuốn', 6690000, 0, 0, '12 tháng', 'current_timestamp()', NULL, '2022-01-12', 0);
 
 -- --------------------------------------------------------
 
@@ -223,7 +238,22 @@ INSERT INTO `productdetail` (`id`, `screen`, `features`, `cpu`, `ram`, `weight`,
 (21, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '392 g', 'Unknown', 'Unknown', 'Unknown', '20.000 mAh'),
 (22, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '240 g', 'Unknown', 'Unknown', 'Unknown', '10.000 mAh'),
 (23, 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
-(24, 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown');
+(24, 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(25, 'Unknown', 'Android', 'Unknown', 'Unknown', '5 g', 'Unknown', 'Unknown', 'Bluetooth 5.2', 'Unknown'),
+(26, 'Unknown', 'Android, iOS (iPhone, iPad), Windows', 'Unknown', 'Unknown', '5.6 g', 'Unknown', 'Unknown', 'Bluetooth 5.0', 'Unknown'),
+(27, 'Unknown', 'Android, iOS (iPhone), Windows', 'Unknown', 'Unknown', '51.2g', 'Unknown', 'Unknown', 'Bluetooth 5.0', 'Unknown'),
+(28, 'Unknown', 'Android, iOS (iPhone, iPad), Windows', 'Unknown', 'Unknown', '51.2g', 'Unknown', 'Unknown', 'Bluetooth 5.0', 'Unknown'),
+(29, 'Unknown', 'Android', 'Unknown', 'Unknown', '5 g', 'Unknown', 'Unknown', 'Bluetooth 5.2', 'Unknown'),
+(30, '27 inch', 'Unknown', 'Unknown', 'Unknown', '3.6 kg', 'Unknown', 'Unknown', 'Bluetooth 4.2', 'Unknown'),
+(31, '27 inch', 'Unknown', 'Unknown', 'Unknown', '4.6 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(32, '32 inch', 'Unknown', 'Unknown', 'Unknown', '5.0 kg', 'Unknown', 'Unknown', 'Bluetooth 4.2', 'Unknown'),
+(33, '24 inch', 'Unknown', 'Unknown', 'Unknown', '3.3 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(34, '27 inch', 'Unknown', 'Unknown', 'Unknown', '4.5 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(35, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '1.5 kg', 'Unknown', 'Unknown', 'Bluetooth 2.0', 'Unknown'),
+(36, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '26.5 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(37, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '9.5 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(38, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '3.44 Kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown'),
+(39, 'Unknown', 'Unknown', 'Unknown', 'Unknown', '11.6 kg', 'Unknown', 'Unknown', 'Unknown', 'Unknown');
 
 -- --------------------------------------------------------
 
@@ -381,7 +411,7 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `rate`
