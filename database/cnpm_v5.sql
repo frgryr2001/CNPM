@@ -126,7 +126,6 @@ CREATE TABLE `order` (
 -- Đang đổ dữ liệu cho bảng `order`
 --
 
-INSERT INTO `order` (`id_order`, `id_account`, `status`, `time`, `total`) VALUES
 
 
 -- --------------------------------------------------------
@@ -148,7 +147,6 @@ CREATE TABLE `order_detail` (
 -- Đang đổ dữ liệu cho bảng `order_detail`
 --
 
-INSERT INTO `order_detail` (`id_order_detail`, `id_order`, `id_product`, `qty`, `serial`, `productPrice`) VALUES
 
 
 -- --------------------------------------------------------
