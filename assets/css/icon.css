@@ -98,14 +98,14 @@
 }
 
 .next-icon {
-    background: url(icons/next.svg) no-repeat;
+    background: url(../icons/next.svg) no-repeat;
     background-position: center;
     background-size: contain;
     margin-left: 0.3rem;
 }
 
 .prev-icon {
-    background: url(icons/prev.svg) no-repeat;
+    background: url(../icons/prev.svg) no-repeat;
     background-position: center;
     background-size: contain;
 }

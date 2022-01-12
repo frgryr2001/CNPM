@@ -1,5 +1,3 @@
-<?php error_reporting(E_ERROR | E_PARSE);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +34,7 @@
 <body>
   <?php include('./inc/header.php') ?>
   <?php
+  error_reporting(E_ERROR | E_PARSE);
   $conn = open_database();
   if (isset($_GET['id'])) {
     $cartID = $_GET['id'];
@@ -86,23 +85,19 @@
       $conn = open_database();
       $id = $_GET['id'];
       $sql = "SELECT * 
-            FROM product 
-            INNER JOIN product_img 
-            ON product.id=product_img.id_product 
+            FROM product  
             WHERE id =" . $id;
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
       ?>
       <div class="row shadow-sm pb-3">
         <div class="col-lg-4 col-md-6 col-sm-6 justify-content-center">
-          <img id=featured src="./assets/img/product/<?= $row['image'] ?>" width="100%">
+          <img id=featured src="./assets/img/product/<?=$row['image']?>" width="100%">
           <div id="slide-wrapper">
             <img id="slideLeft" class="arrow" src="./assets/img/arrow/arrow-right.png">
             <div id="slider">
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path1'] ?>">
-             
+              <img class="thumbnail" src="./assets/img/product/<?=$row['image']?>"> 
             </div>
-
             <img id="slideRight" class="arrow" src="./assets/img/arrow/arrow-right.png">
           </div>
         </div>
@@ -140,11 +135,11 @@
               <?php
               if ($row['sale_off'] != 0) {
               ?>
-                <?= $sale ?>
+                <?=number_format($sale) ?>
               <?php
               } else {
               ?>
-                <?= $row['inital_price'] ?>
+                <?=number_format($row['inital_price']); ?>
                 <?php
               }
                 ?>₫
@@ -153,7 +148,7 @@
             if ($row['sale_off'] != 0) {
             ?>
               <p class="old-price">
-                <?= $row['inital_price'] ?>₫
+                <?= number_format($row['inital_price']) ?>₫
               </p>
             <?php
             }
@@ -209,11 +204,11 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/samsung-galaxy-tab-s7-1.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">
-                <p class="title">Samsung Galaxy Z Fold3 5G</p>
+                <p class="title">samsung-galaxy-tab-s7</p>
               </a>
               <div class="pos-price">
                 <p class="price-new__detail">2.390.000 ₫</p>
@@ -236,7 +231,7 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/01a3148a504c4d05c17a7df395e2b308samsung1.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">
@@ -263,7 +258,7 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/c17a7df395e2b308samsung1.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">
@@ -290,7 +285,7 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/samsung-galaxy-tab-s7-1.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">
@@ -317,7 +312,7 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/d6658a78bacf377bsamsung-galaxy-a72-29.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">
@@ -344,7 +339,7 @@
         <div class="col-md-12">
           <div class="item">
             <a href="#" class="detail-item__similar">
-              <img src="./assets/img/product/laptop0.webp" alt="">
+              <img src="./assets/img/product/d6658a78bacf377bsamsung-galaxy-a72-29.jpg" alt="">
             </a>
             <div class="user-info">
               <a href="#" class="detail-item__similar">

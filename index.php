@@ -380,7 +380,7 @@ session_start();
                         ?>
 
                         <div class="featured__phone__product__img__wrapper">
-                            <a href="./product_detail.php?id=<?= $row['id'] ?>"><img src="assets/img/product/<?= $row['image'] ?>" alt=""></a>
+                            <a href="./product_detail.php?id=<?= $row['id'] ?>"><img src="./assets/img/product/<?= $row['image'] ?>" alt=""></a>
                         </div>
                         <div class="featured__phone__product__desc">
                             <div class="featured__phone__product__desc__title">
@@ -394,11 +394,11 @@ session_start();
                                         <?php
                                         if ($row['sale_off'] != 0) {
                                         ?>
-                                            <?= $sale ?>
+                                            <?= number_format($sale) ?>
                                         <?php
                                         } else {
                                         ?>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                         <?php
                                         }
                                         ?>
@@ -411,7 +411,7 @@ session_start();
                                 ?>
                                     <div class="flash__sale__product__desc__price__old">
                                         <p>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                             <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                         </p>
                                     </div>
@@ -511,11 +511,11 @@ session_start();
                                         <?php
                                         if ($row['sale_off'] != 0) {
                                         ?>
-                                            <?= $sale ?>
+                                            <?= number_format($sale) ?>
                                         <?php
                                         } else {
                                         ?>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                         <?php
                                         }
                                         ?>
@@ -528,7 +528,7 @@ session_start();
                                 ?>
                                     <div class="flash__sale__product__desc__price__old">
                                         <p>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                             <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                         </p>
                                     </div>
@@ -623,11 +623,11 @@ session_start();
                                     <?php
                                     if ($row['sale_off'] != 0) {
                                     ?>
-                                        <?= $sale ?>
+                                        <?= number_format($sale) ?>
                                     <?php
                                     } else {
                                     ?>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                     <?php
                                     }
                                     ?>
@@ -842,11 +842,11 @@ session_start();
                                     <?php
                                     if ($row['sale_off'] != 0) {
                                     ?>
-                                        <?= $sale ?>
+                                        <?= number_format($sale) ?>
                                     <?php
                                     } else {
                                     ?>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                     <?php
                                     }
                                     ?>
@@ -859,7 +859,7 @@ session_start();
                             ?>
                                 <div class="flash__sale__product__desc__price__old">
                                     <p>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                         <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                     </p>
                                 </div>
