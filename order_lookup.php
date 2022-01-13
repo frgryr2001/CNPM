@@ -120,13 +120,14 @@
             const data_new = JSON.parse(data).data;
             let total = 0;
             let html = data_new.map(e => {
-                total+= e.inital_price * e.qty;
+            
+                total+= e.productPrice * e.qty;
                 return `<tr>
                             <th scope="row">
                                 <img style="width:50px"  src="./assets/img/product/${e.image}" alt="">
                             </th>
                             <td style="vertical-align: middle;">${e.product_name}</td>
-                            <td style="vertical-align: middle;">${new Intl.NumberFormat().format(e.inital_price)}VND</td>
+                            <td style="vertical-align: middle;">${new Intl.NumberFormat().format(e.productPrice)}VND</td>
                             <td style="vertical-align: middle;">${e.qty}</td>
                         </tr>
                         `
