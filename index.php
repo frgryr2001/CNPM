@@ -430,6 +430,9 @@ session_start();
                                 ?>
 
                             </div>
+                            <div class="featured__phone__product__promotion__info">
+                                <p><?= $row['description'] ?></p>
+                            </div>
                             <div class="featured__phone__product__desc__rare featured__phone__rare">
                                 <div class="featured__phone__product__desc__rare__star">
 
