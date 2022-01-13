@@ -49,7 +49,6 @@ error_reporting(E_ERROR | E_PARSE);
     SELECT * FROM 
     (account INNER JOIN cart ON account.id = cart.id_account) 
     INNER JOIN product ON product.id = cart.productId 
-    INNER JOIN product_img ON product_img.id_product = cart.productId 
     WHERE account.email = '$email';  
         ";
     $output = NULL;
@@ -113,7 +112,7 @@ error_reporting(E_ERROR | E_PARSE);
                     $quantity = $value['quantity'];
                     $id_cart = $value['id_cart'];
 
-                    $image_product = $value['image_path1'];
+                    $image_product =$value['image'];
                     // var_dump($value);
                     $listProductHTML = "
                         <div class='shopping-cart__list__product'>

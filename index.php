@@ -21,7 +21,17 @@ session_start();
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/icon.css">
+    <style>
+        .featured__phone__product__promotion__info p{
+            overflow: hidden;
+            /* display: block; */
+            display: -webkit-box !important;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    </style>
 </head>
+
 
 <body>
     <div id="main">
@@ -459,10 +469,10 @@ session_start();
                 $sale = $row['inital_price'] - ($row['inital_price'] * ($row['sale_off'] / 100));
             };
         ?>
-        <div class="menu-session" id="Laptop"></div>
-        <div class="featured__phone grid wide">
+        <!-- <div class="menu-session" id="Laptop"></div>
+        <div class="featured__phone grid wide"> -->
             <!-- Title -->
-            <div class="row featured__phone__gutter">
+            <!-- <div class="row featured__phone__gutter">
                 <div class="c-3">
                     <div class="featured__phone__title">
                         <a href="" class="featured__phone__title__text">LAPTOP</a>
@@ -473,7 +483,7 @@ session_start();
                         <a href="" class="futured__phone__item">Xem tất cả</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Product List -->
             <div class="featured__phone__product__list">
@@ -609,7 +619,7 @@ session_start();
                     }
                     ?>
                     <div class="featured__phone__product__img__wrapper">
-                        <a href=""><img src="assets/img/product/<?= $row['image'] ?>" alt=""></a>
+                        <a href="./product_detail.php?id=<?= $row['id'] ?>"><img src="assets/img/product/<?= $row['image'] ?>" alt=""></a>
                     </div>
                     <div class="featured__phone__product__desc">
                         <div class="featured__phone__product__desc__title">

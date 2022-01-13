@@ -58,7 +58,6 @@ error_reporting(E_ERROR | E_PARSE);
     $sql = "
     select * from (account INNER JOIN cart ON account.id = cart.id_account) 
     INNER JOIN product ON product.id = cart.productId 
-    INNER JOIN product_img ON product_img.id_product = cart.productId 
     WHERE cart.id_cart = (SELECT MAX(id_cart) FROM cart);  
     ";
     $output = NULL;
@@ -120,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
                     $inital_priceFormat = number_format($inital_price, ((int) $inital_price == $inital_price ? 0 : 2), '.', ',');
                     $quantity = $value['quantity'];
                     $id_cart = $value['id_cart'];
-                    $image_product = $value['image_path1'];
+                    $image_product = $value['image'];
 
                     $listProductHTML = "
                         <div class='shopping-cart__list__product'>

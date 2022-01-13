@@ -66,7 +66,7 @@
                                 <tbody id="orderDetail">
                                     
                                     <tr class="total">
-                                        <th scope="row"></th>
+                                        <th scope="row" ></th>
                                         <td>Total</td>
                                         <td>1100$</td>
                                         <td></td>
@@ -123,7 +123,7 @@
                 total+= e.inital_price * e.qty;
                 return `<tr>
                             <th scope="row">
-                                <img src="./assets/img/product/${e.image}" alt="">
+                                <img style="width:50px"  src="./assets/img/product/${e.image}" alt="">
                             </th>
                             <td style="vertical-align: middle;">${e.product_name}</td>
                             <td style="vertical-align: middle;">${new Intl.NumberFormat().format(e.inital_price)}VND</td>
