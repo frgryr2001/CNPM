@@ -181,8 +181,10 @@ error_reporting(E_ERROR | E_PARSE);
                             $productIdF = $value2['productId'];
                             $quantityF = (int)$value2['quantity'];
                             $priceF = (int)$value2['inital_price'];
+                            $priceF1 = $priceF - ($priceF * (int)$value2['sale_off'] / 100);
+
                             $sqlInsertOrderDetail = "INSERT INTO `order_detail` (`id_order_detail`, `id_order`, `id_product`, `qty`, `serial`, `productPrice`) 
-                            VALUES (NULL, '$id_order', '$productIdF', '$quantityF', '$serial', '$priceF')";
+                            VALUES (NULL, '$id_order', '$productIdF', '$quantityF', '$serial', '$priceF1')";
 
                             $conn->query($sqlInsertOrderDetail);
                         }

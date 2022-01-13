@@ -111,8 +111,8 @@ error_reporting(E_ERROR | E_PARSE);
                     $inital_priceFormat = number_format($inital_price, ((int) $inital_price == $inital_price ? 0 : 2), '.', ',');
                     $quantity = $value['quantity'];
                     $id_cart = $value['id_cart'];
-                    // var_dump($inital_price);
-                    $image_product =$value['image'];
+                    var_dump($inital_price);
+                    $image_product = $value['image'];
                     // var_dump($value);
                     $listProductHTML = "
                         <div class='shopping-cart__list__product'>
@@ -175,10 +175,12 @@ error_reporting(E_ERROR | E_PARSE);
                         $id_accountF = $value2['id'];
                         $productIdF = $value2['productId'];
                         $quantityF = (int)$value2['quantity'];
+                        $priceF = (int)$value2['inital_price'];
+
                         $priceF1 = $priceF - ($priceF * (int)$value2['sale_off'] / 100);
 
                         $sqlInsertOrderDetail = "INSERT INTO `order_detail` (`id_order_detail`, `id_order`, `id_product`, `qty`, `serial`, `productPrice`) 
-                            VALUES (NULL, '$id_order', '$productIdF', '$quantityF', '$serial', '$priceF')";
+                            VALUES (NULL, '$id_order', '$productIdF', '$quantityF', '$serial', '$priceF1')";
                         $conn->query($sqlInsertOrderDetail);
                         $totalPrice = (int) $totalPrice + ((int)$quantity * (int)$inital_price);
                     }
