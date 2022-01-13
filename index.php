@@ -12,7 +12,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSC Store</title>
+    <title>Samsung Store</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
     </style>
@@ -380,7 +380,7 @@ session_start();
                         ?>
 
                         <div class="featured__phone__product__img__wrapper">
-                            <a href="./product_detail.php?id=<?= $row['id'] ?>"><img src="assets/img/product/<?= $row['image'] ?>" alt=""></a>
+                            <a href="./product_detail.php?id=<?= $row['id'] ?>"><img src="./assets/img/product/<?= $row['image'] ?>" alt=""></a>
                         </div>
                         <div class="featured__phone__product__desc">
                             <div class="featured__phone__product__desc__title">
@@ -394,11 +394,11 @@ session_start();
                                         <?php
                                         if ($row['sale_off'] != 0) {
                                         ?>
-                                            <?= $sale ?>
+                                            <?= number_format($sale) ?>
                                         <?php
                                         } else {
                                         ?>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                         <?php
                                         }
                                         ?>
@@ -411,7 +411,7 @@ session_start();
                                 ?>
                                     <div class="flash__sale__product__desc__price__old">
                                         <p>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                             <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                         </p>
                                     </div>
@@ -511,11 +511,11 @@ session_start();
                                         <?php
                                         if ($row['sale_off'] != 0) {
                                         ?>
-                                            <?= $sale ?>
+                                            <?= number_format($sale) ?>
                                         <?php
                                         } else {
                                         ?>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                         <?php
                                         }
                                         ?>
@@ -528,7 +528,7 @@ session_start();
                                 ?>
                                     <div class="flash__sale__product__desc__price__old">
                                         <p>
-                                            <?= $row['inital_price'] ?>
+                                            <?= number_format($row['inital_price']) ?>
                                             <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                         </p>
                                     </div>
@@ -623,11 +623,11 @@ session_start();
                                     <?php
                                     if ($row['sale_off'] != 0) {
                                     ?>
-                                        <?= $sale ?>
+                                        <?= number_format($sale) ?>
                                     <?php
                                     } else {
                                     ?>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                     <?php
                                     }
                                     ?>
@@ -842,11 +842,11 @@ session_start();
                                     <?php
                                     if ($row['sale_off'] != 0) {
                                     ?>
-                                        <?= $sale ?>
+                                        <?= number_format($sale) ?>
                                     <?php
                                     } else {
                                     ?>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                     <?php
                                     }
                                     ?>
@@ -859,7 +859,7 @@ session_start();
                             ?>
                                 <div class="flash__sale__product__desc__price__old">
                                     <p>
-                                        <?= $row['inital_price'] ?>
+                                        <?= number_format($row['inital_price']) ?>
                                         <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                     </p>
                                 </div>
@@ -1099,13 +1099,13 @@ session_start();
                             <div class="flash__sale__product__desc__price">
                                 <div class="flash__sale__product__desc__price__new">
                                     <p>
-                                        ${priceSale}
+                                        ${new Intl.NumberFormat().format(priceSale)}
                                         <span class="flash__sale__product__desc__price__unit__new">đ</span>
                                     </p>
                                 </div>
                                 <div class="flash__sale__product__desc__price__old">
                                     <p>
-                                        ${e.inital_price}
+                                        ${new Intl.NumberFormat().format(e.inital_price)}
                                         <span class="flash__sale__product__desc__price__unit__old">đ</span>
                                     </p>
                                 </div>
