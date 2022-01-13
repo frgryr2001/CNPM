@@ -765,7 +765,7 @@ if (!isset($_SESSION['authenticated'])) {
                                                                 <tr class="total">
                                                                     <th scope="row"></th>
                                                                     <td>Total</td>
-                                                                    <td>1100$</td>
+                                                                    <td></td>
                                                                     <td></td>
                                                                 </tr>
                                                             </tbody>

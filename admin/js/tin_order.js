@@ -18,7 +18,8 @@ function detailOrder(id) {
         const data_new = JSON.parse(data).data;
         let total = 0;
         let html = data_new.map(e => {
-            total += e.inital_price * e.qty;
+            total += (e.inital_price * e.qty) - ((e.inital_price * e.qty) / e.sale_off);
+            e.inital_price = e.inital_price - (e.inital_price / e.sale_off);
             return `<tr>
                         <th scope="row">
                             <img src="./assets/img/product/${e.image}" alt="">
