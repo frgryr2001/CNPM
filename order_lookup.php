@@ -43,13 +43,7 @@
                     </tr>
                 </thead>
                 <tbody id="rowBody">
-                    <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;">
-                        <th scope="row">Mh001</th>
-                        <td>lê hoàng nhân</td>
-                        <td>020402340</td>
-                        <td>TP.HCM</td>
-                        <td class="text-primary">Đang xử lí đơn hàng</td>
-                    </tr>
+                   
 
                 </tbody>
             </table>
@@ -101,6 +95,9 @@
                     }
                     if (e.status == 1) {
                         status = 'Đang vận chuyển'
+                    }
+                    if (e.status == 2) {
+                        status = 'Đã bị hủy đơn hàng'
                     }
                     return ` 
                         <tr data-toggle="modal" data-target=".bd-example-modal-lg" onclick="viewOrder(${e.id_order})" style="cursor: pointer;">

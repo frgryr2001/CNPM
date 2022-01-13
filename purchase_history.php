@@ -122,7 +122,7 @@
                                         </div>
                                         <br />
                                         <div class="modal-footer">
-                                            <button class="btn btn-out btn-primary btn-square">Save Review</button>
+                                            <button class="btn btn-out btn-primary btn-square" data-dismiss="modal" id="review">Save Review</button>
                                         </div>
                                     </div>
                                 </div>
@@ -132,15 +132,7 @@
     </div>
 </body>
 <script>
-    $(function() {
-        $("#rateYo").rateYo({
-            onSet: function(rating, rateYoInstance) {
-                rating = Math.ceil(rating);
-                $('#rating_input').val(rating); //setting up rating value to hidden field
-                alert("Rating is set to: " + rating);
-            }
-        });
-    });
+   
     $(document).ready(function() {
         $.ajax({
             url: "./api/historyAPI.php",
@@ -160,18 +152,42 @@
                         <td class="text-primary">
                             <div class="container d-flex justify-content-center">
                                 <div class="row">
-                                    <div class="col-md-6"> <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Review</button></div>
+                                    <div class="col-md-6"> <button type="button" id="off_btn" class="btn btn-danger btn-lg" data-toggle="modal"  onclick="loadData(${e.id});" data-target="#myModal">Review</button></div>
                                 </div>
                             </div>
                             
                         </td>
                     </tr>`
+                    
                 });
                 document.getElementById('rowBody').innerHTML = html.join("")
             }
         });
-
+    
     });
+    function loadData(id) {
+        
+        $(function() {
+            $("#rateYo").rateYo({
+                onSet: function(rating, rateYoInstance) {
+                    rating = Math.ceil(rating);
+                    $('#rating_input').val(rating); //setting up rating value to hidden field
+                    
+                    document.getElementById('review').addEventListener('click', () => {
+                        var formData = { id: id, rate: rating };
+                        $.ajax({
+                            url: "./api/updateRate.php",
+                            type: "POST",
+                            data: formData,
+                            success: function (res) {
+                                alert('Cám ơn bạn đã đánh giá sản phẩm');
+                            },
+                        });
+                    })
+                }
+            });
+        });
+    }
 </script>
 
 </html>

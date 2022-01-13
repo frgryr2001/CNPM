@@ -33,7 +33,46 @@
 
 <body>
   <?php include('./inc/header.php') ?>
+  <?php
+  $conn = open_database();
+  if (isset($_GET['id'])) {
+    $cartID = $_GET['id'];
+  }
+  if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    $sql = "
+        SELECT * FROM `account` WHERE email='$email'
+    ";
+    $accoutResult = NULL;
+    if ($result = $conn->query($sql)) {
+      while ($row = $result->fetch_assoc()) {
+        $accoutResult[] = $row;
+      }
+    }
 
+    $accoutID = $accoutResult[0]['id'];
+  }
+  if (isset($_POST['btn-buy-now'])) {
+    $productInsertToCart = $cartID;
+    $sql = "
+          INSERT INTO `cart` (`id_cart`, `id_account`, `productId`, `quantity`) 
+          VALUES (NULL, '$accoutID', '$productInsertToCart', '1');
+        ";
+
+    $conn->query($sql);
+    echo "<script>window.location.href = './cartBuyNow.php?id=$cartID';</script>";
+  }
+  if (isset($_POST['btn-add-to-cart'])) {
+
+    $productInsertToCart = $cartID;
+    $sql = "
+  INSERT INTO `cart` (`id_cart`, `id_account`, `productId`, `quantity`)
+  VALUES (NULL, '$accoutID', '$productInsertToCart', '1');
+  ";
+
+    $conn->query($sql);
+  }
+  ?>
 
 
   <!-- Product -->
@@ -59,10 +98,7 @@
             <img id="slideLeft" class="arrow" src="./assets/img/arrow/arrow-right.png">
             <div id="slider">
               <img class="thumbnail" src="./assets/img/product/<?= $row['image_path1'] ?>">
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path2'] ?>">
-
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path3'] ?>">
-              <img class="thumbnail" src="./assets/img/product/<?= $row['image_path4'] ?>">
+             
             </div>
 
             <img id="slideRight" class="arrow" src="./assets/img/arrow/arrow-right.png">
@@ -131,13 +167,16 @@
                 <i class="fas fa-gift"></i> Mô tả
               </div>
               <div class="card-body">
-                <p class="card-text"><?=$row['description']?></p>
+                <p class="card-text"><?= $row['description'] ?></p>
               </div>
             </div>
+            <form method="POST">
+              <button name="btn-buy-now" class="btn btn-danger mt-3" style="width:100%">Mua Ngay</button>
+            </form>
+            <form method="POST">
+              <button onclick="myFunction('Bạn vừa thêm một sản phẩm vào giỏ hàng')" name="btn-add-to-cart" class="btn btn-danger mt-3" style="width:100%">Thêm vào giỏ hàng</button>
 
-            <button class="btn btn-danger mt-3" style="width:100%">Mua ngay</button>
-            <button class="btn btn-primary mt-3" style="width:100%"><i class="fas fa-shopping-cart"></i> Them vao gio hang</button>
-
+            </form>
           </div>
         </div>
 
@@ -145,7 +184,7 @@
           <div class="card">
             <div class="card-body">
               <h5>Thông tin</h5>
-             
+
               <p class="card-text">- Trong 30 ngày đầu nhập lại máy, trừ phí 20% trên giá hiện tại(hoặc giá mua nếu giá mua thấp hơn giá hiện tại)
                 - Sau 30 ngày nhập lại máy theo giá thoả thuận <a href="#" class="card-link">Xem chi tiet</a> </p>
 
@@ -344,23 +383,23 @@
 
           <!--Table body-->
           <?php
-            require_once('./conf/db.php');
-            $conn = open_database();
-            $sql = "SELECT * 
+          require_once('./conf/db.php');
+          $conn = open_database();
+          $sql = "SELECT * 
                   FROM productdetail
                   WHERE id =" . $id;
-            $result = $conn->query($sql);
-            $row_details = $result->fetch_assoc();
+          $result = $conn->query($sql);
+          $row_details = $result->fetch_assoc();
           ?>
           <tbody>
             <tr>
               <th scope="row">CPU</th>
-              <td><?=$row_details['cpu']?></td>
+              <td><?= $row_details['cpu'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Màn hình</th>
-              <td><?=$row_details['screen']?></td>
+              <td><?= $row_details['screen'] ?></td>
             </tr>
 
             <!-- <tr>
@@ -370,27 +409,27 @@
 
             <tr>
               <th scope="row">Ram</th>
-              <td><?=$row_details['ram']?></td>
+              <td><?= $row_details['ram'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Trọng lượng</th>
-              <td><?=$row_details['weight']?></td>
+              <td><?= $row_details['weight'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Camera</th>
-              <td><?=$row_details['camera']?></td>
+              <td><?= $row_details['camera'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Bộ nhớ</th>
-              <td><?=$row_details['storage']?></td>
+              <td><?= $row_details['storage'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Pin</th>
-              <td><?=$row_details['battery']?></td>
+              <td><?= $row_details['battery'] ?></td>
             </tr>
 
             <!-- <tr>
@@ -400,12 +439,12 @@
 
             <tr>
               <th scope="row">Tính năng</th>
-              <td><?=$row_details['features']?></td>
+              <td><?= $row_details['features'] ?></td>
             </tr>
 
             <tr>
               <th scope="row">Bluetooth</th>
-              <td><?=$row_details['bluetooth']?></td>
+              <td><?= $row_details['bluetooth'] ?></td>
             </tr>
 
             <!-- <tr>
@@ -435,5 +474,10 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript" src="./assets/js/product1.js"></script>
+<script>
+  function myFunction(str) {
+    alert(str);
+  }
+</script>
 
 </html>

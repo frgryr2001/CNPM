@@ -132,7 +132,7 @@ require_once('./conf/conf.php');
                             <?php } ?>
                             <?php if (isset($_SESSION['authenticated'])) { ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Lịch sử mua hàng</a>
+                                    <a class="nav-link" href="./purchase_history.php">Lịch sử mua hàng</a>
                                 </li>
                             <?php } ?>
                             <?php if (isset($_SESSION['authenticated'])) { ?>
