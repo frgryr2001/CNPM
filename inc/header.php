@@ -57,6 +57,7 @@ require_once('./conf/conf.php');
         <!-- Logo Image -->
         <div class="header__logo__img" style="width: 300px;">
             <!-- <a href="./" width="100%" height="100%"><img src="assets/img/logo.png" alt=""></a> -->
+            <a style="font-size: 36px; line-height: 60px; color: #fff;" href="../index.php">Trang chủ</a>
         </div>
 
         <!-- Submenu modal -->

@@ -92,10 +92,10 @@
                 </thead>
                 <tbody id="rowBody">
                     <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;" >
-                        <th scope="row">
+                        <!-- <th scope="row">
                             <img src="./assets/img/product/laptop1.webp" alt="" width="50%">
-                        </th>
-                        <td>lê hoàng nhân</td>
+                        </th> -->
+                        <!-- <td>lê hoàng nhân</td>
                         <td>020402340</td>
                         <td>TP.HCM</td>
                         <td>11/11/1123</td>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                            
-                        </td>
+                        </td> -->
                     </tr>
 
                 </tbody>

@@ -2,10 +2,15 @@
     // require_once('./conf/conf.php');
 
     session_start();
-    if(isset($_SESSION['email'])){
+    if(isset($_SESSION['authenticated']) && ($_SESSION['role']) == 3){
+        header('Location: index.php');
+        exit();
+    } else if (isset($_SESSION['authenticated'])) {
         header('Location: ./admin/index.php');
         exit();
-    };
+    }
+
+    
 
     // $error = '';
     // $user = '';

@@ -166,7 +166,8 @@ error_reporting(E_ERROR | E_PARSE);
                         foreach ($output2 as $value2) {
                             $priceF = (int)$value2['inital_price'];
                             $quantityF = (int)$value2['quantity'];
-                            $totalPriceF = $totalPriceF + ($priceF * $quantityF);
+                            $priceF1 = $priceF - ($priceF * (int)$value2['sale_off'] / 100);
+                            $totalPriceF = $totalPriceF + ($priceF1 * $quantityF);
                             $id_accountF = $value2['id_account'];
                         }
                         $id_order = (int)rand(10000, 99999);

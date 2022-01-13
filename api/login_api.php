@@ -2,7 +2,7 @@
 session_start();
 require_once('../conf/conf.php');
 header('Content-Type: application/json');
-$BASE_URL = "../";
+$BASE_URL = "../login.php";
 $DASH_URL = "../admin/";
 
  if (!isset($_POST['email']) || empty($_POST['email'])) {
