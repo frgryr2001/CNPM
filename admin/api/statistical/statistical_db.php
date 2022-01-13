@@ -36,7 +36,7 @@
     // Lấy số lượng sản phẩm đã bán
     function get_num_of_product_sold() {
         $conn = open_database();
-        $sql = "SELECT SUM(qty) FROM `order_detail`";
+        $sql = "SELECT SUM(qty) FROM `order_detail`, `order` WHERE `order`.`status`=1 AND `order`.`id_order`=`order_detail`.`id_order`";
         $result = $conn -> query($sql);
         if ($conn -> connect_error) {
             die("Lỗi: " . $conn -> connect_error);

@@ -111,7 +111,7 @@ error_reporting(E_ERROR | E_PARSE);
                     $inital_priceFormat = number_format($inital_price, ((int) $inital_price == $inital_price ? 0 : 2), '.', ',');
                     $quantity = $value['quantity'];
                     $id_cart = $value['id_cart'];
-                    var_dump($inital_price);
+                    // var_dump($inital_price);
                     $image_product =$value['image'];
                     // var_dump($value);
                     $listProductHTML = "

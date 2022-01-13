@@ -143,7 +143,7 @@
                     return ` 
                     <tr data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;" >
                         <th scope="row">
-                            <img src="./assets/img/product/${e.image}" alt="" width="50%">
+                            <img style="width: 80px;" src="./assets/img/product/${e.image}" alt="" width="50%">
                         </th>
                         <td>${e.product_name}</td>
                         <td>${e.inital_price}</td>
